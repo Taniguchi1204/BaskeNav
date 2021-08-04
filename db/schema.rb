@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 2021_08_04_063813) do
     t.datetime "remember_created_at"
     t.string "name", null: false
     t.string "phone_number", null: false
-    t.string "admin_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
@@ -46,6 +45,7 @@ ActiveRecord::Schema.define(version: 2021_08_04_063813) do
     t.string "address", null: false
     t.string "phone_number", null: false
     t.string "email", null: false
+    t.string "facility_image_id", null: false
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -129,10 +129,10 @@ ActiveRecord::Schema.define(version: 2021_08_04_063813) do
 
   create_table "relationships", force: :cascade do |t|
     t.integer "following_id", null: false
-    t.integer "follower_id", null: false
+    t.integer "followed_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["follower_id"], name: "index_relationships_on_follower_id"
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["following_id"], name: "index_relationships_on_following_id"
   end
 

@@ -11,6 +11,7 @@ class Admin < ApplicationRecord
   end
   
   validates :phone_number, format: {with: /\A[0-9]{10,11}\z/}
-  attachment :admin_image
+  
+  has_many :facilities, dependent: :destroy
   
 end

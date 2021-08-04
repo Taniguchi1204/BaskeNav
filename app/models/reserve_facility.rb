@@ -7,4 +7,7 @@ class ReserveFacility < ApplicationRecord
     validates :finish_time
     validates :number
   end
+  
+  belongs_to :user
+  belongs_to :facility
 end

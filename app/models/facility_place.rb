@@ -4,4 +4,6 @@ class FacilityPlace < ApplicationRecord
     validates :longitude
     validates :latitude
   end
+  
+  belongs_to :facility
 end

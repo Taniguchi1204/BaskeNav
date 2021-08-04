@@ -34,7 +34,6 @@ class DeviseCreateAdmins < ActiveRecord::Migration[5.2]
 
       t.string :name,            null: false
       t.string :phone_number,    null: false
-      t.string :admin_image_id
 
 
       t.timestamps null: false

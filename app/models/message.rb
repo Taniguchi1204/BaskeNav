@@ -4,4 +4,7 @@ class Message < ApplicationRecord
     validates :room_id
     validates :message
   end
+  
+  belongs_to :user
+  belongs_to :room
 end

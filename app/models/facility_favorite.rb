@@ -3,4 +3,7 @@ class FacilityFavorite < ApplicationRecord
     validates :user_id
     validates :facility_id
   end
+  
+  belongs_to :user
+  belongs_to :facil
 end

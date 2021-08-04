@@ -4,4 +4,6 @@ class PostPlace < ApplicationRecord
     validates :longitude
     validates :latitude
   end
+  
+  belongs_to :post
 end
