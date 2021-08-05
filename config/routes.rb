@@ -22,9 +22,8 @@ Rails.application.routes.draw do
   # 会員（フォロー、フォロワー）
   resources :users, only:[:show, :edit, :update] do
     resources :relationship, only:[:create, :destroy]
-    member do
-      get :following, :followers
-    end
+    get 'followings' => 'relationships#followings'
+    get 'followers' => 'relationships#followers'
   end
 
   # ダイレクトメッセージ

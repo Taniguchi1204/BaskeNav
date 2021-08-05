@@ -1,0 +1,12 @@
+<% form_with(model: @post, local: true, multipart: true) do |f| %>
+  <div class="spot">
+    <%= f.fields_for :post_place do |s| %>
+      <%= s.label :address, "レビュー場所(Google Mapで検索)", class: 'spot__title' %>
+      <%= s.text_field :address, placeholder: "スポットを入力", id: "address", class: 'spot__text' %>
+    <% end %>
+    <input onclick="codeAddress()", type="button", value="検索する">
+
+    <div class="map" id="map" style="height: 320px; width: 640px;"></div>
+  </div>
+<% end %>
+

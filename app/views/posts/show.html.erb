@@ -27,19 +27,27 @@
         <p>Message</p>
       </div>
 
-      <div class="row">
-        <%= link_to "投稿する", new_post_path %>
-      </div>
 
-      <div class="row">
-        <%= link_to "Edit", edit_user_path(@user) %>
-      </div>
     </div>
-  <div class="col-md-9">
-    <% @posts.each do |post| %>
-      <%= attachment_image_tag post.user, :user_image, :fill, 50, 50, fallback: "no_image.jpg" %>
-      <%= post.user.name %>
-      <%= post.content %>
-    <% end %>
+    <div class="col-md-9">
+      <h2>gmap</h2>
+      <div id='map'></div>
+
+      <style>
+      #map{
+        height: 500px;
+      }
+      </style>
+
+      <script>
+      function initMap(){
+        let map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: -34.397, lng: 150.644},
+        zoom: 8
+        });
+      }
+      </script>
+    </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKzm8Q1CsziI929WJM-dQQlwV1L3MpydY&callback=initMap"></script>
   </div>
 </div>
