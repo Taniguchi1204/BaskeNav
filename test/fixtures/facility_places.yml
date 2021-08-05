@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  facility_id: 1
+  longitude: 1.5
+  latitude: 1.5
+
+two:
+  facility_id: 1
+  longitude: 1.5
+  latitude: 1.5

@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  admins_id: 1
+  opening: 1
+  closing: 1
+  station: MyString
+  parking: MyString
+  postcade: MyString
+  address: MyString
+  phone_number: MyString
+  email: MyString
+
+two:
+  admins_id: 1
+  opening: 1
+  closing: 1
+  station: MyString
+  parking: MyString
+  postcade: MyString
+  address: MyString
+  phone_number: MyString
+  email: MyString

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  facility_id: 1
+  user_id: 1
+  date: 2021-08-04
+  start_time: MyString
+  finish_time: MyString
+  number: MyString
+  comment: MyText
+
+two:
+  facility_id: 1
+  user_id: 1
+  date: 2021-08-04
+  start_time: MyString
+  finish_time: MyString
+  number: MyString
+  comment: MyText
