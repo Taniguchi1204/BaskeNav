@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'users/show'
   # 施設管理者用アカウント
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
@@ -9,7 +10,8 @@ Rails.application.routes.draw do
   # 会員用アカウント
   devise_for :users, controllers: {
     sessions:      'users/sessions',
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
   # ログイン前のリンク先
