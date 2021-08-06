@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(version: 2021_08_05_032507) do
 
   create_table "post_places", force: :cascade do |t|
     t.integer "post_id", null: false
+    t.string "address", null: false
     t.float "longitude", null: false
     t.float "latitude", null: false
     t.datetime "created_at", null: false
@@ -151,10 +152,8 @@ ActiveRecord::Schema.define(version: 2021_08_05_032507) do
   end
 
   create_table "rooms", force: :cascade do |t|
-    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
   create_table "sns_credentials", force: :cascade do |t|

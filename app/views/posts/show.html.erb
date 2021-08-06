@@ -1,53 +1,51 @@
-<div class="container mt-5">
-  <div class="row">
+  <div class="row mt-5 offset-md-2">
     <div class="col-md-3">
       <div class="row">
         <div class="col-mb-6">
-          <%= attachment_image_tag(@user, :user_image, :fill, 50, 50, fallback: "no_image.jpg") %>
+          <%= attachment_image_tag(@post.user, :user_image, :fill, 50, 50, fallback: "no_image.jpg") %>
         </div>
         <div class="col-mb-6">
-          <%= @user.name %><br>
-          <%= link_to "Follow", user_followings_path(@user) %><br>
-          <%= link_to "Follower", user_followers_path(@user) %><br>
+          <%= @post.user.name %>
         </div>
       </div>
-
-      <div class="row">
-        <p>introduction</p><br>
-        <%= @user.introduce %>
+      
+      <div>
+        <h2>Posts</h2><br>
+        <%= @post.content %><br>
       </div>
 
-      <div class="row">
-        <p>Like</p><br>
-        <%= link_to "Posts", "#" %><br>
-        <%= link_to "Facilities", "#" %><br>
+      <div class="show__address">
+        <%= @post.post_place.address %>
       </div>
 
-      <div class="row">
-        <p>Message</p>
+      <div>
+        <%= attachment_image_tag(@post, :image, :fill, 50, 50, fallback: "no_image.jpg") %>
       </div>
 
-
+      <div id = "favorites_btn_<%= @post.id %>">
+        <%= render 'post_favorites/like', post: @post %>
+      </div>
     </div>
-    <div class="col-md-9">
-      <h2>gmap</h2>
-      <div id='map'></div>
-
-      <style>
-      #map{
-        height: 500px;
-      }
-      </style>
-
-      <script>
-      function initMap(){
-        let map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -34.397, lng: 150.644},
-        zoom: 8
-        });
-      }
-      </script>
-    </div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKzm8Q1CsziI929WJM-dQQlwV1L3MpydY&callback=initMap"></script>
+    
+  <div class="col-md-8">
+    <div class="show__maps" id="show_map" style="height: 650px; width: 100%;"></div>
   </div>
+  
 </div>
+
+<div class="new-comment">
+  <h2>Comments</h2>
+  <%= form_with(model: [@post, @comment], local: true) do |f| %>
+    <%= f.label :comment %>
+    <%= f.text_area :comment %>
+    <%= f.submit "コメントする" %>
+  <% end %>
+</div>
+
+<div class="new-comments">
+  <%= render "post_comments/index", post_comments: @post_comments %>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKzm8Q1CsziI929WJM-dQQlwV1L3MpydY&callback=initMap"></script>
+<script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+<script src="//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js", type:"text/javascript"></script>

@@ -14,11 +14,11 @@ class User < ApplicationRecord
   attachment :user_image
 
   # フォローされているユーザーに関するアソシエーション
-  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "following_id", dependent: :destroy
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followers, through: :reverse_of_relationships, source: :following
 
   # フォローしているユーザーに関するアソシエーション
-  has_many :relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :relationships, class_name: "Relationship", foreign_key: "following_id", dependent: :destroy
   has_many :followings, through: :relationships, source: :followed
 
   # ダイレクトメッセージに関するアソシエーション
@@ -26,12 +26,14 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
 
   # 投稿に関するアソシエーション
-  has_many :posts,    dependent: :destroy
+  has_many :posts,          dependent: :destroy
   has_many :post_favorites, dependent: :destroy
+  has_many :post_contents,  through:   :post_favorites, source: :post
   has_many :post_comments,  dependent: :destroy
 
   # バスケ施設に関するアソシエーション
   has_many :facility_favorites, dependent: :destroy
+  has_many :post_facilities,    through:   :facility_favorites, source: :facility
   has_many :facility_comments,  dependent: :destroy
   has_many :reserve_facilities
 
@@ -39,7 +41,7 @@ class User < ApplicationRecord
 
   # フォローする
   def follow(user_id)
-    relationships.create(followed_id: user_id)
+    relationships.create!(followed_id: user_id)
   end
 
   # フォローを外す

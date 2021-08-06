@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'messages/show'
+  get 'chats/show'
   get 'users/show'
   # 施設管理者用アカウント
   devise_for :admins, controllers: {
@@ -21,23 +23,24 @@ Rails.application.routes.draw do
 
   # 会員（フォロー、フォロワー）
   resources :users, only:[:show, :edit, :update] do
-    resources :relationship, only:[:create, :destroy]
-    get 'followings' => 'relationships#followings'
-    get 'followers' => 'relationships#followers'
+    resource :relationships, only:[:create,:destroy]
+    get 'followings'     => 'relationships#followings'
+    get 'followers'      => 'relationships#followers'
+    get 'favorite_posts' => 'post_favorites#index'
   end
 
   # ダイレクトメッセージ
-  resources :chats, only:[:show, :create]
+  resources :messages, only:[:show, :create]
 
   # 投稿
   resources :posts do
-    resource :favorite_posts, only:[:create, :destroy]
+    resource :post_favorites, only:[:create, :destroy]
     resources :post_comments, only:[:create, :destroy]
   end
 
   # バスケ施設（施設管理者側を分ける？）
   resources :facilities do
-    resource :facility_favorites, only:[:create, :destroy]
+    resource :facility_favorites, only:[:index, :create, :destroy]
     resources :facility_comments, only:[:create, :destroy]
   end
 

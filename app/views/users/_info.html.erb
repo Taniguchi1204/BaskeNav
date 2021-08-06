@@ -1,0 +1,52 @@
+  <div class="row">
+    <div class="col-mb-6">
+      <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg") %>
+    </div>
+    <div class="col-mb-6">
+      <%= user.name %><br>
+      <p>Follow</p>
+      <%= link_to user.followings.count, user_followings_path(user) %>
+      <p>Follower</p>
+      <%= link_to user.followers.count, user_followers_path(user) %>
+    </div>
+  </div>
+
+  <div class="row">
+    <p>introduction</p><br>
+    <%= user.introduce %>
+  </div>
+
+  <div>
+    <p>Like</p>
+    <div>
+    <%= link_to user_favorite_posts_path(user) do %>
+      Post<%= user.post_favorites.count %>
+    <% end %>
+    <%= link_to "Facilities", "#" %><br>
+    </div>
+  </div>
+
+  <% if user == current_user %>
+    <div class="row">
+      <%= link_to "投稿する", new_post_path %>
+    </div>
+
+    <div class="row">
+      <%= link_to "Edit", edit_user_path(user) %>
+    </div>
+  <% end %>
+
+  <% if user != current_user %>
+    <div class="row">
+      <p>Message</p>
+    </div>
+
+    <div class="row">
+      <% if current_user.following?(user) %>
+        <%= link_to "Chatを始める", message_path(user) %>
+        <%= link_to "フォローを外す", user_relationships_path(user.id), method: :delete, class:"btn btn-success" %>
+      <% else %>
+        <%= link_to "フォローする", user_relationships_path(user.id), method: :post, class:"btn btn-success" %>
+      <% end %>
+    </div>
+  <% end %>

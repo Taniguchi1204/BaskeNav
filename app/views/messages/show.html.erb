@@ -1,0 +1,17 @@
+<h1><%= @user.name %>とのチャットルーム</h1>
+
+<div class="message" style="width: 400px;">
+  <% @messages.each do |chat| %>
+    <% if chat.user == current_user %>
+      <p style="text-align: right;"><%= chat.message %><br><%= chat.created_at.strftime("%H:%M:%S") %></p>
+    <% else %>
+      <p style="text-align: left;"><%= chat.message %></p>
+    <% end %>
+  <% end %>
+</div>
+
+<%= form_with model: @message do |f| %>
+  <%= f.text_field :message %>
+  <%= f.hidden_field :room_id %>
+  <%= f.submit "送信する" %>
+<% end %>

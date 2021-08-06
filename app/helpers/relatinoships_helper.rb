@@ -1,0 +1,2 @@
+module RelatinoshipsHelper
+end
