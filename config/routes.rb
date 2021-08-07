@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'facilities/new'
   get 'messages/show'
   get 'chats/show'
   get 'users/show'

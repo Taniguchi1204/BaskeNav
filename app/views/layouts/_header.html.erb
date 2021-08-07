@@ -1,6 +1,8 @@
 <header>
   <div class="header-top">
     <div class="header-top-logo">Logo</div>
+    <%= link_to "施設登録の方はこちら", new_admin_registration_path %>
+    <%= link_to "施設管理者用ログイン", new_admin_session_path %>
   </div>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark header-nav">
     <div class="container">
@@ -13,28 +15,29 @@
             <li><%= link_to "Game", game_path, class: "nav-link text-light" %></li>
             <li><%= link_to "News", news_path, class: "nav-link text-light" %></li>
             <li><%= link_to "Mypage", user_path(current_user), class: "nav-link text-light" %></li>
-              <%= link_to root_url, class: "nav-link text-light" do %>
+              <%= link_to root_url do %>
                 <img src="/assets/logo.png">
               <% end %>
             </li>
             <li><%= link_to "Posts", posts_path, class: "nav-link text-light" %></li>
             <li><%= link_to "Facility", facilities_path, class: "nav-link text-light" %></li>
-            <li><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link text-light" %></li>
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
           <% elsif admin_signed_in? %>
             <li><%= link_to "Game", game_path, class: "nav-link text-light" %></li>
             <li><%= link_to "News", news_path, class: "nav-link text-light" %></li>
-              <%= link_to root_url, class: "nav-link text-light" do %>
+            <li><%= link_to "NewFacility", new_facility_path, class: "new_facility" %></li>
+              <%= link_to root_url do %>
                 <img src="/assets/logo.png">
               <% end %>
             </li>
-            <li><%= link_to "Mypage", facility_path(current_user), class: "nav-link text-light" %></li>
+            <li><%= link_to "Mypage", facility_path(current_admin), class: "nav-link text-light" %></li>
             <li><%= link_to "Facility", facilities_path, class: "nav-link text-light" %></li>
-            <li><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link text-light" %></li>
+            <li><%= link_to "Logout", destroy_admin_session_path, method: :delete, class: "nav-link text-light" %></li>
           <% else %>
             <li><%= link_to "Game", game_path, class: "nav-link text-light" %></li>
             <li><%= link_to "News", news_path, class: "nav-link text-light" %></li>
             <li>
-              <%= link_to root_url, class: "nav-link text-light" do %>
+              <%= link_to root_url do %>
                 <img src="/assets/logo.png">
               <% end %>
             </li>

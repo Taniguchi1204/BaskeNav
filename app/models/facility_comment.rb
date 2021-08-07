@@ -5,7 +5,7 @@ class FacilityComment < ApplicationRecord
     validates :comment
     validates :rate
   end
-  
+
   belongs_to :user
   belongs_to :facility
 end

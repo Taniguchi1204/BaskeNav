@@ -1,0 +1,18 @@
+<div class="container mt-5">
+  <div class="row">
+
+    <div class="col-md-9">
+      <% @facilities.each do |facility| %>
+        <div>
+          <%= link_to facility_path(facility) do %>
+            <%= attachment_image_tag facility, :facility_image, :fill, 50, 50, fallback: "no_image.jpg" %>
+            <%= facility.name %>
+            営業時間<%= facility.opening %> ~ <%= facility.closing %>
+            最寄り駅<%= facility.station %>
+
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
