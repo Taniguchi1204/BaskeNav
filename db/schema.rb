@@ -142,9 +142,8 @@ ActiveRecord::Schema.define(version: 2021_08_05_032507) do
   create_table "reserve_facilities", force: :cascade do |t|
     t.integer "facility_id", null: false
     t.integer "user_id", null: false
-    t.date "date", null: false
-    t.string "start_time", null: false
-    t.string "finish_time", null: false
+    t.datetime "start", null: false
+    t.datetime "finish", null: false
     t.string "number", null: false
     t.text "comment"
     t.datetime "created_at", null: false

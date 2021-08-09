@@ -12,7 +12,7 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto d-flex align-items-start">
           <% if user_signed_in? %>
-            <li><%= link_to "Game", game_path, class: "nav-link text-light" %></li>
+            <li><%= link_to "Game", game_west_path(year: :"2020"), class: "nav-link text-light" %></li>
             <li><%= link_to "News", news_path, class: "nav-link text-light" %></li>
             <li><%= link_to "Mypage", user_path(current_user), class: "nav-link text-light" %></li>
               <%= link_to root_url do %>
@@ -23,7 +23,7 @@
             <li><%= link_to "Facility", facilities_path, class: "nav-link text-light" %></li>
             <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
           <% elsif admin_signed_in? %>
-            <li><%= link_to "Game", game_path, class: "nav-link text-light" %></li>
+            <li><%= link_to "Game", game_west_path(year: :"2020"), class: "nav-link text-light" %></li>
             <li><%= link_to "News", news_path, class: "nav-link text-light" %></li>
             <li><%= link_to "NewFacility", new_facility_path, class: "new_facility" %></li>
               <%= link_to root_url do %>
@@ -34,7 +34,7 @@
             <li><%= link_to "Facility", facilities_path, class: "nav-link text-light" %></li>
             <li><%= link_to "Logout", destroy_admin_session_path, method: :delete, class: "nav-link text-light" %></li>
           <% else %>
-            <li><%= link_to "Game", game_path, class: "nav-link text-light" %></li>
+            <li><%= link_to "Game", game_west_path(year: :"2020"), class: "nav-link text-light" %></li>
             <li><%= link_to "News", news_path, class: "nav-link text-light" %></li>
             <li>
               <%= link_to root_url do %>

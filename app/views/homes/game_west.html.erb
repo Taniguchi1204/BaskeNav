@@ -1,0 +1,35 @@
+<%= link_to "2018", game_west_path(year: :"2018") %>
+<%= link_to "2019", game_west_path(year: :"2019") %>
+<%= link_to "2020", game_west_path(year: :"2020") %>
+<div class="east">
+  <%= link_to "East", game_east_path(year: :"2020") %>
+</div>
+<div class="east">
+  <%= link_to "West", game_west_path(year: :"2020") %>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>順位</th>
+      <th>チーム</th>
+      <th>勝</th>
+      <th>負</th>
+      <th>差</th>
+      <th>直近（10試合）</th>
+      <th>勝率</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @team_rank.each do |rank| %>
+      <tr>
+        <td><%= rank["conference"]["rank"] %></td>
+        <td><img src="<%= rank["teamId"]["logo"] %>" style="width: 50px;"><%= rank["teamId"]["fullName"] %></td>
+        <td><%= rank["win"] %></td>
+        <td><%= rank["loss"] %></td>
+        <td><%= rank[ "gamesBehind"] %></td>
+        <td><%= rank["lastTenWin"] %>-<%= rank["lastTenLoss"] %></td>
+        <td><%= rank["winPercentage"] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

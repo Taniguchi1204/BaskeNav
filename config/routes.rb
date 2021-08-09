@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'facilities/new'
-  get 'messages/show'
-  get 'chats/show'
-  get 'users/show'
   # 施設管理者用アカウント
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
@@ -19,8 +15,9 @@ Rails.application.routes.draw do
 
   # ログイン前のリンク先
   root "homes#top"
-  get "/news" => "homes#news"
-  get "/game" => "homes#game"
+  get "/news"      => "homes#news"
+  get "/game_east"=> "homes#game_east"
+  get "/game_west" => "homes#game_west"
 
   # 会員（フォロー、フォロワー）
   resources :users, only:[:show, :edit, :update] do
@@ -43,9 +40,8 @@ Rails.application.routes.draw do
   resources :facilities do
     resource :facility_favorites, only:[:index, :create, :destroy]
     resources :facility_comments, only:[:create, :destroy]
+    #　バスケ施設予約
+    resources :reserve_facilities, only:[:show, :create, :edit, :update, :destroy]
   end
-
-  #　バスケ施設予約
-  resources :reserve_facilities, only:[:show, :create, :edit, :update, :destroy]
 
 end

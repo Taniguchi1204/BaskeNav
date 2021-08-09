@@ -2,18 +2,26 @@ class FacilitiesController < ApplicationController
 
   def index
     @facilities = Facility.all
+    @reserve_facilities = ReserveFacility.all
   end
 
   def show
-    @facility          = Facility.find(params[:id])
-    @comment           = FacilityComment.new
-    @facility_comments = @facility.facility_comments
+    @facility           = Facility.find(params[:id])
+    @comment            = FacilityComment.new
+    @facility_comments  = @facility.facility_comments
+    @reserve_facility   = ReserveFacility.new
+    @reserve_facilities = ReserveFacility.where(facility_id: @facility.id)
 
     # googelmap.jsで使用する変数
     lat = @facility.facility_place.latitude
     lng = @facility.facility_place.longitude
     gon.lat = lat
     gon.lng = lng
+
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def new

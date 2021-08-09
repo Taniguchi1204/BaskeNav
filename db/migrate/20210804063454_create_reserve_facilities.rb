@@ -3,9 +3,8 @@ class CreateReserveFacilities < ActiveRecord::Migration[5.2]
     create_table :reserve_facilities do |t|
       t.integer :facility_id, null: false
       t.integer :user_id,     null: false
-      t.date :date,           null: false
-      t.string :start_time,   null: false
-      t.string :finish_time,  null: false
+      t.datetime :start,   null: false
+      t.datetime :finish,  null: false
       t.string :number,       null: false
       t.text :comment
 
