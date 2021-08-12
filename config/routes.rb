@@ -22,9 +22,10 @@ Rails.application.routes.draw do
   # 会員（フォロー、フォロワー）
   resources :users, only:[:show, :edit, :update] do
     resource :relationships, only:[:create,:destroy]
-    get 'followings'     => 'relationships#followings'
-    get 'followers'      => 'relationships#followers'
-    get 'favorite_posts' => 'post_favorites#index'
+    get 'followings'          => 'relationships#followings'
+    get 'followers'           => 'relationships#followers'
+    get 'favorite_posts'      => 'post_favorites#index'
+    get 'favorite_facilities' => 'facility_favorites#index'
   end
 
   # ダイレクトメッセージ

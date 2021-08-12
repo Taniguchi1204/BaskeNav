@@ -1,3 +1,54 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.posts{
+  width: 1100px;
+  height: 650px;
+  border: 45px solid #000;
+  border-image-slice: 43;
+  border-image-source: image_url('frame.jpeg');
+  border-image-width: 2;
+  border-image-outset: 43px;
+  background-image: image_url('CorkBoard02.jpeg');
+  position: relative;
+  overflow: scroll;
+  &--contents{
+    width: 80%;
+    height: 650px;
+    margin: 60px 0 0 70px;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    &__view{
+      width: 30%;
+      min-height: 300px;
+      background-image: image-url('red.png');
+      background-size: cover;
+      position: relative;
+      &:nth-child(even){
+        margin: 50px 20px;
+        width: 30%;
+        min-height: 300px;
+        background-image: image-url('blue.png');
+        background-size: cover;
+      }
+    }
+    &__detail{
+      padding-top: 30px;
+      padding-left: 30px;
+    }
+    &__content{
+      padding-top: 30px;
+    }
+    &__photo{
+      position: absolute;
+      bottom: 40px;
+      left: 30px;
+      img{
+        width: 200px;
+        height: 120px;
+      }
+    }
+  }
+}

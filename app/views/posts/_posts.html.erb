@@ -1,9 +1,21 @@
-<% posts.each do |post| %>
-  <div>
-    <%= link_to post_path(post) do %>
-      <%= attachment_image_tag post.user, :user_image, :fill, 50, 50, fallback: "no_image.jpg" %>
-      <%= post.user.name %>
-      <%= post.content %>
-    <% end %>
-  </div>
-<% end %>
+<div class="posts">
+    <div class="posts--contents">
+      <% posts.each do |post| %>
+        <div class="posts--contents__view">
+          <div class="posts--contents__detail">
+            <%= link_to post_path(post) do %>
+              <%= attachment_image_tag post.user, :user_image, :fill, 50, 50, fallback: "no_image.jpg" %>
+              <%= post.user.name %>
+            <% end %>
+            <div class="posts--contents__content">
+              <%= post.content %>
+            </div>
+          </div>
+          <div class="posts--contents__photo">
+              <%= attachment_image_tag post, :image, :fill, 100, 100, fallback: "no_image.jpg" %>
+            </div>
+        </div>
+      <% end %>
+    </div>
+</div>
+

@@ -1,13 +1,30 @@
-<%= link_to "2018", game_west_path(year: :"2018") %>
-<%= link_to "2019", game_west_path(year: :"2019") %>
-<%= link_to "2020", game_west_path(year: :"2020") %>
-<div class="east">
-  <%= link_to "East", game_east_path(year: :"2020") %>
+<div class="game">
+  <div class="game--view">
+    <h1>順位表</h1>
+    <h2>West</h2>
+    <div class="game--view__photo"></div>
+  </div>
+
+<div class="game--conference">
+  <%= link_to game_east_path(year: :"2020") do %>
+    <div class="game--conference__east">
+      <p class="game--link__east">East</p>
+    </div>
+  <% end %>
+  <%= link_to game_east_path(year: :"2020") do %>
+    <div class="game--conference__west">
+      <p class="game--link__west">West</p>
+    </div>
+  <% end %>
 </div>
-<div class="east">
-  <%= link_to "West", game_west_path(year: :"2020") %>
+
+<div class="game--years">
+  <%= link_to "2018", game_west_path(year: :"2018") %>
+  <%= link_to "2019", game_west_path(year: :"2019") %>
+  <%= link_to "2020", game_west_path(year: :"2020") %>
 </div>
-<table>
+
+<table class="game--table">
   <thead>
     <tr>
       <th>順位</th>
@@ -23,7 +40,7 @@
     <% @team_rank.each do |rank| %>
       <tr>
         <td><%= rank["conference"]["rank"] %></td>
-        <td><img src="<%= rank["teamId"]["logo"] %>" style="width: 50px;"><%= rank["teamId"]["fullName"] %></td>
+        <td class="game--table__team"><img src="<%= rank["teamId"]["logo"] %>" style="width: 50px;"><%= rank["teamId"]["fullName"] %></td>
         <td><%= rank["win"] %></td>
         <td><%= rank["loss"] %></td>
         <td><%= rank[ "gamesBehind"] %></td>
@@ -33,3 +50,4 @@
     <% end %>
   </tbody>
 </table>
+</div>
