@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   end
 
   # ダイレクトメッセージ
-  resources :messages, only:[:show, :create]
+  resources :messages, only:[:create]
 
   # 投稿
   resources :posts do

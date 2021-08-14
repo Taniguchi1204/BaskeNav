@@ -1,49 +1,49 @@
-  <div class="row mt-5 offset-md-2">
-    <div class="col-md-3">
-      <div class="row">
-        <div class="col-mb-6">
-          <%= attachment_image_tag(@post.user, :user_image, :fill, 50, 50, fallback: "no_image.jpg") %>
-        </div>
-        <div class="col-mb-6">
-          <%= @post.user.name %>
-        </div>
-      </div>
-      
-      <div>
-        <h2>Posts</h2><br>
-        <%= @post.content %><br>
+<div class="post-show">
+  <div class="post-show--contents">
+    <div class="post-show--post">
+      <div class="post-show--post-user">
+        <%= attachment_image_tag(@post.user, :user_image, fallback: "no_image.jpg") %>
+        <h2><%= @post.user.name %></h2>
       </div>
 
-      <div class="show__address">
-        <%= @post.post_place.address %>
-      </div>
-
-      <div>
-        <%= attachment_image_tag(@post, :image, :fill, 50, 50, fallback: "no_image.jpg") %>
-      </div>
-
-      <div id = "favorites_btn_<%= @post.id %>">
+      <div class = "post-show--favorite">
         <%= render 'post_favorites/like', post: @post %>
       </div>
+
+      <div class="post-show--content">
+        <h2>Posts</h2>
+        <p><%= @post.content %></p>
+      </div>
+
+      <div class="post-show--address">
+        <h2>Place</h2>
+        <p><%= @post.post_place.address %></p>
+      </div>
+
+      <div class="post-show--post-image">
+        <%= attachment_image_tag(@post, :image, fallback: "no_image.jpg") %>
+      </div>
     </div>
-    
-  <div class="col-md-8">
-    <div class="show__maps" id="show_map" style="height: 650px; width: 100%;"></div>
   </div>
-  
-</div>
 
-<div class="new-comment">
-  <h2>Comments</h2>
-  <%= form_with(model: [@post, @comment], local: true) do |f| %>
-    <%= f.label :comment %>
-    <%= f.text_area :comment %>
-    <%= f.submit "コメントする" %>
-  <% end %>
-</div>
+  <div class="post-show--map">
+    <div class="show__maps" id="show_map" style="height: 650px; width: 500px;"></div>
+  </div>
 
-<div class="new-comments">
-  <%= render "post_comments/index", post_comments: @post_comments %>
+  <div class="post-show--comments">
+    <h2>Comments</h2>
+    <div class="post-show--new-comment">
+      <div class="post-show--comment-form">
+        <%= form_with(model: [@post, @comment], local: true) do |f| %>
+          <%= f.text_area :comment %>
+          <%= f.submit "コメントする" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="post-show--comments__list">
+      <%= render "post_comments/index", post_comments: @post_comments %>
+    </div>
+  </div>
 </div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKzm8Q1CsziI929WJM-dQQlwV1L3MpydY&callback=initMap"></script>

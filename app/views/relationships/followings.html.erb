@@ -1,2 +1,9 @@
-<h2>Follow Users</h2>
-<%= render "follow", users: @users %>
+<div class="relationships">
+  <h2>
+    <%= link_to user_path(@user) do %>
+      <%= attachment_image_tag(@user, :user_image, :fill, 50, 50, fallback: "no_image.jpg") %>
+      <%= @user.name %>のFollow Users
+    <% end %>
+  </h2>
+  <%= render "follow", users: @users %>
+</div>

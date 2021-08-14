@@ -84,3 +84,20 @@ $(function () {
         }
     });
 });
+
+// チャットモダンウィンドウ
+$(function () {
+  $('#modan_open').on('click', function () {
+    $('.chats--background').addClass('active');
+    $('.chats--messages').addClass('active');
+  });
+  $('#modan_close').on('click', function() {
+    $('.chats--background').removeClass('active');
+    $('.chats--messages').removeClass('active');
+  });
+  $('#submit').on('click', function(){
+    $('.chats--contents').animate(
+      { scrollTop: $('.chats--contents').get(0).scrollHeight },
+    );
+  });
+});
