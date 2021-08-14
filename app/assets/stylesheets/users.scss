@@ -61,6 +61,9 @@
 .user-show{
   display: flex;
   flex-wrap: wrap;
+  height: 100vh;
+  background-image: image_url('renga.jpg');
+  background-size: cover;
   &--posts{
     margin: 60px 0 0 50px;
   }

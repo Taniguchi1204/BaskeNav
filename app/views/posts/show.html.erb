@@ -6,7 +6,7 @@
         <h2><%= @post.user.name %></h2>
       </div>
 
-      <div class = "post-show--favorite">
+      <div class = "post-show--favorite" id="post-favorite">
         <%= render 'post_favorites/like', post: @post %>
       </div>
 
@@ -34,7 +34,7 @@
     <h2>Comments</h2>
     <div class="post-show--new-comment">
       <div class="post-show--comment-form">
-        <%= form_with(model: [@post, @comment], local: true) do |f| %>
+        <%= form_with(model: [@post, @comment], remote: true) do |f| %>
           <%= f.text_area :comment %>
           <%= f.submit "コメントする" %>
         <% end %>

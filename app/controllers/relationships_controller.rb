@@ -14,11 +14,13 @@ class RelationshipsController < ApplicationController
       Entry.create(user_id: current_user.id, room_id: @room.id)
       Entry.create(user_id: @user.id, room_id: @room.id)
     end
+    @users = current_user.followings
   end
 
   def destroy
     current_user.unfollow(params[:user_id])
-    redirect_to request.referer
+    @user = User.find(params[:user_id])
+    @users = current_user.followings
   end
 
   def followings

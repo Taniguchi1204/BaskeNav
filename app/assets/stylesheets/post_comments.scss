@@ -16,9 +16,6 @@
     &__postit-left{
       width: 30px;
       background-color: #00FFFF;
-      &:nth-child(even){
-        background-color: #FF00FF;
-      }
     }
     &__postit-right{
       width: 380px;

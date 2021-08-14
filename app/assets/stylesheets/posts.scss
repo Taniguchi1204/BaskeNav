@@ -4,7 +4,7 @@
 
 .posts{
   width: 1100px;
-  height: 650px;
+  height: 550px;
   border: 45px solid #000;
   border-image-slice: 43;
   border-image-source: image_url('frame.jpeg');
@@ -125,4 +125,67 @@
     padding: 30px 0 30px 50px;
     width: 500px;
   }
+}
+
+// 投稿一覧画面
+.Myposts{
+ height: 100vh;
+ background-image: image_url('renga.jpg');
+ background-size: cover;
+ &--posts{
+   width: 1100px;
+   margin: 0 auto;
+   padding-top: 60px;
+ }
+}
+
+// 投稿フォーム
+.new-post{
+  width: 100%;
+  height: 740px;
+  background-image: image_url('desk.jpg');
+  background-size: cover;
+  position: relative;
+  color: white;
+  &--all{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 30px 0 30px 400px;
+    background-color: rgba(0,0,0,0.7);
+  }
+  &--address{
+    position: relative;
+    width: 250px;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+  &--address-form{
+    position: absolute;
+    border-radius: 10px;
+    width: 250px;
+    top: 0;
+    left: 0;
+  }
+  &--search-map{
+    width: 50px;
+    background-color: green;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  &--submit{
+    margin-bottom: 20px;
+  }
+}
+
+#post_content{
+  width: 300px;
+  height: 100px;
+  margin-bottom: 20px;
+
 }

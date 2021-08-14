@@ -1,9 +1,9 @@
 <% if post.favorites_by?(current_user) %>
-    <%= link_to post_post_favorites_path(post), method: :delete do %>
-      <span>いいね<i class="fas fa-heart dislike"></i><%= post.post_favorites.count %></span>
+    <%= link_to post_post_favorites_path(post), method: :delete, remote: true do %>
+      <span class="post-favorites-like">いいね<i class="fas fa-heart dislike"></i><%= post.post_favorites.count %></span>
     <% end %>
 <% else %>
-    <%= link_to post_post_favorites_path(post), method: :post do %>
-      <span>いいね<i class="fas fa-heart like"></i><%= post.post_favorites.count %></span>
+    <%= link_to post_post_favorites_path(post), method: :post, remote: true do %>
+      <span class="post-favorites-dislike">いいね<i class="fas fa-heart like"></i><%= post.post_favorites.count %></span>
     <% end %>
 <% end %>

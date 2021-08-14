@@ -75,7 +75,7 @@
             <% if chat.user == current_user %>
               <p style="text-align: right;"><%= chat.message %><br><%= chat.created_at.strftime("%H:%M:%S") %></p>
             <% else %>
-              <p style="text-align: left;"><%= chat.message %></p>
+              <p style="text-align: left;"><%= chat.message %><br><%= chat.created_at.strftime("%H:%M:%S") %></p>
             <% end %>
           <% end %>
         </div>

@@ -5,5 +5,7 @@
       <%= @user.name %>のFollower Users
     <% end %>
   </h2>
-  <%= render "follow", users: @users %>
+  <div id="follow">
+    <%= render "follow", users: @users %>
+  </div>
 </div>

@@ -1,5 +1,8 @@
 let map
-let geocoder 
+let geocoder
+let marker = []; // マーカーを複数表示させたいので、配列化
+let infoWindow = []; // 吹き出しを複数表示させたいので、配列化
+let markerData = gon.facility_place; // コントローラーで定義したインスタンス変数を変数に代入
 
 function initMap(){ // APIキーと一緒にURLに記載
   geocoder = new google.maps.Geocoder() //GoogleMapsAPIジオコーディングサービスにアクセス
@@ -8,7 +11,7 @@ function initMap(){ // APIキーと一緒にURLに記載
       center: {lat: 35.6809591, lng: 139.7673068}, //最初に表示する場所（東京駅）
       zoom: 12, //拡大率（1〜21まで設定可能）
     });
-  }else{
+  }else if(document.getElementById('show_map')){
     map = new google.maps.Map(document.getElementById('show_map'), { //'show_map'というidを取得してマップを表示
       center: {lat: gon.lat, lng: gon.lng}, //controllerで定義した変数を緯度・経度の値
       zoom: 12, //拡大率（1〜21まで設定可能）
@@ -17,6 +20,45 @@ function initMap(){ // APIキーと一緒にURLに記載
     marker = new google.maps.Marker({ //GoogleMapにマーカーを落とす
       position:  {lat: gon.lat, lng: gon.lng}, //マーカーを落とす位置を決める（値はDBに入っている）
       map: map //マーカーを落とすマップを指定
+    });
+  }else{
+
+    map = new google.maps.Map(document.getElementById('index_map'), { //'map'というidを取得してマップを表示
+      center: {lat: 35.6809591, lng: 139.7673068}, //最初に表示する場所（東京駅）
+      zoom: 12, //拡大率（1〜21まで設定可能）
+    });
+
+      // 繰り返し処理でマーカーと吹き出しを複数表示させる
+    for (var i = 0; i < markerData.length; i++) {
+      let id = markerData[i]['facility_id']
+
+      // 各地点の緯度経度を算出
+      markerLatLng = new google.maps.LatLng({
+        lat: markerData[i]['latitude'],
+        lng: markerData[i]['longitude']
+      });
+
+      // 各地点のマーカーを作成
+      marker[i] = new google.maps.Marker({
+        position: markerLatLng,
+        map: map
+      });
+
+      // 各地点の吹き出しを作成
+      infoWindow[i] = new google.maps.InfoWindow({
+        // 吹き出しの内容
+        content: `<a href='/facilities/${ id }'>詳細画面</a>`
+      });
+
+      // マーカーにクリックイベントを追加
+      markerEvent(i);
+    }
+  }
+
+  // マーカーをクリックしたら吹き出しを表示
+  function markerEvent(i) {
+    marker[i].addListener('click', function () {
+      infoWindow[i].open(map, marker[i]);
     });
   }
 }

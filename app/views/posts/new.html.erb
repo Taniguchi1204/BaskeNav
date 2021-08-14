@@ -1,29 +1,28 @@
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-md-3">
+<div class="new-post">
+  <div class="new-post--all">
+    <div class="new-post--form">
       <%= form_with model: @post, local: true do |f| %>
-
         <%= f.label :Content %><br>
-        <%= f.text_area :content %>
-
-        <%= f.attachment_field :image %>
-
+        <%= f.text_area :content %><br>
+        <%= f.attachment_field :image %><br>
+        <div class="new-post--address">
         <%= f.fields_for :post_place do |s| %>
-          <%= s.label :address, "レビュー場所(Google Mapで検索)", class: 'spot__title' %>
-          <%= s.text_field :address, placeholder: "スポットを入力", id: "address", class: "spot__text" %>
+          <%= s.label :address, "レビュー場所(Google Mapで検索)", class: 'spot__title' %><br>
+          <%= s.text_field :address, placeholder: "スポットを入力", id: "address", class: "spot__text new-post--address-form" %><br>
+          <%= s.button onclick: "codeAddress()", type: "button", class: "new-post--search-map" do %>
+            <i class="fas fa-search-location"></i><br>
+          <% end %>
         <% end %>
-
-        <input onclick="codeAddress()", type="button", value="検索する">
-
-        <%= f.submit "投稿する" %>
-
+        </div>
+        <%= f.submit "投稿する", class: "new-post--submit btn btn-success" %>
       <% end %>
     </div>
-    <div class="col-mb-9">
+    <div class="new-post--map">
       <div class="map" id="map", style="height: 320px; width: 640px;"></div>
     </div>
   </div>
 </div>
+
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKzm8Q1CsziI929WJM-dQQlwV1L3MpydY&callback=initMap"></script>
 <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
