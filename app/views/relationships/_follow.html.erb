@@ -1,0 +1,32 @@
+
+    <table class="relationships--table">
+      <thead>
+        <tr>
+          <th>ユーザー</th>
+          <th>投稿数</th>
+          <th>フォロー</th>
+          <th>フォロワー</th>
+          <th>ユーザー詳細</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.each do |user| %>
+          <tr>
+            <td>
+              <%= link_to user_path(user), class: "user_#{user.id}" do %>
+                <%= attachment_image_tag(user, :user_image, :fill, 50, 50, fallback: "no_image.jpg") %>
+                <%= user.name %>
+              <% end %>
+            </td>
+            <td><%= user.posts.count %><br>投稿数</td>
+            <td><%= link_to user.followings.count, user_followings_path(user) %><br>フォロー</td>
+            <td id="follower-<%= user.id %>">
+              <%= render "relationships/follower", user: user %>
+            </td>
+            <td id="follow-btn_<%= user.id %>">
+              <%= render "relationships/relationship", user: user %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>

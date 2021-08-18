@@ -10,12 +10,15 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require fullcalendar
  *= require_tree .
  *= require_self
  */
  @import "bootstrap";
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
+ @import "slick-theme";
+ @import "slick";
 
  $main-color: black;
  $main-text-color: white;
@@ -23,60 +26,172 @@
  @mixin text-center($height) {
   text-align: center;
   line-height: $height;
+ }
+
+ @mixin nav-line($position, $deg) {
+  width: 2px;
+   height: 85px;
+   content: '';
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   display: block;
+   margin: auto 0 auto $position;
+   background-color: #292929;
+   transform: rotate($deg);
+ }
+
+
+
+header{
+ position: fixed;
+ width: 100%;
+ top: 0;
+ z-index: 1000;
 }
 
 // ヘッダートップ
  .header-top{
-  width: 100%;
-  height: 60px;
-  background-color: $main-color;
-  position: relative;
-  // ヘッダートップLogo
-  .header-top-logo{
-   @include text-center(40px);
-   width: 100px;
-   height: 40px;
-   border: 1px solid white;
-   color: $main-text-color;
-   margin-left: 20px;
-   position: absolute;
-   top: 50%;
-   transform: translate(0, -50%);
+   width: 100%;
+   height: 60px;
+   background-color: $main-color;
+   position: relative;
+   // ヘッダートップLogo
+   &__logo{
+    @include text-center(40px);
+    width: 100px;
+    height: 40px;
+    border: 1px solid white;
+    color: $main-text-color;
+    margin-left: 20px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+   }
+   // 施設管理者サインアップ、サインインリンク
+   &__admin{
+    text-align: right;
+   }
+   &__sign-up{
+    display: inline-block;
+    line-height: 60px;
+    text-decoration: none;
+    &::after {
+     content: '';
+     display: inline-block;
+     width: 1px;
+     height: 30px;
+     background: white;
+     transform: translateY(10px);
+     margin: 0 10px;
+    }
+   }
+   &__sign-in{
+    display: inline-block;
+    line-height: 60px;
+    margin-right: 20px;
+    text-decoration: none;
+   }
+  }
+
+ .header-nav{
+  height: 80px;
+  background-color: gray;
+  &--list{
+   height: 80px;
+   list-style-type: none;
+   text-align: center;
+   font-family: "BebasNeue", sans-serif;
+   font-weight: bold;
+   font-size: 20px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   position: relative;
+  }
+  &--list-item{
+   margin: 0 40px;
+   color: white;
+   &::after {
+    @include nav-line(-5px, 20deg);
+   }
+   &__logo{
+    margin: 0 30px;
+    &::after {
+     @include nav-line(-5px, 20deg);
+    }
+    &::before{
+     @include nav-line(200px, -20deg);
+    }
+    img{
+     width: 140px;
+    }
+   }
+   &__reverse {
+    margin: 0 40px;
+    color: white;
+    &::after{
+     @include nav-line(150px, -20deg);
+    }
+   }
   }
  }
-
-.header-nav{
- height: 80px;
-  ul{
-    height: 80px;
-    display: inline-block;
-    margin: 0 auto;
-    font-family: "BebasNeue", sans-serif;
-    font-weight: bold;
-    font-size: 20px;
-   li{
-    @include text-center(80px)
-    padding: 0 50px;
-   }
-    a{
-     padding: 0;
-    }
-     img{
-      transform: translate(0, -25%);
-      width: 200px;
-     }
-   }
-}
 
 // フッター
  footer{
   @include text-center(80px)
   width: 100%;
-  height: 80px;
-  position: absolute;
+  height: 50px;
+  background-color: white;
+  position: fixed;
   bottom: 0;
-  left: 0;
+  z-index: 1000;
  }
+
+ body{
+  padding: 110px 0 50px 0;
+ }
+
+ a,
+ a:hover{
+  text-decoration: none;
+ }
+
+ /*==================================================
+　5-3-1 中心から外に線が伸びる（下部）
+===================================*/
+
+#under_line{
+    /*線の基点とするためrelativeを指定*/
+	position: relative;
+}
+
+#under_line:hover{
+	color:#0481A2;
+}
+
+#under_line::after {
+    content: '';
+    /*絶対配置で線の位置を決める*/
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    /*線の形状*/
+    width: 80%;
+    height: 2px;
+    background:#0481A2;
+    /*アニメーションの指定*/
+    transition: all .3s;
+    transform: scale(0, 1);/*X方向0、Y方向1*/
+    transform-origin: center top;/*上部中央基点*/
+}
+
+/*現在地とhoverの設定*/
+#under_line:hover::after {
+    transform: scale(1, 1);/*X方向にスケール拡大*/
+}
+
+
 
 
 

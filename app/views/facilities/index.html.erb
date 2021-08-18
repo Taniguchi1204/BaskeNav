@@ -1,0 +1,37 @@
+<div class="facilities">
+  <div class="facilities--list">
+    <table class="facilities--table">
+      <thead>
+        <tr>
+          <th>施設名</th>
+          <th>営業時間</th>
+          <th>住所</th>
+          <th>最寄り駅</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @facilities.each do |facility| %>
+          <tr>
+            <td>
+              <%= link_to facility_path(facility) do %>
+                <%= attachment_image_tag facility, :facility_image, :fill, 50, 50, fallback: "no_image.jpg" %>
+                <%= facility.name %>
+              <% end %>
+            </td>
+            <td><%= facility.opening %> ~ <%= facility.closing %></td>
+            <td><%= facility.address %></td>
+            <td><%= facility.station %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="facilities--map">
+    <div class="facilities--map__size" id="index_map"></div>
+  </div>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKzm8Q1CsziI929WJM-dQQlwV1L3MpydY&callback=initMap"></script>
+<script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+<script src="//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js", type:"text/javascript"></script>

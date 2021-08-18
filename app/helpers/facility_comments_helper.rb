@@ -1,0 +1,2 @@
+module FacilityCommentsHelper
+end

@@ -1,0 +1,38 @@
+<div class='container'>
+  <div class='row mt-5'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+
+      <h2>Edit Profile</h2>
+
+      <%= form_with model:@user, local:true do |f| %>
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: "form-control name" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :Email %>
+          <%= f.email_field :email, class: "form-control introduction" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :PhoneNumber %>
+          <%= f.text_field :phone_number, class: "form-control introduction" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :ProfileImage %>
+          <%= f.attachment_field :user_image, class: "form-control-file user_image" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :Introduction %>
+          <%= f.text_area :introduce, class: "form-control introduction" %>
+        </div>
+        <div class="form-group">
+          <%= f.submit class: 'btn btn-secondary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
