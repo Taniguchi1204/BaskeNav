@@ -1,49 +1,65 @@
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-md-3">
-      <%= form_with model: @facility, local: true do |f| %>
-
+<div class="new-facility">
+  <div class="new-facility--form">
+    <h2>施設情報</h2>
+    <%= form_with model: @facility, local: true do |f| %>
+      <div class="new-facility--form-group">
         <%= f.label :Name %><br>
-        <%= f.text_area :name %>
+        <%= f.text_field :name %><br>
+      </div>
 
-        <%= f.attachment_field :facility_image %>
+      <div class="new-facility--form-group">
+        <%= f.attachment_field :facility_image %><br>
+      </div>
 
-        <p>施設情報</p>
-        <%= f.label :営業時間 %>
-        <%= f.text_field :opening %> ~ <%= f.text_field :closing %>
+      <div class="new-facility--form-group">
+        <%= f.label :営業時間 %><br>
+        <%= f.time_select :opening, prompt:true, ignore_data:true %> ~ <%= f.time_select :closing, prompt:true, ignore_data:true %><br>
+      </div>
 
-        <%= f.label :電話番号 %>
-        <%= f.text_field :phone_number %>
+      <div class="new-facility--form-group">
+        <%= f.label :電話番号 %><br>
+        <%= f.text_field :phone_number %><br>
+      </div>
 
-        <%= f.label :メールアドレス %>
-        <%= f.text_field :email %>
+      <div class="new-facility--form-group">
+        <%= f.label :メールアドレス %><br>
+        <%= f.text_field :email %><br>
+      </div>
 
-        <%= f.label :郵便番号 %>
-        <%= f.text_field :postcode %>
+      <div class="new-facility--form-group">
+        <%= f.label :郵便番号 %><br>
+        <%= f.text_field :postcode %><br>
+      </div>
 
-        <%= f.label :住所 %>
-        <%= f.text_field :address %>
+      <div class="new-facility--form-group">
+        <%= f.label :住所 %><br>
+        <%= f.text_field :address %><br>
+      </div>
 
-        <%= f.label :最寄り駅 %>
-        <%= f.text_field :station %>
+      <div class="new-facility--form-group">
+        <%= f.label :最寄り駅 %><br>
+        <%= f.text_field :station %><br>
+      </div>
 
-        <%= f.label :駐車場 %>
-        <%= f.text_field :parking %>
+      <div class="new-facility--form-group">
+        <%= f.label :駐車場 %><br>
+        <%= f.text_field :parking %><br>
+      </div>
 
+      <div class="new-facility--form-group">
         <%= f.fields_for :facility_place do |s| %>
-          <%= s.label :address, "レビュー場所(Google Mapで検索)", class: 'spot__title' %>
-          <%= s.text_field :address, placeholder: "スポットを入力", id: "address", class: "spot__text" %>
+          <%= s.label :address, "レビュー場所(Google Mapで検索)", class: 'spot__title' %><br>
+          <%= s.text_field :address, placeholder: "スポットを入力", id: "address", class: "spot__text" %><br>
+          <%= s.button onclick: "codeAddress()", type: "button", class: "new-facility--search-map" do %>
+            <i class="fas fa-search-location"></i><br>
+          <% end %>
         <% end %>
-
-        <input onclick="codeAddress()", type="button", value="検索する">
-
-        <%= f.submit "投稿する" %>
-
-      <% end %>
-    </div>
-    <div class="col-mb-9">
-      <div class="map" id="map", style="height: 320px; width: 640px;"></div>
-    </div>
+      </div>
+      <%= f.submit "投稿する" %><br>
+    <% end %>
+  </div>
+  <div class="new-facility--map">
+    <div class="map" id="map"></div>
   </div>
 </div>
 

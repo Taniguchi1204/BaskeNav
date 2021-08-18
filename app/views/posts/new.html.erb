@@ -6,13 +6,13 @@
         <%= f.text_area :content %><br>
         <%= f.attachment_field :image %><br>
         <div class="new-post--address">
-        <%= f.fields_for :post_place do |s| %>
-          <%= s.label :address, "レビュー場所(Google Mapで検索)", class: 'spot__title' %><br>
-          <%= s.text_field :address, placeholder: "スポットを入力", id: "address", class: "spot__text new-post--address-form" %><br>
-          <%= s.button onclick: "codeAddress()", type: "button", class: "new-post--search-map" do %>
-            <i class="fas fa-search-location"></i><br>
+          <%= f.fields_for :post_place do |s| %>
+            <%= s.label :address, "レビュー場所(Google Mapで検索)", class: 'spot__title' %><br>
+            <%= s.text_field :address, placeholder: "スポットを入力", id: "address", class: "spot__text new-post--address-form" %><br>
+            <%= s.button onclick: "codeAddress()", type: "button", class: "new-post--search-map" do %>
+              <i class="fas fa-search-location"></i><br>
+            <% end %>
           <% end %>
-        <% end %>
         </div>
         <%= f.submit "投稿する", class: "new-post--submit btn btn-success" %>
       <% end %>

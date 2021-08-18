@@ -74,8 +74,6 @@ gem 'font-awesome-sass', '~> 5.13'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 
-gem 'simple_calendar', '~> 2.0'
-
 gem "gmaps4rails"
 gem "geocoder"
 gem "gon"
@@ -87,3 +85,5 @@ gem "omniauth-rails_csrf_protection"
 gem "dotenv-rails"
 
 gem 'news-api'
+
+gem "chartkick"

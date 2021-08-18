@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 2021_08_05_032507) do
   create_table "facilities", force: :cascade do |t|
     t.integer "admin_id", null: false
     t.string "name", null: false
-    t.integer "opening", null: false
-    t.integer "closing", null: false
+    t.time "opening", null: false
+    t.time "closing", null: false
     t.string "station", null: false
     t.string "parking", null: false
     t.string "postcode", null: false

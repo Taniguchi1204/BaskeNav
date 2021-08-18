@@ -3,8 +3,8 @@ class CreateFacilities < ActiveRecord::Migration[5.2]
     create_table :facilities do |t|
       t.integer :admin_id,          null: false
       t.string  :name,              null: false
-      t.integer :opening,           null: false
-      t.integer :closing,           null: false
+      t.time    :opening,           null: false
+      t.time    :closing,           null: false
       t.string  :station,           null: false
       t.string  :parking,           null: false
       t.string  :postcode,          null: false

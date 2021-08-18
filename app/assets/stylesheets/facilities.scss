@@ -1,3 +1,122 @@
 // Place all the styles related to the facilities controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// 施設一覧画面のレイアウト
+.facilities{
+  display: flex;
+  flex-wrap: wrap;
+  &--list{
+    width: 30%;
+  }
+  &--map{
+    width: 70%;
+    height: 730px;
+    &__size{
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &--table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    th, td {
+      padding: 20px 10px 20px 10px;
+      border-bottom: 1px solid #333;
+    }
+    th {
+      background-color: #2c88d9;
+      color: #FFF;
+    }
+  }
+}
+
+// 施設詳細画面のレイアウト
+.facility-show{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 50px;
+  &--info{
+    width: 30%;
+    height: 650px;
+    padding: 0 30px;
+    h2{
+      margin-bottom: 30px;
+    }
+  }
+  &--name{
+    padding-top: 30px;
+  }
+  &--details{
+    display: flex;
+    flex-wrap: wrap;
+    &__title{
+      width: 40%;
+    }
+    &__data{
+      width: 60%;
+      padding-left: 30px;
+    }
+  }
+  &--photo{
+    img{
+     width: 100%;
+     height: 250px;
+    }
+  }
+  &--map{
+    width: 70%;
+    height: 650px;
+  }
+  &--new-reserve{
+    width: 90%;
+    margin: 30px auto;
+  }
+  &--calendar{
+    width: 90%;
+    margin: 30px auto;
+  }
+  &--rate-comment{
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 30px auto;
+  }
+  &--rate{
+    width: 30%;
+  }
+  &--comments{
+    width: 70%;
+    padding-left: 30px;
+  }
+}
+#show_map{
+  height: 100%;
+  width: 100%;
+}
+
+// 施設投稿ページのレイアウト
+.new-facility{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 30px;
+  &--form{
+    width: 30%;
+    padding: 0 50px;
+    form{
+      padding-left: 20px;
+    }
+  }
+  &--form-group{
+    margin-top: 5px;
+  }
+  &--map{
+    width: 70%;
+  }
+}
+
+#map{
+  width: 100%;
+  height: 100%;
+}

@@ -28,6 +28,8 @@ function initMap(){ // APIキーと一緒にURLに記載
       zoom: 12, //拡大率（1〜21まで設定可能）
     });
 
+    data: '/facilities.json'
+
       // 繰り返し処理でマーカーと吹き出しを複数表示させる
     for (var i = 0; i < markerData.length; i++) {
       let id = markerData[i]['facility_id']
