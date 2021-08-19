@@ -1,0 +1,34 @@
+<div class="facility-comments" id="facility_comments">
+  <% facility_comments.each do |facility_comment| %>
+    <div class="facility-comments--view">
+      <div class="facility-comments--detail">
+        <%= link_to user_path(facility_comment.user) do %>
+          <%= attachment_image_tag(facility_comment.user, :user_image, :fill, 100, 100, fallback: "no_image.jpg") %><br>
+          <%= facility_comment.user.name %>
+        <% end %>
+      </div>
+      <div class="facility-comments--facility">
+        <div id="rate_<%= facility_comment.id %>"></div>
+          <script>
+            $('#rate_<%= facility_comment.id %>').raty({
+              size: 36,
+              starOff: '<%= asset_path('star-off.png') %>',
+              starOn: '<%= asset_path('star-on.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              half: true,
+              readOnly: true,
+              score: <%= facility_comment.rate %>,
+            });
+          </script>
+        <div class="facility-comments--content">
+          <%= facility_comment.comment %>
+        </div>
+        <div class="facility-comments--delete">
+          <% if facility_comment.user == current_user %>
+            <%= link_to "Destroy", facility_facility_comment_path(facility_comment.facility_id, facility_comment), method: :delete, class:"btn btn-danger" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

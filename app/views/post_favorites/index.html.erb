@@ -1,0 +1,8 @@
+<div class="user-show">
+  <div class="user-show--info">
+    <%= render "users/info", user: @user %>
+  </div>
+  <div class="user-show--posts">
+    <%= render "posts/posts", posts: @posts, title: "/assets/favorite_post.png" %>
+  </div>
+</div>

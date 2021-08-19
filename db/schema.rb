@@ -37,15 +37,16 @@ ActiveRecord::Schema.define(version: 2021_08_05_032507) do
 
   create_table "facilities", force: :cascade do |t|
     t.integer "admin_id", null: false
-    t.integer "opening", null: false
-    t.integer "closing", null: false
+    t.string "name", null: false
+    t.time "opening", null: false
+    t.time "closing", null: false
     t.string "station", null: false
     t.string "parking", null: false
     t.string "postcode", null: false
     t.string "address", null: false
     t.string "phone_number", null: false
     t.string "email", null: false
-    t.string "facility_image_id", null: false
+    t.string "facility_image_id"
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -74,6 +75,7 @@ ActiveRecord::Schema.define(version: 2021_08_05_032507) do
 
   create_table "facility_places", force: :cascade do |t|
     t.integer "facility_id", null: false
+    t.string "address", null: false
     t.float "longitude", null: false
     t.float "latitude", null: false
     t.datetime "created_at", null: false
@@ -111,6 +113,7 @@ ActiveRecord::Schema.define(version: 2021_08_05_032507) do
 
   create_table "post_places", force: :cascade do |t|
     t.integer "post_id", null: false
+    t.string "address", null: false
     t.float "longitude", null: false
     t.float "latitude", null: false
     t.datetime "created_at", null: false
@@ -139,9 +142,8 @@ ActiveRecord::Schema.define(version: 2021_08_05_032507) do
   create_table "reserve_facilities", force: :cascade do |t|
     t.integer "facility_id", null: false
     t.integer "user_id", null: false
-    t.date "date", null: false
-    t.string "start_time", null: false
-    t.string "finish_time", null: false
+    t.datetime "start", null: false
+    t.datetime "finish", null: false
     t.string "number", null: false
     t.text "comment"
     t.datetime "created_at", null: false
@@ -151,10 +153,8 @@ ActiveRecord::Schema.define(version: 2021_08_05_032507) do
   end
 
   create_table "rooms", force: :cascade do |t|
-    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
   create_table "sns_credentials", force: :cascade do |t|

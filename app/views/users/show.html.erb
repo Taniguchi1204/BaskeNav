@@ -1,2 +1,10 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="user-show">
+  <div class="user-show--info">
+    <%= render "users/info", user: @user %>
+  </div>
+
+  <div class="user-show--posts">
+    <%= render "posts/posts", posts: @posts, title: "/assets/mypost.png" %>
+  </div>
+</div>
+

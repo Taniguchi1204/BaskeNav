@@ -1,48 +1,53 @@
 <header>
   <div class="header-top">
-    <div class="header-top-logo">Logo</div>
-  </div>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark header-nav">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto d-flex align-items-start">
-          <% if user_signed_in? %>
-            <li><%= link_to "Game", game_path, class: "nav-link text-light" %></li>
-            <li><%= link_to "News", news_path, class: "nav-link text-light" %></li>
-            <li><%= link_to "Mypage", user_path(current_user), class: "nav-link text-light" %></li>
-              <%= link_to root_url, class: "nav-link text-light" do %>
-                <img src="/assets/logo.jpg">
-              <% end %>
-            </li>
-            <li><%= link_to "Posts", posts_path, class: "nav-link text-light" %></li>
-            <li><%= link_to "Facility", facilities_path, class: "nav-link text-light" %></li>
-            <li><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link text-light" %></li>
-          <% elsif admin_signed_in? %>
-            <li><%= link_to "Game", game_path, class: "nav-link text-light" %></li>
-            <li><%= link_to "News", news_path, class: "nav-link text-light" %></li>
-              <%= link_to root_url, class: "nav-link text-light" do %>
-                <img src="/assets/logo.jpg">
-              <% end %>
-            </li>
-            <li><%= link_to "Mypage", facility_path(current_user), class: "nav-link text-light" %></li>
-            <li><%= link_to "Facility", facilities_path, class: "nav-link text-light" %></li>
-            <li><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link text-light" %></li>
-          <% else %>
-            <li><%= link_to "Game", game_path, class: "nav-link text-light" %></li>
-            <li><%= link_to "News", news_path, class: "nav-link text-light" %></li>
-            <li>
-              <%= link_to root_url, class: "nav-link text-light" do %>
-                <img src="/assets/logo.jpg">
-              <% end %>
-            </li>
-            <li><%= link_to "Sign-Up", new_user_registration_path, class: "nav-link text-light" %></li>
-            <li><%= link_to "Sign-In", new_user_session_path, class: "nav-link text-light" %></li>
-          <% end %>
-        </ul>
-      </div>
+    <div class="header-top__logo">BaskeNav</div>
+    <div class="header-top__admin">
+      <%= link_to "施設登録の方はこちら", new_admin_registration_path, class: "header-top__sign-up" %>
+      <%= link_to "施設管理者用ログイン", new_admin_session_path, class: "header-top__sign-in" %>
     </div>
-  </nav>
+  </div>
+
+  <div class="header-nav">
+    <nav class="header-nav--nav">
+      <ul class="header-nav--list">
+        <% if user_signed_in? %> <!--会員がログインした時のヘッダー-->
+          <li><%= link_to "Game", game_west_path(year: :"2020"), class: "header-nav--list-item" %></li>
+          <li><%= link_to "News", news_path, class: "header-nav--list-item" %></li>
+          <li><%= link_to "Mypage", user_path(current_user), class: "header-nav--list-item" %></li>
+          <li>
+            <%= link_to root_url, class: "header-nav--list-item__logo" do %>
+              <img src="/assets/logo.png">
+            <% end %>
+          </li>
+          <li><%= link_to "Posts", posts_path, class: "header-nav--list-item__reverse" %></li>
+          <li><%= link_to "Facility", facilities_path, class: "header-nav--list-item__reverse" %></li>
+          <li><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "header-nav--list-item__reverse" %></li>
+
+        <% elsif admin_signed_in? %>　<!--施設投稿者がログインした時のヘッダー-->
+          <li><%= link_to "Game", game_west_path(year: :"2020"), class: "header-nav--list-item" %></li>
+          <li><%= link_to "News", news_path, class: "header-nav--list-item" %></li>
+          <li><%= link_to "NewFacility", new_facility_path, class: "header-nav--list-item" %></li>
+          <li>
+            <%= link_to root_url, class: "header-nav--list-item__logo" do %>
+              <img src="/assets/logo.png">
+            <% end %>
+          </li>
+          <li><%= link_to "Mypage", facility_path(current_admin), class: "header-nav--list-item__reverse" %></li>
+          <li><%= link_to "Facility", facilities_path, class: "header-nav--list-item__reverse" %></li>
+          <li><%= link_to "Logout", destroy_admin_session_path, method: :delete, class: "header-nav--list-item__reverse" %></li>
+
+        <% else %>　<!--ログイン前のヘッダー-->
+          <li><%= link_to "Game", game_west_path(year: :"2020"), class: "header-nav--list-item" %></li>
+          <li><%= link_to "News", news_path, class: "header-nav--list-item" %></li>
+          <li>
+            <%= link_to root_url, class: "header-nav--list-item__logo" do %>
+              <img src="/assets/logo.png">
+            <% end %>
+          </li>
+          <li><%= link_to "Sign-Up", new_user_registration_path, class: "header-nav--list-item__reverse" %></li>
+          <li><%= link_to "Sign-In", new_user_session_path, class: "header-nav--list-item__reverse" %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
 </header>

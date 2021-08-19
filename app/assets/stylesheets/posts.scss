@@ -1,0 +1,196 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.posts{
+  width: 100%;
+  height: 550px;
+  position: relative;
+  &--title{
+    position: absolute;
+    top: -30px;
+    right: 40px;
+    z-index: 100;
+  }
+  &--contents{
+    height: 550px;
+    border: 45px solid #000;
+    border-image-slice: 43;
+    border-image-source: image_url('frame.jpeg');
+    border-image-width: 2;
+    border-image-outset: 43px;
+    background-image: image_url('CorkBoard02.jpeg');
+    margin-left: 70px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    position: relative;
+    overflow: scroll;
+    &__view{
+      margin-top: 10px;
+      width: 30%;
+      background-image: image-url('red.png');
+      background-size: cover;
+      &:nth-child(even){
+        margin: 60px 20px 0 20px;
+        width: 30%;
+        background-image: image-url('blue.png');
+        background-size: cover;
+      }
+    }
+    &__detail{
+      padding-top: 30px;
+      padding-left: 30px;
+      img{
+        margin-right: 10px;
+        width: 50px;
+        height: 50px;
+        border: 1px solid black;
+        border-radius: 50px;
+        box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.4);
+      }
+    }
+    &__content{
+      padding-top: 30px;
+    }
+    &__photo{
+      margin: 40px 50px 40px 30px;
+      img{
+        width: 200px;
+        height: 120px;
+        box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.4);
+      }
+    }
+  }
+}
+
+// 詳細ページレイアウト
+.post-show{
+  width: 100%;
+  height: 100vh;
+  background-image: image_url('CorkBoard02.jpeg');
+  background-size: cover;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 40px;
+  &--favorite{
+    padding-top: 10px;
+  }
+  &--contents{
+    width: 500px;
+    margin-right: 50px;
+    background-image: image_url('blue.png');
+    background-size: cover;
+  }
+  &--post{
+    padding: 60px 50px;
+  }
+  &--post-user{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    img{
+      width: 100px;
+      height: 100px;
+      border: 1px solid black;
+      border-radius: 100px;
+      box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.4);
+    }
+    h2{
+      padding: 20px;
+    }
+  }
+  &--content{
+    padding-top: 20px;
+    width: 80%;
+    p{
+      padding-left: 20px;
+    }
+  }
+  &--address{
+    padding-top: 20px;
+    width: 80%;
+    p{
+      padding-left: 20px;
+    }
+  }
+  &--post-image{
+    img{
+      width: 400px;
+      height: 220px;
+      margin-bottom: 20px;
+      border: 1px solid black;
+      box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.4);
+    }
+  }
+  &--map{
+    padding-top: 30px;
+  }
+  &--comments{
+    padding: 30px 0 30px 50px;
+    width: 500px;
+  }
+}
+
+// 投稿一覧画面
+.Myposts{
+ height: 100vh;
+ background-image: image_url('renga.jpg');
+ background-size: cover;
+ &--posts{
+   width: 1100px;
+   margin: 0 auto;
+   padding-top: 60px;
+ }
+}
+
+// 投稿フォーム
+.new-post{
+  width: 100%;
+  height: 740px;
+  background-image: image_url('desk.jpg');
+  background-size: cover;
+  position: relative;
+  color: white;
+  &--all{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 30px 0 30px 400px;
+    background-color: rgba(0,0,0,0.7);
+  }
+  &--address{
+    position: relative;
+    width: 250px;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+  &--address-form{
+    position: absolute;
+    border-radius: 10px;
+    width: 250px;
+    top: 0;
+    left: 0;
+  }
+  &--search-map{
+    width: 50px;
+    background-color: green;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  &--submit{
+    margin-bottom: 20px;
+  }
+}
+
+#post_content{
+  width: 300px;
+  height: 100px;
+  margin-bottom: 20px;
+
+}

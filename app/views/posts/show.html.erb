@@ -1,0 +1,51 @@
+<div class="post-show">
+  <div class="post-show--contents">
+    <div class="post-show--post">
+      <div class="post-show--post-user">
+        <%= attachment_image_tag(@post.user, :user_image, fallback: "no_image.jpg") %>
+        <h2><%= @post.user.name %></h2>
+      </div>
+
+      <div class = "post-show--favorite" id="post-favorite">
+        <%= render 'post_favorites/like', post: @post %>
+      </div>
+
+      <div class="post-show--content">
+        <h2>Posts</h2>
+        <p><%= @post.content %></p>
+      </div>
+
+      <div class="post-show--address">
+        <h2>Place</h2>
+        <p><%= @post.post_place.address %></p>
+      </div>
+
+      <div class="post-show--post-image">
+        <%= attachment_image_tag(@post, :image, fallback: "no_image.jpg") %>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-show--map">
+    <div class="show__maps" id="show_map" style="height: 650px; width: 500px;"></div>
+  </div>
+
+  <div class="post-show--comments">
+    <h2>Comments</h2>
+    <div class="post-show--new-comment">
+      <div class="post-show--comment-form">
+        <%= form_with(model: [@post, @comment], remote: true) do |f| %>
+          <%= f.text_area :comment %>
+          <%= f.submit "コメントする" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="post-show--comments__list">
+      <%= render "post_comments/index", post_comments: @post_comments %>
+    </div>
+  </div>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKzm8Q1CsziI929WJM-dQQlwV1L3MpydY&callback=initMap"></script>
+<script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+<script src="//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js", type:"text/javascript"></script>

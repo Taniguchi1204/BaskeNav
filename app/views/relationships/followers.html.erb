@@ -1,0 +1,11 @@
+<div class="relationships">
+  <h2>
+    <%= link_to user_path(@user) do %>
+      <%= attachment_image_tag(@user, :user_image, :fill, 50, 50, fallback: "no_image.jpg") %>
+      <%= @user.name %>のFollower Users
+    <% end %>
+  </h2>
+  <div id="follow">
+    <%= render "follow", users: @users %>
+  </div>
+</div>

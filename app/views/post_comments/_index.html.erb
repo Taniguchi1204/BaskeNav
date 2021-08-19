@@ -1,0 +1,26 @@
+<div class="post-comments" id="post_comments">
+  <% post_comments.each do |post_comment| %>
+    <div class="post-comments--view">
+      <div class="post-comments--view__postit-left"></div>
+      <div class="post-comments--view__postit-right">
+        <div class="post-comments--detail">
+          <%= link_to user_path(post_comment.user) do %>
+            <%= attachment_image_tag(post_comment.user, :user_image, fallback: "no_image.jpg") %>
+            <%= post_comment.user.name %>
+          <% end %>
+        </div>
+        <div class="post-comments--post">
+          <div class="post-comments--content">
+            <p><%= post_comment.comment %></p>
+          </div>
+          <div class="post-comments--delete">
+            <% if post_comment.user == current_user %>
+              <%= link_to "Destroy", post_post_comment_path(post_comment.post_id, post_comment), method: :delete, remote: true, class:"btn btn-danger" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+

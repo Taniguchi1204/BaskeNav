@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'users/show'
   # 施設管理者用アカウント
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
@@ -16,33 +15,34 @@ Rails.application.routes.draw do
 
   # ログイン前のリンク先
   root "homes#top"
-  get "/news" => "homes#news"
-  get "/game" => "homes#game"
+  get "/news"      => "homes#news"
+  get "/game_east"=> "homes#game_east"
+  get "/game_west" => "homes#game_west"
 
   # 会員（フォロー、フォロワー）
   resources :users, only:[:show, :edit, :update] do
-    resources :relationship, only:[:create, :destroy]
-    member do
-      get :following, :followers
-    end
+    resource :relationships, only:[:create,:destroy]
+    get 'followings'          => 'relationships#followings'
+    get 'followers'           => 'relationships#followers'
+    get 'favorite_posts'      => 'post_favorites#index'
+    get 'favorite_facilities' => 'facility_favorites#index'
   end
 
   # ダイレクトメッセージ
-  resources :chats, only:[:show, :create]
+  resources :messages, only:[:create]
 
   # 投稿
   resources :posts do
-    resource :favorite_posts, only:[:create, :destroy]
+    resource :post_favorites, only:[:create, :destroy]
     resources :post_comments, only:[:create, :destroy]
   end
 
   # バスケ施設（施設管理者側を分ける？）
   resources :facilities do
-    resource :facility_favorites, only:[:create, :destroy]
+    resource :facility_favorites, only:[:index, :create, :destroy]
     resources :facility_comments, only:[:create, :destroy]
+    #　バスケ施設予約
+    resources :reserve_facilities, only:[:show, :create, :edit, :update, :destroy]
   end
-
-  #　バスケ施設予約
-  resources :reserve_facilities, only:[:show, :create, :edit, :update, :destroy]
 
 end

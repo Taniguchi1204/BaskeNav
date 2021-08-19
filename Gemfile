@@ -71,7 +71,8 @@ gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.13'
 
-gem 'simple_calendar', '~> 2.0'
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 
 gem "gmaps4rails"
 gem "geocoder"
@@ -82,3 +83,7 @@ gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"
 
 gem "dotenv-rails"
+
+gem 'news-api'
+
+gem "chartkick"
