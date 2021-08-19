@@ -15,7 +15,7 @@
         <p>営業時間</p>
       </div>
       <div class="facility-show--details__data">
-        <p><%= @facility.opening %> ~ <%= @facility.closing %></p>
+        <p><%= @facility.opening.strftime("%H時%M分") %> ~ <%= @facility.closing.strftime("%H時%M分") %></p>
       </div>
     </div>
 

@@ -14,17 +14,23 @@
           <tr>
             <td>
               <%= link_to facility_path(facility) do %>
-                <%= attachment_image_tag facility, :facility_image, :fill, 50, 50, fallback: "no_image.jpg" %>
                 <%= facility.name %>
               <% end %>
             </td>
-            <td><%= facility.opening %> ~ <%= facility.closing %></td>
+            <td><%= facility.opening.strftime("%H時%M分") %> ~ <%= facility.closing.strftime("%H時%M分") %></td>
             <td><%= facility.address %></td>
             <td><%= facility.station %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
+    <div class="new-facility--form-group">
+      <button onclick="AddressSearch(this.value)" type="button" class="new-facility--search-map" id="address" value="東京">東京</button>
+      <button onclick="AddressSearch(this.value)" type="button" class="new-facility--search-map" id="address" value="大阪">大阪</button>
+      <button onclick="AddressSearch(this.value)" type="button" class="new-facility--search-map" id="address" value="北海道">北海道</button>
+      <button onclick="AddressSearch(this.value)" type="button" class="new-facility--search-map" id="address" value="岐阜">岐阜</button>
+      <button onclick="AddressSearch(this.value)" type="button" class="new-facility--search-map" id="address" value="佐賀">佐賀</button>
+    </div>
   </div>
 
   <div class="facilities--map">
