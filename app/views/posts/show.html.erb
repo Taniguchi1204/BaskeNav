@@ -23,6 +23,10 @@
       <div class="post-show--post-image">
         <%= attachment_image_tag(@post, :image, fallback: "no_image.jpg") %>
       </div>
+
+      <div class="post-show--delete">
+        <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-danger" %>
+      </div>
     </div>
   </div>
 

@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 
   # 投稿
   resources :posts do
+    delete 'trash_box'        => 'post#trash_box'
     resource :post_favorites, only:[:create, :destroy]
     resources :post_comments, only:[:create, :destroy]
   end

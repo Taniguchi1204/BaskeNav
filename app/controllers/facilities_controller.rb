@@ -2,9 +2,15 @@ class FacilitiesController < ApplicationController
 
   def index
     @facilities         = Facility.all
-    gon.facility_place  = FacilityPlace.all
     @reserve_facilities = ReserveFacility.all
 
+    if params[:north]
+      lat = Range.new(*[params["north"], params["south"]].sort)
+      lon = Range.new(*[params["east"], params["west"]].sort)
+      # データ取得
+      @reserve_facilities = ReserveFacility.facility_places.where(latitude: lat, longitude: lon)
+      @facilities         = a
+    end
     respond_to do |format|
       format.html
       format.json

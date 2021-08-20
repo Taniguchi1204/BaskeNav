@@ -100,14 +100,20 @@ function codeAddress(){ //コールバック関数
   });
 }
 
-function AddressSearch(a){ //コールバック関数
+function AddressSearch(address){ //コールバック関数
 
-  geocoder.geocode( { 'address': a}, function(results, status) { //ジオコードしたい住所を引数として渡す
+  geocoder.geocode( { 'address': address}, function(results, status) { //ジオコードしたい住所を引数として渡す
     if (status == 'OK') {
       let lat = results[0].geometry.location.lat(); //ジオコードした結果の緯度
       let lng = results[0].geometry.location.lng(); //ジオコードした結果の経度
 
       map.setCenter(results[0].geometry.location); //最も近い、判読可能な住所を取得したい場所の緯度・経度
+
+      map = new google.maps.Map(document.getElementById('index_map'), { //'map'というidを取得してマップを表示
+        center: {lat: lat, lng: lng}, //最初に表示する場所（東京駅）
+        zoom: 10, //拡大率（1〜21まで設定可能）
+      });
+
     } else {
       alert('該当する結果がありませんでした');
     }

@@ -87,3 +87,5 @@ gem "dotenv-rails"
 gem 'news-api'
 
 gem "chartkick"
+
+gem "jquery-ui-rails"

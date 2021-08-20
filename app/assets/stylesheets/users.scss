@@ -68,6 +68,19 @@
     width: 60%;
     margin: 60px 0 0 50px;
   }
+  &--trash-box{
+    width: 100%;
+    img{
+      width: 200px;
+    }
+  }
+}
+
+.move-trash{
+  img{
+    transform: rotate(-20deg);
+    width: 250px;
+  }
 }
 
 .chats{
@@ -120,3 +133,4 @@
     right: 10px;
   }
 }
+

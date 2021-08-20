@@ -2,7 +2,7 @@
   <%= image_tag title, class: "posts--title"%>
   <div class="posts--contents">
     <% posts.each do |post| %>
-      <div class="posts--contents__view">
+      <div class="posts--contents__view" data-post_id="<%= post.id %>">
         <div class="posts--contents__detail">
           <%= link_to post.user do %>
             <%= attachment_image_tag post.user, :user_image, fallback: "no_image.jpg" %>

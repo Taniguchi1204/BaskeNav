@@ -375,6 +375,7 @@ DEPENDENCIES
   gon
   jbuilder (~> 2.5)
   jquery-rails
+  jquery-ui-rails
   kaminari (~> 1.2.1)
   listen (>= 3.0.5, < 3.2)
   momentjs-rails
