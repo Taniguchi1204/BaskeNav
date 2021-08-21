@@ -82,10 +82,16 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"
 
-gem "dotenv-rails"
-
 gem 'news-api'
 
 gem "chartkick"
 
 gem "jquery-ui-rails"
+
+gem 'rails-i18n'
+
+gem "dotenv-rails"
+
+group :production do
+  gem 'mysql2'
+end
