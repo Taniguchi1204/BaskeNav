@@ -1,0 +1,5 @@
+<% if model.errors.any? %>
+  <% model.errors.full_messages_for(attribute).each do |message| %>
+    <p style="color: red;"><%= message %></p>
+  <% end %>
+<% end %>

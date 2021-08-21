@@ -12,8 +12,8 @@ class Facility < ApplicationRecord
     validates :email
   end
 
-  validates  :postcode, format: {with: /\A[0-9]{7}\z/}
-  validates  :phone_number, format: {with: /\A[0-9]{10,11}\z/}
+  validates  :postcode, format: {with: /\A[0-9]{7}\z/, message: "は7桁で記入してください" }
+  validates  :phone_number, format: {with: /\A[0-9]{10,11}\z/, message: "は10桁もしくは11桁で記入してください" }
   attachment :facility_image
 
   belongs_to :admin

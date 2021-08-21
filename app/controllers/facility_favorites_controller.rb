@@ -2,7 +2,7 @@ class FacilityFavoritesController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @facilities = @user.facilities_contents
+    @facilities = @user.facility_favorites
   end
 
   def create

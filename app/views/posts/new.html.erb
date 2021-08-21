@@ -3,12 +3,14 @@
     <div class="new-post--form">
       <%= form_with model: @post, local: true do |f| %>
         <%= f.label :Content %><br>
+        <%= render "layouts/error_messages", model: @post, attribute: :content %>
         <%= f.text_area :content %><br>
+
         <%= f.attachment_field :image %><br>
         <div class="new-post--address">
           <%= f.fields_for :post_place do |s| %>
             <%= s.label :address, "レビュー場所(Google Mapで検索)", class: 'spot__title' %><br>
-            <%= s.text_field :address, placeholder: "スポットを入力", id: "address", class: "spot__text new-post--address-form" %><br>
+            <%= s.text_field :address, placeholder: "場所をシェアしよう！", id: "address", class: "spot__text new-post--address-form" %><br>
             <%= s.button onclick: "codeAddress()", type: "button", class: "new-post--search-map" do %>
               <i class="fas fa-search-location"></i><br>
             <% end %>

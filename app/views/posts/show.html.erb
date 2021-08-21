@@ -15,24 +15,25 @@
         <p><%= @post.content %></p>
       </div>
 
-      <div class="post-show--address">
-        <h2>Place</h2>
-        <p><%= @post.post_place.address %></p>
-      </div>
+      <% if @post.post_place.latitude != nil  %>
+        <div class="post-show--address">
+          <h2>Place</h2>
+          <p><%= @post.post_place.address %></p>
+        </div>
+      <% end %>
 
       <div class="post-show--post-image">
         <%= attachment_image_tag(@post, :image, fallback: "no_image.jpg") %>
       </div>
-
-      <div class="post-show--delete">
-        <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-danger" %>
-      </div>
     </div>
   </div>
 
-  <div class="post-show--map">
-    <div class="show__maps" id="show_map" style="height: 650px; width: 500px;"></div>
-  </div>
+  <% if @post.post_place.latitude != nil  %>
+    <div class="post-show--map">
+      <div class="show__maps" id="show_map" style="height: 650px; width: 500px;"></div>
+    </div>
+  aaa
+  <% end %>
 
   <div class="post-show--comments">
     <h2>Comments</h2>

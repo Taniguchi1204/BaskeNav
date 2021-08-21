@@ -57,10 +57,10 @@ class FacilitiesController < ApplicationController
   def create
     @facility          = Facility.new(facility_params)
     @facility.admin_id = current_admin.id
-    if @facility.save!
-      redirect_to root_path
+    if @facility.save
+      redirect_to facility_path(@facility)
     else
-      redirect_to new_post_path
+      render new_facility_path
     end
   end
 

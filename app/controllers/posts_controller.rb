@@ -29,14 +29,13 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to post_path(@post)
     else
-      redirect_to new_post_path
+      render new_post_path
     end
   end
 
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path
   end
 
 

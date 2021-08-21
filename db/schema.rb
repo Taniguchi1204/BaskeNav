@@ -112,10 +112,10 @@ ActiveRecord::Schema.define(version: 2021_08_05_032507) do
   end
 
   create_table "post_places", force: :cascade do |t|
-    t.integer "post_id", null: false
-    t.string "address", null: false
-    t.float "longitude", null: false
-    t.float "latitude", null: false
+    t.integer "post_id"
+    t.string "address"
+    t.float "longitude"
+    t.float "latitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_post_places_on_post_id"
