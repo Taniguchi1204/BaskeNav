@@ -16,7 +16,7 @@
           <li><%= link_to "Mypage", user_path(current_user), class: "header-nav--list-item" %></li>
           <li>
             <%= link_to root_url, class: "header-nav--list-item__logo" do %>
-              <img src="/assets/logo.png">
+              <%= image_tag("logo.png") %>
             <% end %>
           </li>
           <li><%= link_to "Posts", posts_path, class: "header-nav--list-item__reverse" %></li>
@@ -29,7 +29,7 @@
           <li><%= link_to "NewFacility", new_facility_path, class: "header-nav--list-item" %></li>
           <li>
             <%= link_to root_url, class: "header-nav--list-item__logo" do %>
-              <img src="/assets/logo.png">
+              <%= image_tag("logo.png") %>
             <% end %>
           </li>
           <li><%= link_to "Mypage", facility_path(current_admin), class: "header-nav--list-item__reverse" %></li>
@@ -41,7 +41,7 @@
           <li><%= link_to "News", news_path, class: "header-nav--list-item" %></li>
           <li>
             <%= link_to root_url, class: "header-nav--list-item__logo" do %>
-              <img src="/assets/logo.png">
+              <%= image_tag("logo.png") %>
             <% end %>
           </li>
           <li><%= link_to "Sign-Up", new_user_registration_path, class: "header-nav--list-item__reverse" %></li>
