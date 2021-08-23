@@ -1,41 +1,46 @@
-<div class="container mt-5">
-  <h2>Sign-up</h2>
+<div class="user-form">
+
+  <div class="user-form--icon">
+    <p class="user-form--login-text">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fas fa-user fa-stack-1x"></i>
+      </span>
+    </p>
+    <h2>Signe Up</h2>
+  </div>
 
   <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
-    <%= render "users/shared/error_messages", resource: resource %>
 
-    <div class="field">
-      <%= f.label :Name %><br />
-      <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+    <div class="user-form--field">
+      <%= render "layouts/error_messages", model: @user, attribute: :name %>
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "user-form--input", placeholder: "name" %>
     </div>
 
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <div class="user-form--field">
+      <%= render "layouts/error_messages", model: @user, attribute: :email %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "user-form--input", placeholder: "email" %>
     </div>
 
-    <div class="field">
-      <%= f.label :PhoneNumber %><br />
-      <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number" %>
+    <div class="user-form--field">
+      <%= render "layouts/error_messages", model: @user, attribute: :phone_number %>
+      <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", class: "user-form--input", placeholder: "phone_number" %>
     </div>
 
-    <div class="field">
-      <%= f.label :password %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password" %>
+    <div class="user-form--field">
+      <%= render "layouts/error_messages", model: @user, attribute: :password %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "user-form--input", placeholder: "password(6桁以上で入力)" %>
     </div>
 
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <div class="user-form--field">
+      <%= render "layouts/error_messages", model: @user, attribute: :password_confirmation %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "user-form--input", placeholder: "password_confirmation" %>
     </div>
 
-    <div class="actions">
-      <%= f.submit "Sign up" %>
+    <div class="user-form--actions">
+      <%= f.submit "Sign up", class: "user-form--login-submit" %>
+      <p style="color: white;">会員登録済みの方は<%= link_to "こちら", new_user_session_path %></p>
     </div>
   <% end %>
-
-  <%= render "users/shared/links" %>
 </div>
+<div class="user-form--user-background"></div>
