@@ -1,0 +1,11 @@
+<% team_rank.each do |rank| %>
+  <tr>
+    <td><%= rank["conference"]["rank"] %></td>
+    <td class="game--table__team"><img src="<%= rank["teamId"]["logo"] %>" style="width: 50px;"><%= rank["teamId"]["fullName"] %></td>
+    <td><%= rank["win"] %></td>
+    <td><%= rank["loss"] %></td>
+    <td><%= rank[ "gamesBehind"] %></td>
+    <td><%= rank["lastTenWin"] %>-<%= rank["lastTenLoss"] %></td>
+    <td><%= rank["winPercentage"] %></td>
+  </tr>
+<% end %>
