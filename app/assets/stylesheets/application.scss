@@ -159,8 +159,8 @@ header{
  }
 
 
+
 #under_line{
-    /*線の基点とするためrelativeを指定*/
 	position: relative;
 }
 
@@ -191,8 +191,6 @@ header{
 
 
 // ログインフォーム画面
-
-
 input {
   ::input-placeholder {
      color: rgba(255,255,255,0.7);
@@ -208,14 +206,14 @@ input {
 
 // 新規登録とログイン画面のレイアウト
 .user-form {
- min-width: 25%;
+ width: 500px;
  min-height: 25%;
  padding: .5rem;
  background-color: rgba(0,0,0,0.7);
  position: absolute;
- top: 50%;
+ top: 45%;
  left: 50%;
- transform: translate(-50%, -50%);
+ transform: translate(-50%, -40%);
  &--icon{
   text-align: center;
  }
@@ -282,6 +280,7 @@ input {
    background-position: 25% 50%;
  }
 }
+
 
 
 
