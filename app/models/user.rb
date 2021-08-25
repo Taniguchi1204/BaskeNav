@@ -67,7 +67,7 @@ class User < ApplicationRecord
           uid: auth.uid
         )
       end
-      return { user: user ,sns: sns}
+      return user
     end
   end
 end

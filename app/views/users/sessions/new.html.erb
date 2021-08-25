@@ -7,7 +7,7 @@
         <i class="fa fa-lock fa-stack-1x"></i>
       </span>
     </p>
-    <h2>Log in</h2>
+    <h2>Sign in</h2>
   </div>
 
   <%= form_with model: @user, url: user_session_path, local: true do |f| %>
@@ -21,6 +21,12 @@
 
     <div class="actions">
       <%= f.submit "Log in", class: "user-form--login-submit" %>
+    </div>
+
+    <div class="google">
+      <%- resource_class.omniauth_providers.each do |provider| %>
+        <%= link_to "Googleでログイン", omniauth_authorize_path(resource_name, provider), method: :post, class: "user-form--google" %><br />
+      <% end %>
     </div>
   <% end %>
 </div>

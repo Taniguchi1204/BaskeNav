@@ -4,10 +4,50 @@
     <div class="main-contents--text">
       <h1>バスケ情報</h1>
       <p>
-        最新のNBA試合結果やバスケに関する情報をいち早く確認することができます<br>
+        NBA試合結果やバスケに関する情報をいち早く確認することができます<br>
       </p>
+      <ul class="slider">
+        <%= render "homes/news_info", articles: @articles %>
+      </ul>
     </div>
   </div>
+
+  <div class="main-contents--fixed-background main-contents--background-1">
+    <div class="title">
+      <h1>Sharing Facilities</h1>
+      <p>you'll be able to play basketball anywhere you want</p>
+    </div>
+  </div>
+
+  <div class="main-contents--scroll-background  main-contents--background-color">
+    <div class="main-contents--fadein">
+    	<h1>バスケ施設</h1>
+    	<p>「BaskeNavのバスケ施設」では、バスケの出来る施設の情報や予約ができます。</p>
+      <p>また、予約状況を確認することで、家から簡単に施設利用できるか確認でき、</p>
+    	<p>DM機能を使えば予約しているバスケファンと</p>
+    	<p>いつでもどこでも新しいバスケファンとの交流を深めて一緒にプレイすることもできます（ルールは守りましょう)</p>
+    	<%= link_to "Sign-up", new_user_registration_path, class: "main-contents--sign-up" %>
+  	</div>
+  </div>
+
+  <div class="main-contents--fixed-background main-contents--background-2">
+  	<div class="title">
+      <h1>Post your experience</h1>
+      <p>let's post and share the great experience with your friendes</p>
+    </div>
+  </div>
+
+  <div class="main-contents--scroll-background main-contents--background-color">
+    <div class="main-contents--fadein">
+      <h1>バスケ投稿</h1>
+    	<p>「BaskeNavの投稿機能」では、バスケファン同士のコミュニケーションを行えます。</p>
+    	<p>NBAの試合結果、地元民が知っているバスケの出来る場所、最近のバスケニュースのコメントなど、</p>
+    	<p>あなたの「気になっている」「知りたい」情報があります。</p>
+    	<p>あなたの知っている情報も共有してバスケファン同士で日本バスケを盛り上げていきましょう！</p>
+    	<%= link_to "Sign-up", new_user_registration_path, class: "main-contents--sign-up" %>
+  	</div>
+  </div>
+
   <div class="main-contents--info">
     <div class="main-contents--info__text1">
       <div class="main-contents--info__photo1"></div>

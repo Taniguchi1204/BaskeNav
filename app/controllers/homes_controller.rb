@@ -1,15 +1,11 @@
 class HomesController < ApplicationController
 
   def top
-
+    news_info
   end
 
   def news
-      uri = "https://newsapi.org/v2/everything?q=%E3%83%90%E3%82%B9%E3%82%B1&sortBy=popularity&pageSize=100&apiKey=08e77fd7762e4312810107351e5d8464"
-      article_serialized = open(uri).read
-      a = JSON.parse(article_serialized)
-      b = a["articles"]
-      @articles = Kaminari.paginate_array(b).page(params[:page]).per(10)
+    news_info
   end
 
   def game_east
@@ -184,5 +180,13 @@ class HomesController < ApplicationController
                             "logo"     => "https://upload.wikimedia.org/wikipedia/fr/archive/d/d6/20161212034849%21Wizards2015.png"}
       end
     end
+  end
+
+  def news_info
+    uri = "https://newsapi.org/v2/everything?q=%E3%83%90%E3%82%B9%E3%82%B1&sortBy=popularity&pageSize=100&apiKey=08e77fd7762e4312810107351e5d8464"
+    article_serialized = open(uri).read
+    a = JSON.parse(article_serialized)
+    b = a["articles"]
+    @articles = Kaminari.paginate_array(b).page(params[:page]).per(10)
   end
 end

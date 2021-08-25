@@ -158,3 +158,34 @@ $(function() {
 $(window).on('load', function () {
   $('.game--years__tab li:first-of-type').addClass("active"); //最初のliにactiveクラスを追加
 });
+
+$(window).on('load', function () {
+  $('.slider').slick({
+		autoplay: true,//自動的に動き出すか。初期値はfalse。
+		infinite: true,//スライドをループさせるかどうか。初期値はtrue。
+		speed: 1500,//スライドのスピード。初期値は300。
+		slidesToShow: 3,//スライドを画面に3枚見せる
+		slidesToScroll: 1,//1回のスクロールで1枚の写真を移動して見せる
+		prevArrow: '<div class="slick-prev"></div>',//矢印部分PreviewのHTMLを変更
+		nextArrow: '<div class="slick-next"></div>',//矢印部分NextのHTMLを変更
+		centerMode: true,//要素を中央ぞろえにする
+		variableWidth: true,//幅の違う画像の高さを揃えて表示
+		dots: true,//下部ドットナビゲーションの表示
+	});
+});
+
+$(window).on('load scroll',function (){
+	$('.main-contents--fadein').each(function(){
+		//ターゲットの位置を取得
+		var target = $(this).offset().top;
+		//スクロール量を取得
+		var scroll = $(window).scrollTop();
+		//ウィンドウの高さを取得
+		var height = $(window).height();
+		//ターゲットまでスクロールするとフェードインする
+		if (scroll > target - height){
+			//クラスを付与
+			$(this).addClass('active');
+		}
+	});
+});

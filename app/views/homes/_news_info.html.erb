@@ -1,0 +1,21 @@
+<% articles.each do |article| %>
+  <div class="news--articles__item">
+    <div class="news--articles__image">
+      <%= image_tag article["urlToImage"] %>
+    </div>
+    <div class="news--articles__title">
+      <%= link_to article["title"], article["url"] %>
+    </div>
+    <div class="news--articles__contents">
+      <div class="news--articles__content">
+        <%= article["description"] %>
+      </div >
+      <div class="news--articles-item__data">
+        <%= article["publishedAt"] %>
+      </div>
+      <div class="news--articles__source">
+        <%= article["source"]["name"]%>
+      </div>
+    </div>
+  </div>
+<% end %>
