@@ -1,0 +1,22 @@
+<h2 class="title_border">Facility Evaluation</h2>
+  <div id="evaluate_stars_avg">
+    <label>平均評価</label>
+    <script>
+      $('#evaluate_stars_avg').raty({
+        size: 36,
+        starOff: '<%= asset_path('star-off.png') %>',
+        starOn: '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        half: true,
+        readOnly: true,
+        score: <%= facility_comments.average(:rate).to_f.round(1) %>,
+      });
+    </script>
+  </div>
+  <div class="facility-show--graph">
+    <% if facility_comments.present? %>
+      <%= bar_chart data, colors: ["orange"], min: 0, max: 100 %>
+    <% else %>
+      コメントがありません
+    <% end %>
+  </div>

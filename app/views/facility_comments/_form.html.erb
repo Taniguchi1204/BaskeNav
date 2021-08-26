@@ -1,0 +1,21 @@
+<h2 class="title_border">Comments（<%= facility_comments.count %>件）</h2>
+<% if current_user %>
+  <div id="facility-show--new-comment">
+    <%= form_with(model: [facility, comment]) do |f| %>
+      <div id="evaluate_stars">
+        <label>評価</label>
+        <script>
+          $('#evaluate_stars').raty({
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            scoreName: 'facility_comment[rate]'
+          });
+        </script>
+      </div>
+      <%= f.label :comment %><br>
+      <%= f.text_area :comment %>
+      <%= f.submit "コメントする" %>
+    <% end %>
+  </div>
+<% end %>

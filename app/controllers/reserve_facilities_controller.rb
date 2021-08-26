@@ -3,7 +3,7 @@ class ReserveFacilitiesController < ApplicationController
   def create
     @facility = Facility.find(params[:facility_id])
     @comment            = FacilityComment.new
-    @facility_comments  = @facility.facility_comments
+    @facility_comments  = @facility.facility_comments.order(created_at: :DESC)
     # 評価グラフを表示するデータ
     if @facility_comments.present?
       @data = [['5', FacilityComment.rate_persent(5, @facility_comments)],

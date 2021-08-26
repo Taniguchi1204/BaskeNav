@@ -22,7 +22,7 @@ class FacilitiesController < ApplicationController
 
     # コメントに関する変数
     @comment            = FacilityComment.new
-    @facility_comments  = @facility.facility_comments
+    @facility_comments  = @facility.facility_comments.order(created_at: :DESC)
 
     # 施設予約に関する変数
     @reserve_facility   = ReserveFacility.new

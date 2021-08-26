@@ -1,1 +1,3 @@
 $('#facility-show--comments').html('<%= j(render "facility_comments/index", facility_comments: @facility_comments) %>');
+$('#facility-show--form').html('<%= j(render "facility_comments/form", facility: @facility, comment: @comment_new, facility_comments: @facility_comments) %>');
+$('#facility-show--rate').html('<%= j(render "facility_comments/graph", facility_comments: @facility_comments, data: @data) %>');
