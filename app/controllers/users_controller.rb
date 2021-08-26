@@ -23,6 +23,16 @@ class UsersController < ApplicationController
     redirect_to @user
   end
 
+  def new_guest
+    user = User.find_or_create_by(email: 'guest@example.com') do |user|
+      user.name = "ゲスト"
+      user.phone_number = "12345678910"
+      user.password = SecureRandom.urlsafe_base64
+    end
+    sign_in user
+    redirect_to user_path(current_user)
+  end
+
 
   private
 

@@ -74,23 +74,31 @@ header{
     text-align: right;
    }
    &__sign-up{
+    color: white;
     display: inline-block;
     line-height: 60px;
     text-decoration: none;
-    &::after {
+    position: relative;
+    padding: 0 10px;
+    &::before {
      content: '';
      display: inline-block;
      width: 1px;
      height: 30px;
      background: white;
      transform: translateY(10px);
-     margin: 0 10px;
+     position: absolute;
+     right: 0;
+     top: 50%;
+     transform: translate(0, -50%);
     }
    }
    &__sign-in{
+    color: white;
     display: inline-block;
     line-height: 60px;
     margin-right: 20px;
+    padding-left: 10px;
     text-decoration: none;
    }
   }
@@ -159,34 +167,30 @@ header{
  }
 
 
-
-#under_line{
+// リンクにアンダーラインを表示
+.under_line{
 	position: relative;
 }
 
-#under_line:hover{
+.under_line:hover{
 	color:#0481A2;
 }
 
-#under_line::after {
+.under_line::after {
     content: '';
-    /*絶対配置で線の位置を決める*/
     position: absolute;
-    bottom: 0;
+    bottom: 10px;
     left: 10%;
-    /*線の形状*/
     width: 80%;
     height: 2px;
     background:#0481A2;
-    /*アニメーションの指定*/
     transition: all .3s;
-    transform: scale(0, 1);/*X方向0、Y方向1*/
-    transform-origin: center top;/*上部中央基点*/
+    transform: scale(0, 1);
+    transform-origin: center top;
 }
 
-/*現在地とhoverの設定*/
-#under_line:hover::after {
-    transform: scale(1, 1);/*X方向にスケール拡大*/
+.under_line:hover::after {
+    transform: scale(1, 1);
 }
 
 
@@ -282,6 +286,11 @@ input {
 }
 .google{
  text-align: center;
+}
+
+.title_border{
+ padding: 0.25em 0.5em;
+ border-left: solid 5px #7db4e6;
 }
 
 

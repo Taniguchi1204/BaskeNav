@@ -55,7 +55,8 @@
         <%= f.text_field :parking %><br>
       </div>
 
-      <div class="new-post--address">
+
+        <div class="new-post--address">
           <%= f.fields_for :facility_place do |s| %>
             <%= s.label :address, "レビュー場所(Google Mapで検索)", class: 'spot__title' %><br>
             <%= render "layouts/error_messages", model: @facility, attribute: :address %>

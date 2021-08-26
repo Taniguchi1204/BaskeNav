@@ -1,12 +1,17 @@
 <div class="facility-show">
   <div class="facility-show--info">
-    <h2>施設情報</h2>
+    <h2 class="title_border">施設情報</h2>
     <div class="facility-show--details">
       <div class="facility-show--details__title">
         <p>施設名</p>
       </div>
       <div class="facility-show--details__data">
-        <p><%= @facility.name %></p>
+        <%= @facility.name %>
+        <% if current_user %>
+          <span id = "facility-favorite">
+            <%= render 'facility_favorites/like', facility: @facility %>
+          </span>
+        <% end %>
       </div>
     </div>
 
@@ -73,71 +78,122 @@
       </div>
     </div>
 
-    <% if current_user %>
-      <div id = "favorites_btn_<%= @facility.id %>">
-        いいね<%= render 'facility_favorites/like', facility: @facility %>
-      </div>
-    <% end %>
-
     <div class="facility-show--photo">
       <%= attachment_image_tag(@facility, :facility_image, fallback: "no_image.jpg") %>
     </div>
   </div>
-
   <div class="facility-show--map">
     <div class="show__maps" id="show_map"></div>
   </div>
 
-   <% if current_user %>
-    <div class="facility-show--new-reserve">
-      <h2>Reserve</h2>
-      <%= form_with(model: [@facility, @reserve_facility], local: true) do |f| %>
-        <%= f.label :日時 %>
-        <%= f.datetime_field :start %>
-        <%= f.datetime_field :finish %>
-        <%= f.label :人数 %>
-        <%= f.text_field :number %>
-        <%= f.submit "予約する" %>
+  <div class="facility-show--function">
+    <div class="facility-show--function__detail">
+       <% if current_user %>
+        <div class="facility-show--new-reserve">
+          <h2 class="title_border">Reserve</h2>
+          <%= form_with(model: [@facility, @reserve_facility], local: true) do |f| %>
+            <div class="facility-show--details-reserve">
+              <div class="facility-show--details__title-reserve">
+                <%= f.label :開始 %>
+              </div>
+              <div class="facility-show--details__data-reserve">
+                <%= render "layouts/error_messages", model: @reserve_facility, attribute: :start %>
+                <%= f.datetime_field :start %><br>
+              </div>
+            </div>
+
+            <div class="facility-show--details-reserve">
+              <div class="facility-show--details__title-reserve">
+                <%= f.label :終了%>
+              </div>
+              <div class="facility-show--details__data-reserve">
+                <%= render "layouts/error_messages", model: @reserve_facility, attribute: :finish %>
+                <%= f.datetime_field :finish, minute_step: 30 %><br>
+              </div>
+            </div>
+
+            <div class="facility-show--details-reserve">
+              <div class="facility-show--details__title-reserve">
+                <%= f.label :人数 %>
+              </div>
+              <div class="facility-show--details__data-reserve">
+                <%= render "layouts/error_messages", model: @reserve_facility, attribute: :number %>
+                <%= f.select :number, [1,2,3,4,5,6,7,8,9,10], {}, prompt: "参加予定人数を選択してください" %>名<br>
+              </div>
+            </div>
+
+            <div class="facility-show--details-reserve">
+              <div class="facility-show--details__title-reserve">
+                <%= f.label :合流可否 %>
+              </div>
+              <div class="facility-show--details__data-reserve">
+                <%= render "layouts/error_messages", model: @reserve_facility, attribute: :with_friend %>
+                <%= f.radio_button :with_friend, :false %>
+                <%= f.label :with_friend, "参加不可", {value: :false, style: "display: inline;"} %>
+                <%= f.radio_button :with_friend, :true, class:"ml-5"%>
+                <%= f.label :with_friend, "一緒に参加可", {value: :true, style: "display: inline;"}%><br>
+                (※一緒に参加可にすると予約情報を閲覧した人があなたのMyPageに飛べるようになります。)
+              </div>
+            </div>
+
+            <div class="facility-show--details-reserve">
+              <div class="facility-show--details__title-reserve">
+                <%= f.label :コメント %>
+              </div>
+              <div class="facility-show--details__data-reserve">
+                <%= f.text_area :comment, placeholder: "コメントがあれば記載してください", size: "40x5" %><br>
+                <%= f.submit "予約する", class: "btn btn-success" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
       <% end %>
     </div>
-  <% end %>
-
-  <div class="facility-show--calendar">
-    <div id="calendar"></div>
+    <div class="facility-show--calendar" style="width: 45%;">
+      <div id="calendar"></div>
+    </div>
   </div>
-
-
   <div class="facility-show--rate-comment">
     <div class="facility-show--rate">
-        <h2>Facility Evaluation</h2>
-        <div id="evaluate_stars_avg">
-          <label>平均評価</label>
-          <script>
-            $('#evaluate_stars_avg').raty({
-              size: 36,
-              starOff: '<%= asset_path('star-off.png') %>',
-              starOn: '<%= asset_path('star-on.png') %>',
-              starHalf: '<%= asset_path('star-half.png') %>',
-              half: true,
-              readOnly: true,
-              score: <%= @facility_comments.average(:rate).to_f.round(1) %>,
-            });
-          </script>
-        </div>
-      <% if @facility_comments.present? %>
-        <%= bar_chart @data, colors: ["orange"], min: 0, max: 100 %>
-      <% else %>
-        コメントがありません
-      <% end %>
+      <h2 class="title_border">Facility Evaluation</h2>
+      <div id="evaluate_stars_avg">
+        <label>平均評価</label>
+        <script>
+          $('#evaluate_stars_avg').raty({
+            size: 36,
+            starOff: '<%= asset_path('star-off.png') %>',
+            starOn: '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= @facility_comments.average(:rate).to_f.round(1) %>,
+          });
+        </script>
+      </div>
+      <div class="facility-show--graph">
+        <% if @facility_comments.present? %>
+          <%= bar_chart @data, colors: ["orange"], min: 0, max: 100 %>
+        <% else %>
+          コメントがありません
+        <% end %>
+      </div>
   　</div>
 
-    <div class="facility-show--comments">
-      <h2>Comments（<%= @facility_comments.count %>件）</h2>
+    <div class="facility-show--comment-form">
+      <h2 class="title_border">Comments（<%= @facility_comments.count %>件）</h2>
       <% if current_user %>
-        <div class="facility-show--new-comment">
-          <%= form_with(model: [@facility, @comment], local: true) do |f| %>
+        <div id="facility-show--new-comment">
+          <%= form_with(model: [@facility, @comment]) do |f| %>
             <div id="evaluate_stars">
               <label>評価</label>
+              <script>
+                $('#evaluate_stars').raty({
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  starHalf: "<%= asset_path('star-half.png') %>",
+                  scoreName: 'facility_comment[rate]'
+                });
+              </script>
             </div>
             <%= f.label :comment %><br>
             <%= f.text_area :comment %>
@@ -146,38 +202,16 @@
         </div>
       <% end %>
 
-      <div class="facility-show--comments">
+      <div id="facility-show--comments">
         <%= render "facility_comments/index", facility_comments: @facility_comments %>
       </div>
     </div>
   </div>
 </div>
 
-
-  <script>
-    $('#evaluate_stars').raty({
-      starOn: "<%= asset_path('star-on.png') %>",
-      starOff: "<%= asset_path('star-off.png') %>",
-      starHalf: "<%= asset_path('star-half.png') %>",
-      scoreName: 'facility_comment[rate]'
-    });
-  </script>
-
-
+<!--カレンダーのモーダルウィンドウ-->
 <div id="calendarModal" class="modal fade">
-  <div class="modal-dialog modal-dialog-center">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">
-          <span aria-hidden="true">×</span>
-          <span class="sr-only">close</span>
-        </button>
-        <span id="modalTitle" class="modal-title"></span>
-      </div>
-      <div id="modalBody" class="modal-body"></div>
-      <div id="modalFooter" class="modal-footer"></div>
-    </div>
-  </div>
+  <%= render "reserve_facilities/modal" %>
 </div>
 
 

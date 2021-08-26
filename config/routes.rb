@@ -15,9 +15,10 @@ Rails.application.routes.draw do
 
   # ログイン前のリンク先
   root "homes#top"
-  get "/news"      => "homes#news"
-  get "/game_east"=> "homes#game_east"
-  get "/game_west" => "homes#game_west"
+  post "/guest_sign_in"  => "users#new_guest"
+  get  "/news"           => "homes#news"
+  get  "/game_east"      => "homes#game_east"
+  get  "/game_west"      => "homes#game_west"
 
   # 会員（フォロー、フォロワー）
   resources :users, only:[:show, :edit, :update] do

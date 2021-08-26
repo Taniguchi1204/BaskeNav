@@ -37,6 +37,14 @@
   display: flex;
   flex-wrap: wrap;
   padding: 50px;
+  &--function{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 100px;
+    &__detail{
+      width: 30%;
+    }
+  }
   &--info{
     width: 30%;
     height: 650px;
@@ -58,6 +66,18 @@
       width: 60%;
       padding-left: 30px;
     }
+    &__title-reserve{
+      width: 20%;
+    }
+    &__data-reserve{
+      width: 80%;
+      padding-left: 30px;
+    }
+  }
+  &--details-reserve{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px;
   }
   &--photo{
     img{
@@ -67,7 +87,7 @@
   }
   &--map{
     width: 70%;
-    height: 650px;
+    min-height: 650px;
   }
   &--new-reserve{
     width: 90%;
@@ -81,20 +101,33 @@
     display: flex;
     flex-wrap: wrap;
     width: 90%;
-    margin: 30px auto;
+    margin-top: 30px;
+    padding-left: 30px;
   }
   &--rate{
-    width: 30%;
+    width: 40%;
   }
   &--comments{
     width: 70%;
     padding-left: 30px;
+  }
+  &--comment-form{
+   margin-left: 100px;
+  }
+  &--graph{
+    padding: 15px;
   }
 }
 #show_map{
   height: 100%;
   width: 100%;
 }
+#evaluate_stars_avg,
+#facility-show--new-comment,
+#facility-show--comments{
+  padding: 15px;
+}
+
 
 // 施設投稿ページのレイアウト
 .new-facility{

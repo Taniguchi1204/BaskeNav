@@ -1,0 +1,31 @@
+<div class="modal-dialog modal-dialog-center">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>予約情報確認</h2>
+      <button type="button" class="close" data-dismiss="modal">
+        <span aria-hidden="true">×</span>
+        <span class="sr-only">close</span>
+      </button>
+    </div>
+
+    <div id="modalName" class="modal-body"></div>
+    <div id="modalNumber" class="modal-body"></div>
+    <div id="modalTime" class="modal-body"></div>
+    <div id="modalFriend" class="modal-body"></div>
+    <div id="modalComment" class="modal-body"></div>
+    <% if current_admin %>
+      <div id="modalPhone" class="modal-body"></div>
+      <div id="modalEmail" class="modal-body"></div>
+    <% end %>
+    <div id="modalStatus" class="modal-body"></div>
+
+    <div id="modalFooter" class="modal-footer">
+      <% if current_user %>
+        <span id="modalDestroy" class="modal-destroy"></span>
+      <% elsif current_admin %>
+        <span id="modalDestroy" class="modal-destroy"></span>
+        <span id="modalConfirm" class="modal-confirm"></span>
+      <% end %>
+    </div>
+  </div>
+</div>

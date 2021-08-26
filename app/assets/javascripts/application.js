@@ -79,14 +79,48 @@ if ($('#calendar').length) {
       eventColor: '#87cefa',
       //イベントの文字色を変える
       eventTextColor: '#000000',
+
       eventRender: function(event, element) {
         element.css("font-size", "0.8em");
         element.css("padding", "5px");
       },
       eventClick: function(calEvent, jsEvent, view) {
-        // ***** 今回はここにクリックイベントを追加 *****
-        $('#modalTitle').html(calEvent.start); // モーダルのタイトルをセット
-        $('#modalBody').html(calEvent.id); // モーダルの本文をセット
+        // 予約情報のモーダルウィンドウ
+        let startDate = moment(calEvent.start, "YYYY-MM-DD");
+        let endDate = moment(calEvent.end, "YYYY-MM-DD");
+　　　　let start_changeDate = startDate.format('YYYY年MM月DD日 HH:mm');
+　　　　let end_changeDate = endDate.format('YYYY年MM月DD日 HH:mm');
+
+　　　　if (calEvent.with_friend == true) {
+　　　　  $('#modalName').html(`予約者：${calEvent.name}<a href="/users/${calEvent.user}">（マイページへ）</a>`);
+　　　　} else {
+　　　　  $('#modalName').html(`予約者：${calEvent.name}`);
+　　　　}
+        $('#modalNumber').html(`参加人数：${calEvent.number}名`);
+        $('#modalTime').html(`日時：${start_changeDate}〜${end_changeDate}`);
+
+        if (calEvent.with_friend == true){
+          $('#modalFriend').html(`合流可否：一緒に参加可`);
+        } else {
+          $('#modalFriend').html(`合流可否：参加不可`);
+        }
+
+        $('#modalStatus').html(`ステータス：${calEvent.title}`);
+
+        if (calEvent.comment != null) {
+          $('#modalComment').html(`コメント：${calEvent.comment}`);
+        }
+
+        $('#modalPhone').html(`電話番号：${calEvent.phone_number}`);
+        $('#modalEmail').html(`Email：${calEvent.email}`);
+
+        if (calEvent.title == "承認待ち") {
+          $('#modalConfirm').html(`<a href="/facilities/${calEvent.facility_id}/reserve_facilities/${calEvent.id}" data-method="patch">予約承認</a>`);
+        } else {
+          $('#modalConfirm').html(`<a href="/facilities/${calEvent.facility_id}/reserve_facilities/${calEvent.id}" data-method="patch">承認キャンセル</a>`);
+        }
+
+        $('#modalDestroy').html(`<a href="/facilities/${calEvent.facility_id}/reserve_facilities/${calEvent.id}" data-method="delete"　data-confirm="【確認】アカウントを削除してもよろしいですか？">削除</a>`);
         $('#calendarModal').modal(); // モーダル着火
       },
     });

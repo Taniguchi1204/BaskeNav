@@ -74,10 +74,10 @@ ActiveRecord::Schema.define(version: 2021_08_05_032507) do
   end
 
   create_table "facility_places", force: :cascade do |t|
-    t.integer "facility_id", null: false
-    t.string "address", null: false
-    t.float "longitude", null: false
-    t.float "latitude", null: false
+    t.integer "facility_id"
+    t.string "address"
+    t.float "longitude"
+    t.float "latitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["facility_id"], name: "index_facility_places_on_facility_id"
@@ -145,6 +145,8 @@ ActiveRecord::Schema.define(version: 2021_08_05_032507) do
     t.datetime "start", null: false
     t.datetime "finish", null: false
     t.string "number", null: false
+    t.boolean "with_friend", default: false, null: false
+    t.boolean "confirm", default: false, null: false
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

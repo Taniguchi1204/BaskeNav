@@ -33,6 +33,9 @@ ja:
         email: Eメール
         password: パスワード
         password_confirmation: パスワード（確認用）
+      reserve_facility:
+        start: 開始時刻
+        finish: 終了時刻
   devise:
     failure:
       already_authenticated: すでにログインしています。

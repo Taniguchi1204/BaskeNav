@@ -3,7 +3,7 @@
     <div class="facility-comments--view">
       <div class="facility-comments--detail">
         <%= link_to user_path(facility_comment.user) do %>
-          <%= attachment_image_tag(facility_comment.user, :user_image, :fill, 100, 100, fallback: "no_image.jpg") %><br>
+          <%= attachment_image_tag(facility_comment.user, :user_image, :fill, 100, 100, fallback: "no_image.jpg") %>
           <%= facility_comment.user.name %>
         <% end %>
       </div>
@@ -25,7 +25,7 @@
         </div>
         <div class="facility-comments--delete">
           <% if facility_comment.user == current_user %>
-            <%= link_to "Destroy", facility_facility_comment_path(facility_comment.facility_id, facility_comment), method: :delete, class:"btn btn-danger" %>
+            <%= link_to "Destroy", facility_facility_comment_path(facility_comment.facility_id, facility_comment), method: :delete, class:"btn btn-danger", remote: true %>
           <% end %>
         </div>
       </div>
