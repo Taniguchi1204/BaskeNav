@@ -19,6 +19,21 @@
 
     <%= yield %>
 
+    <div class="search">
+    <div class="search--background modan_close3"></div>
+    <div class="search--member">
+      <div class="search--header">
+        <h1>Search Users</h1>
+        <div class="search--form">
+          <%= form_with(url: search_users_path, local: true, method: :get) do |f| %>
+            <%= f.text_field :keyword, placeholder: "ユーザーを検索", class: "search-input" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="search--users"></div>
+    </div>
+  </div>
+
     <!--フッター部分テンプレート-->
     <%= render "layouts/footer" %>
   </body>

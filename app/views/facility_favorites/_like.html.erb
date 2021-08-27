@@ -1,9 +1,9 @@
 <% if facility.favorites_by?(current_user) %>
     <%= link_to facility_facility_favorites_path(facility), method: :delete, remote: true do %>
-      いいね<span><i class="fas fa-heart dislike"></i><%= facility.facility_favorites.count %></span>
+      <span class="facility-favorites-like">いいね<i class="fas fa-heart dislike"></i><%= facility.facility_favorites.count %></span>
     <% end %>
 <% else %>
     <%= link_to facility_facility_favorites_path(facility), method: :post, remote: true do %>
-      いいね<span><i class="fas fa-heart like"></i><%= facility.facility_favorites.count %></span>
+      <span class="facility-favorites-dislike">いいね<i class="fas fa-heart like"></i><%= facility.facility_favorites.count %></span>
     <% end %>
 <% end %>

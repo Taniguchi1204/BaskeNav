@@ -9,7 +9,6 @@ class FacilitiesController < ApplicationController
       lon = Range.new(*[params["east"], params["west"]].sort)
       # データ取得
       @reserve_facilities = ReserveFacility.facility_places.where(latitude: lat, longitude: lon)
-      @facilities         = a
     end
     respond_to do |format|
       format.html
@@ -22,7 +21,7 @@ class FacilitiesController < ApplicationController
 
     # コメントに関する変数
     @comment            = FacilityComment.new
-    @facility_comments  = @facility.facility_comments.order(created_at: :DESC)
+    @facility_comments  = @facility.facility_comments
 
     # 施設予約に関する変数
     @reserve_facility   = ReserveFacility.new
@@ -62,6 +61,11 @@ class FacilitiesController < ApplicationController
     else
       render new_facility_path
     end
+  end
+
+  def update
+    @facility = Facility.find(params[:id])
+    @reserve_permit = @facility.reserve_facilities
   end
 
 

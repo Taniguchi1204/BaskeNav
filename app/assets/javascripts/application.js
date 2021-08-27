@@ -128,7 +128,7 @@ if ($('#calendar').length) {
 });
 
 // チャットモダンウィンドウ
-$(function () {
+$(window).on('load',function () {
   $('#modan_open').on('click', function () {
     $('.chats--background').addClass('active');
     $('.chats--messages').addClass('active');
@@ -179,7 +179,7 @@ $(function () {
     })
   });
 
-  //任意のタブにURLからリンクするための設定
+// ランキングの年度変更タブ
 $(function() {
   $('.game--years__tab a').on('click', function() {
     let parentElm = $(this).parent(); //タブ内のaタグの親要素（li）を取得
@@ -188,9 +188,8 @@ $(function() {
 	})
 })
 
-// 上記の動きをページが読み込まれたらすぐに動かす
 $(window).on('load', function () {
-  $('.game--years__tab li:first-of-type').addClass("active"); //最初のliにactiveクラスを追加
+  $('.game--years__tab li:first-of-type').addClass("active");
 });
 
 $(window).on('load', function () {
@@ -223,3 +222,70 @@ $(window).on('load scroll',function (){
 		}
 	});
 });
+
+//インクリメンタルサーチ
+$(function() {
+  $(".search-input").on("keyup", function() {
+    let input = $(".search-input").val();
+    $.ajax({
+      type: 'GET',
+      url: '/search_users',
+      data: { keyword: input },
+      dataType: 'json'
+    })
+    .done(function(search_users) {
+      $(".search--users").empty();
+      if (search_users.length !== 0) {
+        search_users.forEach(function(user){
+          appendSample(user);
+        });
+      }
+      else {
+        appendErrMsgToHTML("一致するユーザーがいません");
+      }
+    })
+  });
+});
+
+function appendSample(user) {
+  $(".search--users").append(`<div class="search--users__detail">
+                                <p class="search--users__name">${user.name}</p>
+                                <a href="/users/${user.id}" class="search--users__link">Show</a>
+                              </div>`
+                            );
+}
+function appendErrMsgToHTML(msg) {
+  $(".search--users").append(`<div class='name'>${ msg }</div>`);
+}
+
+$(function() {
+  $('#following_modan_open').on('click', function(){
+    $('.user-show--following').fadeIn();
+    return false;
+  });
+  $('.modan_close1').on('click', function(){
+    $('.user-show--following').fadeOut();
+    return false;
+  });
+  $('#follower_modan_open').on('click', function(){
+    $('.user-show--follower').fadeIn();
+    return false;
+  });
+  $('.modan_close2').on('click', function(){
+    $('.user-show--follower').fadeOut();
+    return false;
+  });
+  $('#search_modan_open').on('click', function(){
+    $('.search').fadeIn();
+    return false;
+  });
+  $('.modan_close3').on('click', function(){
+    $('.search').fadeOut();
+    return false;
+  });
+})
+
+
+
+
+

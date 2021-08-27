@@ -16,15 +16,15 @@ Rails.application.routes.draw do
   # ログイン前のリンク先
   root "homes#top"
   post "/guest_sign_in"  => "users#new_guest"
+  get  "/search_users"   => "users#search_users"
   get  "/news"           => "homes#news"
   get  "/game_east"      => "homes#game_east"
   get  "/game_west"      => "homes#game_west"
 
+
   # 会員（フォロー、フォロワー）
   resources :users, only:[:show, :edit, :update] do
     resource :relationships, only:[:create,:destroy]
-    get 'followings'          => 'relationships#followings'
-    get 'followers'           => 'relationships#followers'
     get 'favorite_posts'      => 'post_favorites#index'
     get 'favorite_facilities' => 'facility_favorites#index'
   end
@@ -39,12 +39,12 @@ Rails.application.routes.draw do
     resources :post_comments, only:[:create, :destroy]
   end
 
-  # バスケ施設（施設管理者側を分ける？）
+  # バスケ施設
   resources :facilities do
     resource :facility_favorites, only:[:index, :create, :destroy]
     resources :facility_comments, only:[:create, :destroy]
     #　バスケ施設予約
-    resources :reserve_facilities, only:[:show, :create, :edit, :update, :destroy]
+    resources :reserve_facilities, only:[:show, :create, :destroy]
   end
 
 end

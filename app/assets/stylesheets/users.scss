@@ -10,6 +10,9 @@
   margin: 20px;
   box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.4);
   background-color: rgb(224, 153, 0);
+  &--chats_follow{
+    cursor: pointer;
+  }
   &--follow{
     #modan_open{
       width: 100px;
@@ -70,10 +73,19 @@
   }
   &--trash-box{
     width: 100%;
+    text-align: center;
     img{
       width: 200px;
     }
   }
+}
+.user-show--following,
+.user-show--follower{
+  display: none;
+}
+
+.active{
+  display: block;
 }
 
 .move-trash{

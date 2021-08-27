@@ -50,6 +50,7 @@ header{
  z-index: 1000;
 }
 
+
 // ヘッダートップ
  .header-top{
    width: 100%;
@@ -69,11 +70,13 @@ header{
     transform: translate(0, -50%);
    }
 
+
    // 施設管理者サインアップ、サインインリンク
    &__admin{
     text-align: right;
    }
-   &__sign-up{
+   &--sign-up,
+   &--guest-login{
     color: white;
     display: inline-block;
     line-height: 60px;
@@ -93,13 +96,25 @@ header{
      transform: translate(0, -50%);
     }
    }
-   &__sign-in{
+   &--sign-in{
     color: white;
     display: inline-block;
     line-height: 60px;
     margin-right: 20px;
     padding-left: 10px;
     text-decoration: none;
+   }
+  }
+  #search_modan_open{
+   line-height: 40px;
+   color: white;
+   font-size: 15px;
+   position: absolute;
+   right: 10px;
+   border: 1px solid white;
+   padding: 0 5px;
+   &:hover{
+    background-color: rgba(0, 0, 0, 0.7);
    }
   }
 
@@ -292,6 +307,66 @@ input {
  padding: 0.25em 0.5em;
  border-left: solid 5px #7db4e6;
 }
+
+// ユーザー検索のモーダルウィンドウ
+.search{
+  display: none;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  &--background{
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: relative;
+  }
+  &--header{
+    padding: 10px ;
+    text-align: center;
+    h1{
+      position: relative;
+    }
+    h1:after{
+      content: "";
+      border: 1px solid blue;
+      width: 80px;
+      height: 1px;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%);
+    }
+  }
+  &--member{
+    width: 500px;
+    height: 600px;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  &--users{
+   margin: 30px;
+   padding: 10px;
+   overflow: scroll;
+   &__detail{
+    position: relative;
+    width: 100%;
+    border-bottom: 1px solid black;
+    margin-top: 10px;
+   }
+   &__link{
+     position: absolute;
+     right: 0;
+     top: 0px;
+   }
+  }
+}
+
+
 
 
 

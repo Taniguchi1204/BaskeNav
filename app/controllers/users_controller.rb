@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.all
+    @user_followers = @user.followers
+    @user_followings = @user.followings
 
     # フォローしていた場合はチャットができる
     if current_user.following?(@user)
@@ -31,6 +33,16 @@ class UsersController < ApplicationController
     end
     sign_in user
     redirect_to user_path(current_user)
+  end
+  
+  def search_users
+    if params[:keyword]
+      @search_users = User.search(params[:keyword])
+    end
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
 
