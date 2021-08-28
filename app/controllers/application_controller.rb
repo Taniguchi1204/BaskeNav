@@ -1,5 +1,15 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :authenticate_any!, except:[:top,:news,:game_west,:game_east,:new_guest]
+
+  def authenticate_any!
+    if admin_signed_in?
+      true
+    else
+      authenticate_user!
+    end
+  end
+
 
   def after_sign_in_path_for(resource)
     case resource

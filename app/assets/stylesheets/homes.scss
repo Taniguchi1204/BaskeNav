@@ -175,23 +175,6 @@
       background-position: top -120px right 0;
       clip-path: polygon(0 25%, 100% 0, 100% 100%, 0 100%);
     }
-    // &__photo1{
-    //   width: 0;
-    //   height: 0;
-    //   border-style: solid;
-    //   border-width: 0 0 300px 1255.5px;
-    //   border-color: transparent transparent white transparent;
-    //   position: absolute;
-    //   right: 0;
-    //   bottom: 0;
-    // }
-    // &__photo2{
-    //   width: 0;
-    //   height: 0;
-    //   border-style: solid;
-    //   border-width: 300px 1255.5px 0 0;
-    //   border-color: white transparent white transparent;
-    // }
     h1{
       font-size: 60px;
       position: absolute;
@@ -266,40 +249,50 @@
     margin-left: 20px;
     border-left: solid 5px #7db4e6;
   }
-  &--conference{
-    position: relative;
-    margin: 30px 0 30px 30px;
-    &__east{
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 100px 0 0 600px;
-      border-color: transparent transparent transparent #007bff;
-      position: relative;
+  &--conference__east{
+    width: 450px;
+    height: 450px;
+    background-color: rgba(255,0,0,0.5);
+    position: fixed;
+    bottom: 50px;
+    right: 0;
+    clip-path: circle(50% at 100% 100%);
+    transition: 0.5s;
+    &:hover{
+      width: 500px;
+      height: 500px;
+      background-color: rgba(255,0,0,0.8);
     }
-    &__west{
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 0 600px 100px 0;
-      border-color: transparent red transparent transparent;
-      position: absolute;
-      top: 0;
+  }
+  &--conference__west{
+    width: 450px;
+    height: 450px;
+    background-color: rgba(0,0,255,0.5);
+    position: fixed;
+    bottom: 50px;
+    left: 0;
+    clip-path: circle(50% at 0 100%);
+    transition: 0.5s;
+    &:hover{
+      width: 500px;
+      height: 500px;
+      background-color: rgba(0,0,255,1);
     }
   }
   &--link{
     &__east{
       position: absolute;
-      top: -70px;
-      left: -580px;
+      bottom: 0;
+      right: 20px;
       font-size: 50px;
-      color: black;
+      color: #FFFF00;
     }
     &__west{
       font-size: 50px;
-      color: black;
+      color: red;
       position: absolute;
-      left: 480px;
+      left: 20px;
+      bottom: 0;
     }
   }
   &--years{
