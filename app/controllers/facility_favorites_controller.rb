@@ -1,8 +1,17 @@
 class FacilityFavoritesController < ApplicationController
 
   def index
+    north       = params[:north]
+    south       = params[:south]
+    east        = params[:east]
+    west        = params[:west]
     @user       = User.find(params[:user_id])
     @facilities = @user.facility_favorites
+
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def create
