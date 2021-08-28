@@ -364,7 +364,7 @@
     .pagination {
       justify-content: center;
       text-align: center;
-      li{
+      a{
         display: inline-block;
         min-width: 50px;
         background-color: white;
@@ -376,7 +376,7 @@
           background: #00FFFF	;
         }
       }
-      .active{
+      .active a{
         background: #00FFFF	;
       }
     }

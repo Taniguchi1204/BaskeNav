@@ -128,7 +128,7 @@ if ($('#calendar').length) {
 });
 
 // チャットモダンウィンドウ
-$(function () {
+$(document).on('turbolinks:load',function () {
   $(document).on('click','#modan_open', function () {
     $('.chats--background').addClass('active');
     $('.chats--messages').addClass('active');
@@ -180,17 +180,13 @@ $(function () {
   });
 
 // ランキングの年度変更タブ
-$(function() {
+$(document).on('turbolinks:load',function() {
   $('.game--years__tab a').on('click', function() {
     let parentElm = $(this).parent(); //タブ内のaタグの親要素（li）を取得
 			$('.game--years__tab li').removeClass("active"); //タブ内のliについているactiveクラスを取り除き
 			$(parentElm).addClass("active"); //リンク元の指定されたURLのハッシュタグとタブ内のリンク名が同じであれば、liにactiveクラスを追加
 	})
 })
-
-$(window).on('load', function () {
-  $('.game--years__tab li:first-of-type').addClass("active");
-});
 
 $(window).on('load', function () {
   $('.slider').slick({
@@ -224,7 +220,7 @@ $(window).on('load scroll',function (){
 });
 
 //インクリメンタルサーチ
-$(function() {
+$(document).on('turbolinks:load',function() {
   $(".search-input").on("keyup", function() {
     let input = $(".search-input").val();
     $.ajax({
@@ -247,18 +243,19 @@ $(function() {
   });
 });
 
-function appendSample(user) {
+$(document).on('turbolinks:load',function appendSample(user) {
   $(".search--users").append(`<div class="search--users__detail">
                                 <p class="search--users__name">${user.name}</p>
                                 <a href="/users/${user.id}" class="search--users__link">Show</a>
                               </div>`
                             );
-}
-function appendErrMsgToHTML(msg) {
-  $(".search--users").append(`<div class='name'>${ msg }</div>`);
-}
+});
 
-$(function() {
+$(document).on('turbolinks:load',function appendErrMsgToHTML(msg) {
+  $(".search--users").append(`<div class='name'>${ msg }</div>`);
+});
+
+$(document).on('turbolinks:load', function() {
   $(document).on('click','#following_modan_open', function(){
     $('.user-show--following').fadeIn();
     return false;
