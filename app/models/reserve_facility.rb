@@ -24,11 +24,12 @@ class ReserveFacility < ApplicationRecord
     validates :number
     validates :start
     validates :finish
+    validates :with_friend
   end
 
   validates :start, reserve_facility: true
   validates :finish, reserve_facility: true
-  validate :start_end_check
+  validate  :start_end_check
 
 
   belongs_to :user

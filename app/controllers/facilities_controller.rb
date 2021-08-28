@@ -2,10 +2,12 @@ class FacilitiesController < ApplicationController
   before_action :move_to_newpage, only:[:show]
 
   def move_to_newpage
-    myfacility = Facility.find_by(admin_id: current_admin.id)
-    if myfacility == nil
-      redirect_to new_facility_path
-      flash[:notice] = "まずは新規登録をしてください"
+    if admin_signed_in?
+      myfacility = Facility.find_by(admin_id: current_admin.id)
+      if myfacility == nil
+        redirect_to new_facility_path
+        flash[:notice] = "まずは新規登録をしてください"
+      end
     end
   end
 
