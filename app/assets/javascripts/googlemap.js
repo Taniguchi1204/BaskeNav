@@ -28,25 +28,32 @@ function initMap(){
     });
 
   map.addListener('idle', function(){
-    const pos = map.getBounds();
-    const north = pos.getNorthEast().lat();
-    const south = pos.getSouthWest().lat();
-    const east  = pos.getNorthEast().lng();
-    const west = pos.getSouthWest().lng();
+    const pos          = map.getBounds();
+    const north        = pos.getNorthEast().lat();
+    const south        = pos.getSouthWest().lat();
+    const east         = pos.getNorthEast().lng();
+    const west         = pos.getSouthWest().lng();
+    const markers      = [];
 
 
     $.ajax({
       url: `facilities?north=${north}&south=${south}&east=${east}&west=${west}`,
       dataType : 'json',
     }).done(function (markerData){
+      $("#facilities--data").empty();
+        for (let i = 0; i < markers.length; i++) {
+          marker[i] = null
+        }
 
         // 繰り返し処理でマーカーと吹き出しを複数表示させる
-      for (var i = 0; i < markerData.length; i++) {
+      for (let i = 0; i < markerData.length; i++) {
         let id           = markerData[i]['id']
         let name         = markerData[i]['name']
         let opening      = markerData[i]['opening']
         let closing      = markerData[i]['closing']
         let phone_number = markerData[i]['phone_number']
+        let address      = markerData[i]['address']
+        let station      = markerData[i]['station']
 
         // 各地点の緯度経度を算出
         markerLatLng = new google.maps.LatLng({
@@ -60,6 +67,8 @@ function initMap(){
           map: map
         });
 
+        markers.push(marker[i]);
+
         // 各地点の吹き出しを作成
         infoWindow[i] = new google.maps.InfoWindow({
           // 吹き出しの内容
@@ -69,12 +78,20 @@ function initMap(){
                     <a href='/facilities/${ id }'>詳細画面</a>`
         });
 
+        $('#facilities--data').append(`<tr>
+                                        <td><a href="/facilities/${id}">${name}</a></td>
+                                        <td>${opening} ~ ${closing}</td>
+                                        <td>${address}</td>
+                                        <td>${station}</td>
+                                      </tr>`
+                                     );
+
         // マーカーにクリックイベントを追加
         markerEvent(i);
       }
-    })
-    })
-  }
+    });
+  });
+}
 
   // マーカーをクリックしたら吹き出しを表示
   function markerEvent(i) {

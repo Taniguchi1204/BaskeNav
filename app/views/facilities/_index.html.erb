@@ -9,19 +9,8 @@
           <th>最寄り駅</th>
         </tr>
       </thead>
-      <tbody>
-        <% @facilities.each do |facility| %>
-          <tr>
-            <td>
-              <%= link_to facility_path(facility) do %>
-                <%= facility.facility.name %>
-              <% end %>
-            </td>
-            <td><%= facility.facility.opening.strftime("%H時%M分") %> ~ <%= facility.facility.closing.strftime("%H時%M分") %></td>
-            <td><%= facility.facility.address %></td>
-            <td><%= facility.facility.station %></td>
-          </tr>
-        <% end %>
+      <tbody id=facilities--data>
+
       </tbody>
     </table>
     <div class="new-facility--form-group">

@@ -2,71 +2,115 @@
   <div class="new-facility--form">
     <h2>施設情報</h2>
     <%= form_with model: @facility, local: true do |f| %>
-      <div class="new-facility--form-group">
-        <%= f.label :Name %><br>
-        <%= render "layouts/error_messages", model: @facility, attribute: :name %>
-        <%= f.text_field :name %><br>
-      </div>
-
-      <div class="new-facility--form-group">
-        <%= f.attachment_field :facility_image %><br>
-      </div>
-
-      <div class="new-facility--form-group">
-        <%= f.label :営業時間 %><br>
-        <%= render "layouts/error_messages", model: @facility, attribute: :opening %>
-        <%= render "layouts/error_messages", model: @facility, attribute: :closing %>
-        <%= f.time_select :opening, prompt:true %> ~ <%= f.time_select :closing, prompt:true %><br>
-      </div>
-
-      <div class="new-facility--form-group">
-        <%= f.label :電話番号 %><br>
-        <%= render "layouts/error_messages", model: @facility, attribute: :phone_number %>
-        <%= f.text_field :phone_number %><br>
-      </div>
-
-      <div class="new-facility--form-group">
-        <%= f.label :メールアドレス %><br>
-        <%= render "layouts/error_messages", model: @facility, attribute: :email %>
-        <%= f.text_field :email %><br>
-      </div>
-
-      <div class="new-facility--form-group">
-        <%= f.label :郵便番号 %><br>
-        <%= render "layouts/error_messages", model: @facility, attribute: :postcode %>
-        <%= f.text_field :postcode %><br>
-      </div>
-
-      <div class="new-facility--form-group">
-        <%= f.label :住所 %><br>
-        <%= render "layouts/error_messages", model: @facility, attribute: :address %>
-        <%= f.text_field :address %><br>
-      </div>
-
-      <div class="new-facility--form-group">
-        <%= f.label :最寄り駅 %><br>
-        <%= render "layouts/error_messages", model: @facility, attribute: :station %>
-        <%= f.text_field :station %><br>
-      </div>
-
-      <div class="new-facility--form-group">
-        <%= f.label :駐車場 %><br>
-        <%= render "layouts/error_messages", model: @facility, attribute: :parking %>
-        <%= f.text_field :parking %><br>
-      </div>
-
-
-        <div class="new-post--address">
-          <%= f.fields_for :facility_place do |s| %>
-            <%= s.label :address, "レビュー場所(Google Mapで検索)", class: 'spot__title' %><br>
-            <%= render "layouts/error_messages", model: @facility, attribute: :address %>
-            <%= s.text_field :address, placeholder: "場所をシェアしよう！", id: "address", class: "spot__text new-post--address-form" %><br>
-            <%= s.button onclick: "codeAddress()", type: "button", class: "new-post--search-map" do %>
-              <i class="fas fa-search-location"></i><br>
-            <% end %>
-          <% end %>
+      <div class="facility-show--details-reserve">
+        <div class="facility-show--details__title-reserve">
+          <%= f.label :Name %>
         </div>
-        <%= f.submit "投稿する", class: "new-post--submit btn btn-success" %>
+        <div class="facility-show--details__data-reserve">
+          <%= render "layouts/error_messages", model: @facility, attribute: :name %>
+          <%= f.text_field :name %><br>
+        </div>
+      </div>
+
+      <div class="facility-show--details-reserve">
+        <div class="facility-show--details__title-reserve">
+          <%= f.label :image %>
+        </div>
+        <div class="facility-show--details__data-reserve">
+          <%= render "layouts/error_messages", model: @facility, attribute: :name %>
+          <%= f.attachment_field :facility_image %><br>
+        </div>
+      </div>
+
+      <div class="facility-show--details-reserve">
+        <div class="facility-show--details__title-reserve">
+          <%= f.label :営業時間 %><br>
+        </div>
+        <div class="facility-show--details__data-reserve">
+          <%= render "layouts/error_messages", model: @facility, attribute: :opening %>
+          <%= render "layouts/error_messages", model: @facility, attribute: :closing %>
+          <%= f.time_select :opening, prompt:true, minute_step: 30 %> ~ <%= f.time_select :closing, prompt:true, minute_step: 30 %><br>
+        </div>
+      </div>
+
+      <div class="facility-show--details-reserve">
+        <div class="facility-show--details__title-reserve">
+          <%= f.label :電話番号 %><br>
+        </div>
+        <div class="facility-show--details__data-reserve">
+          <%= render "layouts/error_messages", model: @facility, attribute: :phone_number %>
+          <%= f.text_field :phone_number %><br>
+        </div>
+      </div>
+
+      <div class="facility-show--details-reserve">
+        <div class="facility-show--details__title-reserve">
+          <%= f.label :メールアドレス %><br>
+        </div>
+        <div class="facility-show--details__data-reserve">
+          <%= render "layouts/error_messages", model: @facility, attribute: :email %>
+          <%= f.text_field :email %><br>
+        </div>
+      </div>
+
+      <div class="facility-show--details-reserve">
+        <div class="facility-show--details__title-reserve">
+          <%= f.label :郵便番号 %><br>
+        </div>
+        <div class="facility-show--details__data-reserve">
+          <%= render "layouts/error_messages", model: @facility, attribute: :postcode %>
+          <%= f.text_field :postcode %><br>
+        </div>
+      </div>
+
+      <div class="facility-show--details-reserve">
+        <div class="facility-show--details__title-reserve">
+          <%= f.label :住所 %><br>
+        </div>
+        <div class="facility-show--details__data-reserve">
+          <%= render "layouts/error_messages", model: @facility, attribute: :address %>
+          <%= f.text_field :address %><br>
+        </div>
+      </div>
+
+      <div class="facility-show--details-reserve">
+        <div class="facility-show--details__title-reserve">
+          <%= f.label :最寄り駅 %><br>
+        </div>
+        <div class="facility-show--details__data-reserve">
+          <%= render "layouts/error_messages", model: @facility, attribute: :station %>
+          <%= f.text_field :station %><br>
+        </div>
+      </div>
+
+      <div class="facility-show--details-reserve">
+        <div class="facility-show--details__title-reserve">
+          <%= f.label :駐車場 %><br>
+        </div>
+        <div class="facility-show--details__data-reserve">
+          <%= render "layouts/error_messages", model: @facility, attribute: :parking %>
+          <%= f.text_field :parking %><br>
+        </div>
+      </div>
+
+      <div class="facility-show--details-reserve">
+        <div class="facility-show--details__title-reserve">
+          <%= f.label :場所 %><br>
+        </div>
+        <div class="facility-show--details__data-reserve">
+          <div class="new-post--address">
+            <%= f.fields_for :facility_place do |s| %>
+              <%= s.label :address, "レビュー場所(Google Mapで検索)", class: 'spot__title' %><br>
+              <%= s.text_field :address, placeholder: "場所をシェアしよう！", id: "address", class: "spot__text new-post--address-form" %><br>
+              <%= s.button onclick: "codeAddress()", type: "button", class: "new-post--search-map" do %>
+                <i class="fas fa-search-location"></i><br>
+              <% end %>
+            <% end %>
+            <%= f.submit "投稿する", class: "new-post--submit btn btn-success" %>
+          </div>
+        </div>
+      </div>
+
     <% end %>
   </div>
   <div class="new-facility--map">

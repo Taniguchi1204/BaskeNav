@@ -158,7 +158,7 @@
     position: relative;
     text-align: center;
      &__text1{
-      width: 90%;
+      width: 80%;
       height: 600px;
       margin: 20px auto 0;
       background-image: image-url('8.jpeg');
@@ -167,7 +167,7 @@
       clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
     }
     &__text2{
-      width: 90%;
+      width: 80%;
       height: 600px;
       margin: 0 auto 20px;
       background-image: image-url('6.jpeg');
