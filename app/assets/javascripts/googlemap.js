@@ -3,7 +3,7 @@ let geocoder
 let marker = []; // マーカーを複数表示
 let infoWindow = []; // 吹き出しを複数表示
 
-function initMap(){
+$(document).on('turbolinks:load',function initMap(){
   geocoder = new google.maps.Geocoder() //GoogleMapsAPIジオコーディングサービスにアクセス
   if(document.getElementById('map')){ //'map'というidを取得できたら実行
     map = new google.maps.Map(document.getElementById('map'), { //'map'というidを取得してマップを表示
@@ -99,12 +99,12 @@ function initMap(){
       infoWindow[i].open(map, marker[i]);
     });
   }
-}
+});
 
 
 
 
-function codeAddress(){
+$(document).on('turbolinks:load',function codeAddress(){
   let inputAddress = document.getElementById('address').value;
 
   geocoder.geocode( { 'address': inputAddress}, function(results, status) { //ジオコードしたい住所を引数として渡す
@@ -124,9 +124,9 @@ function codeAddress(){
       alert('該当する結果がありませんでした');
     }
   });
-}
+});
 
-function AddressSearch(address){ //コールバック関数
+$(document).on('turbolinks:load',function AddressSearch(address){ //コールバック関数
 
   geocoder.geocode( { 'address': address}, function(results, status) {
     if (status == 'OK') {
@@ -144,7 +144,7 @@ function AddressSearch(address){ //コールバック関数
       alert('該当する結果がありませんでした');
     }
   });
-}
+});
 
 
 
