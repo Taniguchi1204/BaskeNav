@@ -145,7 +145,7 @@ ActiveRecord::Schema.define(version: 2021_08_05_032507) do
     t.datetime "start", null: false
     t.datetime "finish", null: false
     t.string "number", null: false
-    t.boolean "with_friend", default: false, null: false
+    t.boolean "with_friend", null: false
     t.boolean "confirm", default: false, null: false
     t.text "comment"
     t.datetime "created_at", null: false

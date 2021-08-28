@@ -101,9 +101,9 @@ if ($('#calendar').length) {
         $('#modalTime').html(`日時：${start_changeDate}〜${end_changeDate}`);
 
         if (calEvent.with_friend == true){
-          $('#modalFriend').html(`合流可否：一緒に参加可`);
+          $('#modalFriend').html(`参加可否：一緒に参加可`);
         } else {
-          $('#modalFriend').html(`合流可否：参加不可`);
+          $('#modalFriend').html(`参加可否：参加不可`);
         }
 
         $('#modalStatus').html(`ステータス：${calEvent.title}`);

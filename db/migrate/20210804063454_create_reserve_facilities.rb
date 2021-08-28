@@ -6,7 +6,7 @@ class CreateReserveFacilities < ActiveRecord::Migration[5.2]
       t.datetime :start,           null: false
       t.datetime :finish,          null: false
       t.string   :number,          null: false
-      t.boolean  :with_friend,  default: false, null: false
+      t.boolean  :with_friend,     null: false
       t.boolean  :confirm,      default: false, null: false
       t.text     :comment
 

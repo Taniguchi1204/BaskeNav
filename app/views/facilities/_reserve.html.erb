@@ -34,14 +34,14 @@
 
       <div class="facility-show--details-reserve">
         <div class="facility-show--details__title-reserve">
-          <%= f.label :合流可否 %>
+          <%= f.label :参加可否 %>
         </div>
         <div class="facility-show--details__data-reserve">
           <%= render "layouts/error_messages", model: reserve_facility, attribute: :with_friend %>
-          <%= f.radio_button :with_friend, :false %>
-          <%= f.label :with_friend, "参加不可", {value: :false, style: "display: inline;"} %>
-          <%= f.radio_button :with_friend, :true, class:"ml-5"%>
-          <%= f.label :with_friend, "一緒に参加可", {value: :true, style: "display: inline;"}%><br>
+          <%= f.radio_button :with_friend, false, checked: "checked" %>
+          <%= f.label :with_friend, "参加不可", {value: false, style: "display: inline-block;"} %><br>
+          <%= f.radio_button :with_friend, true %>
+          <%= f.label :with_friend, "一緒に参加可", {value: true, style: "display: inline-block;"} %><br>
           (※一緒に参加可にすると予約情報を閲覧した人があなたのMyPageに飛べるようになります。)
         </div>
       </div>
