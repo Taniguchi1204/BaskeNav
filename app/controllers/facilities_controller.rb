@@ -1,4 +1,13 @@
 class FacilitiesController < ApplicationController
+  before_action :move_to_newpage, only:[:show]
+
+  def move_to_newpage
+    myfacility = Facility.find_by(admin_id: current_admin.id)
+    if myfacility == nil
+      redirect_to new_facility_path
+      flash[:notice] = "まずは新規登録をしてください"
+    end
+  end
 
   def index
     north = params[:north]
@@ -15,7 +24,7 @@ class FacilitiesController < ApplicationController
   end
 
   def show
-    @facility           = Facility.find(params[:id])
+    @facility           = Facility.find_by(admin_id: params[:id])
 
     # コメントに関する変数
     @comment            = FacilityComment.new
