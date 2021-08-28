@@ -1,17 +1,17 @@
 class UsersController < ApplicationController
   def show
-    @user = User.find(params[:id])
-    @posts = @user.posts.all
-    @user_followers = @user.followers
+    @user            = User.find(params[:id])
+    @posts           = @user.posts.all
+    @user_followers  = @user.followers
     @user_followings = @user.followings
 
     # フォローしていた場合はチャットができる
     if current_user.following?(@user)
-      rooms = current_user.entries.pluck(:room_id)
+      rooms      = current_user.entries.pluck(:room_id)
       user_rooms = Entry.find_by(user_id: @user.id, room_id: rooms)
-      room = user_rooms.room
-      @messages = room.messages
-      @message = Message.new(room_id: room.id)
+      room       = user_rooms.room
+      @messages  = room.messages
+      @message   = Message.new(room_id: room.id)
     end
   end
 
@@ -27,9 +27,9 @@ class UsersController < ApplicationController
 
   def new_guest
     user = User.find_or_create_by(email: 'guest@example.com') do |user|
-      user.name = "ゲスト"
+      user.name         = "ゲスト"
       user.phone_number = "12345678910"
-      user.password = SecureRandom.urlsafe_base64
+      user.password     = SecureRandom.urlsafe_base64
     end
     sign_in user
     redirect_to user_path(current_user)

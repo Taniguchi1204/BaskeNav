@@ -17,18 +17,18 @@ class HomesController < ApplicationController
     require 'net/http'
     require 'openssl'
 
-    url = URI("https://api-nba-v1.p.rapidapi.com/standings/standard/#{year}/conference/east")
+    url  = URI("https://api-nba-v1.p.rapidapi.com/standings/standard/#{year}/conference/east")
 
     http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true
+    http.use_ssl     = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-    request = Net::HTTP::Get.new(url)
-    request["x-rapidapi-key"] = ENV['NBA_API']
+    request                    = Net::HTTP::Get.new(url)
+    request["x-rapidapi-key"]  = ENV['NBA_API']
     request["x-rapidapi-host"] = 'api-nba-v1.p.rapidapi.com'
 
     response = http.request(request)
-    result = JSON.parse(response.read_body)
+    result   = JSON.parse(response.read_body)
 
     # JSONファイルを扱いやすいように配列に挿入
     array = []
@@ -56,13 +56,13 @@ class HomesController < ApplicationController
     require 'openssl'
 
     url = URI("https://api-nba-v1.p.rapidapi.com/standings/standard/#{year}/conference/west")
-
-    http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true
+ 
+    http             = Net::HTTP.new(url.host, url.port)
+    http.use_ssl     = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
     request = Net::HTTP::Get.new(url)
-    request["x-rapidapi-key"] = ENV['NBA_API']
+    request["x-rapidapi-key"]  = ENV['NBA_API']
     request["x-rapidapi-host"] = 'api-nba-v1.p.rapidapi.com'
 
     response = http.request(request)

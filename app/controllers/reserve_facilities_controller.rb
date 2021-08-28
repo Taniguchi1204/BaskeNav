@@ -1,11 +1,11 @@
 class ReserveFacilitiesController < ApplicationController
 
   def create
-    @facility = Facility.find(params[:facility_id])
-    @reserve_facility = current_user.reserve_facilities.new(reserve_facility_params)
+    @facility                     = Facility.find(params[:facility_id])
+    @reserve_facility             = current_user.reserve_facilities.new(reserve_facility_params)
     @reserve_facility.facility_id = @facility.id
-    @comment            = FacilityComment.new
-    @facility_comments  = @facility.facility_comments
+    @comment                      = FacilityComment.new
+    @facility_comments            = @facility.facility_comments
 
     if @facility_comments.present?
       @data = [['5', FacilityComment.rate_persent(5, @facility_comments)],
@@ -29,8 +29,8 @@ class ReserveFacilitiesController < ApplicationController
   end
 
   def update
-    @facility = Facility.find(params[:facility_id])
-    @reserve_permit = @facility.reserve_facilities.find(params[:id])
+    @facility                  = Facility.find(params[:facility_id])
+    @reserve_permit            = @facility.reserve_facilities.find(params[:id])
     if @reserve_permit.confirm == false
      @reserve_permit.update(confirm: "true")
     else
@@ -40,7 +40,7 @@ class ReserveFacilitiesController < ApplicationController
   end
 
   def destroy
-    facility = Facility.find(params[:facility_id])
+    facility          = Facility.find(params[:facility_id])
     @reserve_facility = facility.reserve_facilities.find(params[:id])
     @reserve_facility.destroy
     redirect_to request.referer
