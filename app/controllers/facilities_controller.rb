@@ -62,7 +62,7 @@ class FacilitiesController < ApplicationController
   end
 
   def update
-    @facility = Facility.find(params[:id])
+    @facility       = Facility.find(params[:id])
     @reserve_permit = @facility.reserve_facilities
   end
 

@@ -31,7 +31,8 @@
 // 画面遷移を検知
 $(document).on('turbolinks:load', function () {
 if ($('#calendar').length) {
-  var url = location.pathname
+  var url = location.pathname.split("/");
+　var facility_id = url[url.length, 2];
 
     function Calendar() {
       return $('#calendar').fullCalendar({
@@ -48,7 +49,7 @@ if ($('#calendar').length) {
 
     //events: '/events.json', 以下に追加
     $('#calendar').fullCalendar({
-      events: `${url}.json`,
+      events: `/facilities/${facility_id}.json`,
     //カレンダー上部を年月で表示させる
       titleFormat: 'YYYY年 M月',
     //曜日を日本語表示
@@ -128,7 +129,7 @@ if ($('#calendar').length) {
 });
 
 // チャットモダンウィンドウ
-$(document).on('turbolinks:load',function () {
+$(function () {
   $(document).on('click','#modan_open', function () {
     $('.chats--background').addClass('active');
     $('.chats--messages').addClass('active');
@@ -180,13 +181,14 @@ $(document).on('turbolinks:load',function () {
   });
 
 // ランキングの年度変更タブ
-$(document).on('turbolinks:load',function() {
+$(function() {
   $('.game--years__tab a').on('click', function() {
     let parentElm = $(this).parent(); //タブ内のaタグの親要素（li）を取得
 			$('.game--years__tab li').removeClass("active"); //タブ内のliについているactiveクラスを取り除き
 			$(parentElm).addClass("active"); //リンク元の指定されたURLのハッシュタグとタブ内のリンク名が同じであれば、liにactiveクラスを追加
 	})
 })
+
 
 $(window).on('load', function () {
   $('.slider').slick({
@@ -220,7 +222,7 @@ $(window).on('load scroll',function (){
 });
 
 //インクリメンタルサーチ
-$(document).on('turbolinks:load',function() {
+$(function() {
   $(".search-input").on("keyup", function() {
     let input = $(".search-input").val();
     $.ajax({
@@ -243,19 +245,18 @@ $(document).on('turbolinks:load',function() {
   });
 });
 
-$(document).on('turbolinks:load',function appendSample(user) {
+function appendSample(user) {
   $(".search--users").append(`<div class="search--users__detail">
                                 <p class="search--users__name">${user.name}</p>
                                 <a href="/users/${user.id}" class="search--users__link">Show</a>
                               </div>`
                             );
-});
-
-$(document).on('turbolinks:load',function appendErrMsgToHTML(msg) {
+}
+function appendErrMsgToHTML(msg) {
   $(".search--users").append(`<div class='name'>${ msg }</div>`);
-});
+}
 
-$(document).on('turbolinks:load', function() {
+$(function() {
   $(document).on('click','#following_modan_open', function(){
     $('.user-show--following').fadeIn();
     return false;

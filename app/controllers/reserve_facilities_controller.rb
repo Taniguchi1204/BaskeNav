@@ -1,10 +1,12 @@
 class ReserveFacilitiesController < ApplicationController
 
   def create
-    @facility = Facility.find(params[:facility_id])
-    @comment            = FacilityComment.new
-    @facility_comments  = @facility.facility_comments.order(created_at: :DESC)
-    # 評価グラフを表示するデータ
+    @facility                     = Facility.find(params[:facility_id])
+    @reserve_facility             = current_user.reserve_facilities.new(reserve_facility_params)
+    @reserve_facility.facility_id = @facility.id
+    @comment                      = FacilityComment.new
+    @facility_comments            = @facility.facility_comments
+
     if @facility_comments.present?
       @data = [['5', FacilityComment.rate_persent(5, @facility_comments)],
                ['4', FacilityComment.rate_persent(4, @facility_comments)],
@@ -19,33 +21,26 @@ class ReserveFacilitiesController < ApplicationController
     gon.lat = lat
     gon.lng = lng
 
-    @reserve_facilities = ReserveFacility.where(facility_id: @facility.id)
-    @reserve_facility = current_user.reserve_facilities.new(reserve_facility_params)
-    @reserve_facility.facility_id = @facility.id
     if @reserve_facility.save
-      redirect_to request.referer
+     redirect_to request.referer
     else
       render "facilities/show"
-    end
-    respond_to do |format|
-      format.html
-      format.json
     end
   end
 
   def update
-    @facility = Facility.find(params[:facility_id])
-    @reserve_permit = @facility.reserve_facilities.find(params[:id])
+    @facility                  = Facility.find(params[:facility_id])
+    @reserve_permit            = @facility.reserve_facilities.find(params[:id])
     if @reserve_permit.confirm == false
      @reserve_permit.update(confirm: "true")
     else
       @reserve_permit.update(confirm: "false")
     end
-    redirect_to request.referer
+     redirect_to request.referer
   end
 
   def destroy
-    facility = Facility.find(params[:facility_id])
+    facility          = Facility.find(params[:facility_id])
     @reserve_facility = facility.reserve_facilities.find(params[:id])
     @reserve_facility.destroy
     redirect_to request.referer

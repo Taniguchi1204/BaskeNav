@@ -1,0 +1,60 @@
+<% if current_user %>
+  <div class="facility-show--new-reserve">
+    <h2 class="title_border">Reserve</h2>
+    <%= form_with(model: [facility, reserve_facility], local: true) do |f| %>
+      <div class="facility-show--details-reserve">
+        <div class="facility-show--details__title-reserve">
+          <%= f.label :開始 %>
+        </div>
+        <div class="facility-show--details__data-reserve">
+          <%= render "layouts/error_messages", model: reserve_facility, attribute: :start %>
+          <%= f.datetime_field :start %><br>
+        </div>
+      </div>
+
+      <div class="facility-show--details-reserve">
+        <div class="facility-show--details__title-reserve">
+          <%= f.label :終了%>
+        </div>
+        <div class="facility-show--details__data-reserve">
+          <%= render "layouts/error_messages", model: reserve_facility, attribute: :finish %>
+          <%= f.datetime_field :finish, minute_step: 30 %><br>
+        </div>
+      </div>
+
+      <div class="facility-show--details-reserve">
+        <div class="facility-show--details__title-reserve">
+          <%= f.label :人数 %>
+        </div>
+        <div class="facility-show--details__data-reserve">
+          <%= render "layouts/error_messages", model: reserve_facility, attribute: :number %>
+          <%= f.select :number, [1,2,3,4,5,6,7,8,9,10], {}, prompt: "参加予定人数を選択してください" %>名<br>
+        </div>
+      </div>
+
+      <div class="facility-show--details-reserve">
+        <div class="facility-show--details__title-reserve">
+          <%= f.label :合流可否 %>
+        </div>
+        <div class="facility-show--details__data-reserve">
+          <%= render "layouts/error_messages", model: reserve_facility, attribute: :with_friend %>
+          <%= f.radio_button :with_friend, :false %>
+          <%= f.label :with_friend, "参加不可", {value: :false, style: "display: inline;"} %>
+          <%= f.radio_button :with_friend, :true, class:"ml-5"%>
+          <%= f.label :with_friend, "一緒に参加可", {value: :true, style: "display: inline;"}%><br>
+          (※一緒に参加可にすると予約情報を閲覧した人があなたのMyPageに飛べるようになります。)
+        </div>
+      </div>
+
+      <div class="facility-show--details-reserve">
+        <div class="facility-show--details__title-reserve">
+          <%= f.label :コメント %>
+        </div>
+        <div class="facility-show--details__data-reserve">
+          <%= f.text_area :comment, placeholder: "コメントがあれば記載してください", size: "40x5" %><br>
+          <%= f.submit "予約する", class: "btn btn-success" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

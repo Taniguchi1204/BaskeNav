@@ -90,7 +90,7 @@ gem "jquery-ui-rails"
 
 gem 'rails-i18n'
 
-gem "dotenv-rails"
+gem 'dotenv-rails'
 
 gem 'particles-js-rails', '2.0.0'
 
