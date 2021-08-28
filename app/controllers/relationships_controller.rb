@@ -13,15 +13,19 @@ class RelationshipsController < ApplicationController
       Entry.create(user_id: current_user.id, room_id: @room.id)
       Entry.create(user_id: @user.id, room_id: @room.id)
     end
-    @user_followings  = current_user.followings
-    @user_followers   = current_user.followers
+    @user_followings         = @user.followings
+    @user_followers          = @user.followers
+    @current_user_followings = current_user.followings
+    @current_user_followers  = current_user.followers
   end
 
   def destroy
     current_user.unfollow(params[:user_id])
-    @user             = User.find(params[:user_id])
-    @user_followings  = current_user.followings
-    @user_followers   = current_user.followers
+    @user                    = User.find(params[:user_id])
+    @user_followings         = @user.followings
+    @user_followers          = @user.followers
+    @current_user_followings = current_user.followings
+    @current_user_followers  = current_user.followers
   end
 
 end

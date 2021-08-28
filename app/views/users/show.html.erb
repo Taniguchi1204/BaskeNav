@@ -21,9 +21,15 @@
       <div class="follow--header">
         <h1>followings</h1>
       </div>
-      <div class="follow--following-info">
-        <%= render "relationships/follow", users: @user_followings %>
-      </div>
+      <% if current_user == @user %>
+        <div class="follow--current_user-following-info">
+          <%= render "relationships/follow", users: @user_followings, showpage: @user, current_users: current_user.followings %>
+        </div>
+      <% else %>
+        <div class="follow--following-info">
+          <%= render "relationships/follow", users: @user_followings, showpage: @user, current_users: current_user.followings %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
@@ -35,9 +41,15 @@
       <div class="follow--header">
         <h1>followers</h1>
       </div>
-      <div class="follow--follower-info">
-        <%= render "relationships/follow", users: @user_followers %>
-      </div>
+      <% if current_user == @user %>
+        <div class="follow--current_user-follower-info">
+          <%= render "relationships/follow", users: @user_followers, showpage: @user, current_users: current_user.followers %>
+        </div>
+      <% else %>
+        <div class="follow--follower-info">
+          <%= render "relationships/follow", users: @user_followers, showpage: @user, current_users: current_user.followers %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
