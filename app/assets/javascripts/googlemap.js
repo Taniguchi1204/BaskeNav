@@ -1,19 +1,19 @@
 let map
 let geocoder
-let marker = []; // マーカーを複数表示させたいので、配列化
-let infoWindow = []; // 吹き出しを複数表示させたいので、配列化
+let marker = []; // マーカーを複数表示
+let infoWindow = []; // 吹き出しを複数表示
 
-function initMap(){ // APIキーと一緒にURLに記載
+function initMap(){
   geocoder = new google.maps.Geocoder() //GoogleMapsAPIジオコーディングサービスにアクセス
   if(document.getElementById('map')){ //'map'というidを取得できたら実行
     map = new google.maps.Map(document.getElementById('map'), { //'map'というidを取得してマップを表示
       center: {lat: 35.6809591, lng: 139.7673068}, //最初に表示する場所（東京駅）
-      zoom: 12, //拡大率（1〜21まで設定可能）
+      zoom: 12,
     });
   }else if(document.getElementById('show_map')){
-    map = new google.maps.Map(document.getElementById('show_map'), { //'show_map'というidを取得してマップを表示
-      center: {lat: gon.lat, lng: gon.lng}, //controllerで定義した変数を緯度・経度の値
-      zoom: 12, //拡大率（1〜21まで設定可能）
+    map = new google.maps.Map(document.getElementById('show_map'), {
+      center: {lat: gon.lat, lng: gon.lng},
+      zoom: 12,
     });
 
     marker = new google.maps.Marker({ //GoogleMapにマーカーを落とす
@@ -22,13 +22,21 @@ function initMap(){ // APIキーと一緒にURLに記載
     });
   }else{
 
-    map = new google.maps.Map(document.getElementById('index_map'), { //'map'というidを取得してマップを表示
-      center: {lat: 35.6809591, lng: 139.7673068}, //最初に表示する場所（東京駅）
-      zoom: 12, //拡大率（1〜21まで設定可能）
+    map = new google.maps.Map(document.getElementById('index_map'), {
+      center: {lat: 35.6809591, lng: 139.7673068},
+      zoom: 12,
     });
 
+  map.addListener('idle', function(){
+    const pos = map.getBounds();
+    const north = pos.getNorthEast().lat();
+    const south = pos.getSouthWest().lat();
+    const east  = pos.getNorthEast().lng();
+    const west = pos.getSouthWest().lng();
+
+
     $.ajax({
-      url: "/facilities",
+      url: `facilities?north=${north}&south=${south}&east=${east}&west=${west}`,
       dataType : 'json',
     }).done(function (markerData){
 
@@ -65,6 +73,7 @@ function initMap(){ // APIキーと一緒にURLに記載
         markerEvent(i);
       }
     })
+    })
   }
 
   // マーカーをクリックしたら吹き出しを表示
@@ -78,8 +87,8 @@ function initMap(){ // APIキーと一緒にURLに記載
 
 
 
-function codeAddress(){ //コールバック関数
-  let inputAddress = document.getElementById('address').value; //'address'というidの値（value）を取得
+function codeAddress(){
+  let inputAddress = document.getElementById('address').value;
 
   geocoder.geocode( { 'address': inputAddress}, function(results, status) { //ジオコードしたい住所を引数として渡す
     if (status == 'OK') {
@@ -102,16 +111,16 @@ function codeAddress(){ //コールバック関数
 
 function AddressSearch(address){ //コールバック関数
 
-  geocoder.geocode( { 'address': address}, function(results, status) { //ジオコードしたい住所を引数として渡す
+  geocoder.geocode( { 'address': address}, function(results, status) {
     if (status == 'OK') {
       let lat = results[0].geometry.location.lat(); //ジオコードした結果の緯度
       let lng = results[0].geometry.location.lng(); //ジオコードした結果の経度
 
       map.setCenter(results[0].geometry.location); //最も近い、判読可能な住所を取得したい場所の緯度・経度
 
-      map = new google.maps.Map(document.getElementById('index_map'), { //'map'というidを取得してマップを表示
-        center: {lat: lat, lng: lng}, //最初に表示する場所（東京駅）
-        zoom: 10, //拡大率（1〜21まで設定可能）
+      map = new google.maps.Map(document.getElementById('index_map'), {
+        center: {lat: lat, lng: lng},
+        zoom: 10,
       });
 
     } else {
@@ -119,3 +128,6 @@ function AddressSearch(address){ //コールバック関数
     }
   });
 }
+
+
+

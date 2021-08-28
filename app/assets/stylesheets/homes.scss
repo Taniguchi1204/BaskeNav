@@ -14,7 +14,7 @@
 .main-contents{
   &--main-view{
     @include view('top.png');
-    margin-top: 10px;
+    border-bottom: 10px solid white;
   }
   &--news{
     width: 80%;
@@ -160,51 +160,65 @@
      &__text1{
       width: 90%;
       height: 600px;
-      margin: 20px auto;
+      margin: 20px auto 0;
       background-image: image-url('8.jpeg');
       background-size: cover;
-      position: relative;
       background-position: top -120px right 0;
+      clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
     }
     &__text2{
       width: 90%;
       height: 600px;
-      margin: 20px auto;
+      margin: 0 auto 20px;
       background-image: image-url('6.jpeg');
       background-size: cover;
       background-position: top -120px right 0;
+      clip-path: polygon(0 25%, 100% 0, 100% 100%, 0 100%);
     }
-    &__photo1{
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 0 0 300px 1255.5px;
-      border-color: transparent transparent white transparent;
-      position: absolute;
-      right: 0;
-      bottom: 0;
-    }
-    &__photo2{
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 300px 1255.5px 0 0;
-      border-color: white transparent white transparent;
-    }
+    // &__photo1{
+    //   width: 0;
+    //   height: 0;
+    //   border-style: solid;
+    //   border-width: 0 0 300px 1255.5px;
+    //   border-color: transparent transparent white transparent;
+    //   position: absolute;
+    //   right: 0;
+    //   bottom: 0;
+    // }
+    // &__photo2{
+    //   width: 0;
+    //   height: 0;
+    //   border-style: solid;
+    //   border-width: 300px 1255.5px 0 0;
+    //   border-color: white transparent white transparent;
+    // }
     h1{
       font-size: 60px;
       position: absolute;
       top: 560px;
       left: 300px;
-      transform: rotate(-14deg);
+      transform: rotate(-5deg);
+      color: white;
     }
     h1:after {
       content: "";
       display: block;
       height: 10px;
-      background: linear-gradient(to right, rgb(230, 90, 90), transparent);
+      background: linear-gradient(to right, #0000DD, transparent);
     }
   }
+}
+
+// topアニメーション
+#particles-js {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    background-color: #4d060b;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -10;
 }
 
 

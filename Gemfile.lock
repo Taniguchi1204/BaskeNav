@@ -223,6 +223,7 @@ GEM
       actionpack (>= 4.2)
       omniauth (~> 2.0)
     orm_adapter (0.5.0)
+    particles-js-rails (2.0.0)
     popper_js (1.16.0)
     public_suffix (4.0.6)
     puma (3.12.6)
@@ -388,6 +389,7 @@ DEPENDENCIES
   omniauth
   omniauth-google-oauth2
   omniauth-rails_csrf_protection
+  particles-js-rails (= 2.0.0)
   puma (~> 3.11)
   rails (~> 5.2.5)
   rails-i18n

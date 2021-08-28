@@ -14,12 +14,12 @@
           <tr>
             <td>
               <%= link_to facility_path(facility) do %>
-                <%= facility.name %>
+                <%= facility.facility.name %>
               <% end %>
             </td>
-            <td><%= facility.opening.strftime("%H時%M分") %> ~ <%= facility.closing.strftime("%H時%M分") %></td>
-            <td><%= facility.address %></td>
-            <td><%= facility.station %></td>
+            <td><%= facility.facility.opening.strftime("%H時%M分") %> ~ <%= facility.facility.closing.strftime("%H時%M分") %></td>
+            <td><%= facility.facility.address %></td>
+            <td><%= facility.facility.station %></td>
           </tr>
         <% end %>
       </tbody>

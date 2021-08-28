@@ -128,16 +128,16 @@ if ($('#calendar').length) {
 });
 
 // チャットモダンウィンドウ
-$(window).on('load',function () {
-  $('#modan_open').on('click', function () {
+$(function () {
+  $(document).on('click','#modan_open', function () {
     $('.chats--background').addClass('active');
     $('.chats--messages').addClass('active');
   });
-  $('#modan_close').on('click', function() {
+  $(document).on('click','#modan_close', function() {
     $('.chats--background').removeClass('active');
     $('.chats--messages').removeClass('active');
   });
-  $('#submit').on('click', function(){
+  $(document).on('click','#submit', function(){
     $('.chats--contents').animate(
       { scrollTop: $('.chats--contents').get(0).scrollHeight },
     );
@@ -259,27 +259,27 @@ function appendErrMsgToHTML(msg) {
 }
 
 $(function() {
-  $('#following_modan_open').on('click', function(){
+  $(document).on('click','#following_modan_open', function(){
     $('.user-show--following').fadeIn();
     return false;
   });
-  $('.modan_close1').on('click', function(){
+  $(document).on('click', '.modan_close1', function(){
     $('.user-show--following').fadeOut();
     return false;
   });
-  $('#follower_modan_open').on('click', function(){
+  $(document).on('click','#follower_modan_open', function(){
     $('.user-show--follower').fadeIn();
     return false;
   });
-  $('.modan_close2').on('click', function(){
+  $(document).on('click','.modan_close2', function(){
     $('.user-show--follower').fadeOut();
     return false;
   });
-  $('#search_modan_open').on('click', function(){
+  $(document).on('click','#search_modan_open', function(){
     $('.search').fadeIn();
     return false;
   });
-  $('.modan_close3').on('click', function(){
+  $(document).on('click','.modan_close3', function(){
     $('.search').fadeOut();
     return false;
   });

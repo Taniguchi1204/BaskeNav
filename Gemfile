@@ -92,6 +92,8 @@ gem 'rails-i18n'
 
 gem "dotenv-rails"
 
+gem 'particles-js-rails', '2.0.0'
+
 group :production do
   gem 'mysql2'
 end
