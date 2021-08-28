@@ -16,6 +16,11 @@
   <body data-turbolinks="false">
     <!--ヘッダー部分テンプレート-->
     <%= render "layouts/header" %>
+    <% if flash[:notice] %>
+      <p class="flash_notice"><%= flash[:notice] %></p>
+    <% elsif flash[:success] %>
+      <p class="flash_success"><%= flash[:success] %></p>
+    <% end %>
 
     <%= yield %>
 
@@ -36,6 +41,6 @@
 
     <!--フッター部分テンプレート-->
     <%= render "layouts/footer" %>
-    
+
   </body>
 </html>
