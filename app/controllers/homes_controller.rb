@@ -24,7 +24,7 @@ class HomesController < ApplicationController
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
     request = Net::HTTP::Get.new(url)
-    request["x-rapidapi-key"] = '89d0cb5f10msh9fbc8b12596ffebp19602djsn37814997cd03'
+    request["x-rapidapi-key"] = ENV['NBA_API']
     request["x-rapidapi-host"] = 'api-nba-v1.p.rapidapi.com'
 
     response = http.request(request)
@@ -62,7 +62,7 @@ class HomesController < ApplicationController
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
     request = Net::HTTP::Get.new(url)
-    request["x-rapidapi-key"] = '89d0cb5f10msh9fbc8b12596ffebp19602djsn37814997cd03'
+    request["x-rapidapi-key"] = ENV['NBA_API']
     request["x-rapidapi-host"] = 'api-nba-v1.p.rapidapi.com'
 
     response = http.request(request)
@@ -183,7 +183,7 @@ class HomesController < ApplicationController
   end
 
   def news_info
-    uri = "https://newsapi.org/v2/everything?q=%E3%83%90%E3%82%B9%E3%82%B1&sortBy=popularity&pageSize=100&apiKey=08e77fd7762e4312810107351e5d8464"
+    uri = "https://newsapi.org/v2/everything?q=%E3%83%90%E3%82%B9%E3%82%B1&sortBy=popularity&pageSize=100&apiKey=#{ENV['NEWS_API']}"
     article_serialized = open(uri).read
     a = JSON.parse(article_serialized)
     b = a["articles"]
