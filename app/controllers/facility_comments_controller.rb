@@ -8,11 +8,13 @@ class FacilityCommentsController < ApplicationController
     @comment.save
     @facility_comments   = @facility.facility_comments.order(created_at: :DESC)
 
-    @data5               = FacilityComment.rate_persent(5, @facility_comments)
-    @data4               = FacilityComment.rate_persent(4, @facility_comments)
-    @data3               = FacilityComment.rate_persent(3, @facility_comments)
-    @data2               = FacilityComment.rate_persent(2, @facility_comments)
-    @data1               = FacilityComment.rate_persent(1, @facility_comments)
+    if @facility_comments.present?
+      @data5               = FacilityComment.rate_persent(5, @facility_comments)
+      @data4               = FacilityComment.rate_persent(4, @facility_comments)
+      @data3               = FacilityComment.rate_persent(3, @facility_comments)
+      @data2               = FacilityComment.rate_persent(2, @facility_comments)
+      @data1               = FacilityComment.rate_persent(1, @facility_comments)
+    end
   end
 
   def destroy
@@ -23,11 +25,13 @@ class FacilityCommentsController < ApplicationController
     comment.destroy
     @facility_comments  = @facility.facility_comments.order(created_at: :DESC)
 
-    @data5               = FacilityComment.rate_persent(5, @facility_comments)
-    @data4               = FacilityComment.rate_persent(4, @facility_comments)
-    @data3               = FacilityComment.rate_persent(3, @facility_comments)
-    @data2               = FacilityComment.rate_persent(2, @facility_comments)
-    @data1               = FacilityComment.rate_persent(1, @facility_comments)
+    if @facility_comments.present?
+      @data5               = FacilityComment.rate_persent(5, @facility_comments)
+      @data4               = FacilityComment.rate_persent(4, @facility_comments)
+      @data3               = FacilityComment.rate_persent(3, @facility_comments)
+      @data2               = FacilityComment.rate_persent(2, @facility_comments)
+      @data1               = FacilityComment.rate_persent(1, @facility_comments)
+    end
   end
 
   private
