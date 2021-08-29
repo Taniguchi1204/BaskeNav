@@ -1,6 +1,7 @@
 <div class="user-show">
   <div class="user-show--info">
-    <%= render "users/info", user: @user %>
+    <%= render "users/info", user: @user, messages: @messages %>
+
     <% if @user == current_user %>
       <div class="user-show--trash-box">
         <%= image_tag("trash-box.png") %>
@@ -53,5 +54,10 @@
     </div>
   </div>
 </div>
+
+<!--DMのモーダルウィンドウ部分-->
+  <div class="chats">
+    <%= render "relationships/chats", user: @user, messages: @messages, message: @message %>
+  </div>
 
 

@@ -129,6 +129,7 @@ if ($('#calendar').length) {
 });
 
 // チャットモダンウィンドウ
+$(document).on('turbolinks:load', function () {
   $(document).on('click','#modan_open', function () {
     $('.chats--background').addClass('active');
     $('.chats--messages').addClass('active');
@@ -142,6 +143,7 @@ if ($('#calendar').length) {
       { scrollTop: $('.chats--contents').get(0).scrollHeight },
     );
   });
+});
 
   $(document).on("turbolinks:load", function(){
    //itemを動かすようにする

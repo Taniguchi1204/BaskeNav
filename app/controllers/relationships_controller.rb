@@ -13,6 +13,9 @@ class RelationshipsController < ApplicationController
       Entry.create(user_id: current_user.id, room_id: @room.id)
       Entry.create(user_id: @user.id, room_id: @room.id)
     end
+    @message                 = Message.new(room_id: @room.id)
+    @messages                = @room.messages
+
     @user_followings         = @user.followings
     @user_followers          = @user.followers
     @current_user_followings = current_user.followings

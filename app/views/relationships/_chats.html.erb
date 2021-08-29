@@ -1,0 +1,30 @@
+<% if user != current_user %>
+  <% if current_user.following?(user) %>
+    <div class="chats--background" id="modan_close"></div>
+    <div class="chats--messages">
+      <div class="chats--title">
+        <h1><%= user.name %>のチャット</h1>
+      </div>
+      <div class="chats--contents">
+        <% messages.each do |chat| %>
+          <% if chat.user == current_user %>
+            <p style="text-align: right;"><%= chat.message %><br><%= chat.created_at.strftime("%H:%M:%S") %></p>
+          <% else %>
+            <p style="text-align: left;"><%= chat.message %><br><%= chat.created_at.strftime("%H:%M:%S") %></p>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="chats--form">
+        <%= form_with model: message, remote: true do |f| %>
+          <%= f.text_field :message %>
+          <%= f.hidden_field :room_id %>
+          <%= f.submit "送信する", id: "submit" %>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    <div class="chats--background" id="modan_close"></div>
+    <div class="chats--messages">
+  <% end %>
+<% end %>
