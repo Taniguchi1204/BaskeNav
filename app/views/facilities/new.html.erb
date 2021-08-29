@@ -29,7 +29,7 @@
         <div class="facility-show--details__data-reserve">
           <%= render "layouts/error_messages", model: @facility, attribute: :opening %>
           <%= render "layouts/error_messages", model: @facility, attribute: :closing %>
-          <%= f.time_select :opening, prompt:true, minute_step: 30 %> ~ <%= f.time_select :closing, prompt:true, minute_step: 30 %><br>
+          <%= f.time_field :opening, prompt:true, minute_step: 30 %> ~ <%= f.time_field :closing, prompt:true, minute_step: 30 %><br>
         </div>
       </div>
 
