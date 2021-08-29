@@ -84,7 +84,7 @@ gem "omniauth-rails_csrf_protection"
 
 gem 'news-api'
 
-gem "chartkick"
+gem 'chart-js-rails', '~> 0.1.4'
 
 gem "jquery-ui-rails"
 

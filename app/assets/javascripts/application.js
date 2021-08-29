@@ -22,9 +22,7 @@
 //= require bootstrap-sprockets
 //= require moment
 //= require fullcalendar
-//= require chartkick
-//= require Chart.bundle
-
+//= require Chart.min
 
 //= require_tree .
 //= require underscore

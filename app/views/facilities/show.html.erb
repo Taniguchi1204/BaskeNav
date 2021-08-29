@@ -96,7 +96,7 @@
   </div>
   <div class="facility-show--rate-comment">
     <div class="facility-show--rate" id="facility-show--rate">
-      <%= render "facility_comments/graph", facility_comments: @facility_comments, data: @data %>
+      <%= render "facility_comments/graph", facility_comments: @facility_comments, data5: @data5, data4: @data4, data3: @data3, data2: @data2, data1: @data1 %>
   　</div>
 
     <div class="facility-show--comment-form">
@@ -116,9 +116,6 @@
 <div id="calendarModal" class="modal fade">
   <%= render "reserve_facilities/modal" %>
 </div>
-
-
-
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap"></script>
 <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>

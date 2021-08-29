@@ -37,14 +37,12 @@ class FacilitiesController < ApplicationController
     @reserve_facilities = ReserveFacility.where(facility_id: @facility.id)
 
     # 評価グラフを表示するデータ
-    if @facility_comments.present?
-      @data = [['5', FacilityComment.rate_persent(5, @facility_comments)],
-               ['4', FacilityComment.rate_persent(4, @facility_comments)],
-               ['3', FacilityComment.rate_persent(3, @facility_comments)],
-               ['2', FacilityComment.rate_persent(2, @facility_comments)],
-               ['1', FacilityComment.rate_persent(1, @facility_comments)],
-              ]
-    end
+    @data5 = FacilityComment.rate_persent(5, @facility_comments)
+    @data4 = FacilityComment.rate_persent(4, @facility_comments)
+    @data3 = FacilityComment.rate_persent(3, @facility_comments)
+    @data2 = FacilityComment.rate_persent(2, @facility_comments)
+    @data1 = FacilityComment.rate_persent(1, @facility_comments)
+    
     # googelmap.jsで使用する変数
     lat     = @facility.facility_place.latitude
     lng     = @facility.facility_place.longitude

@@ -7,12 +7,12 @@ class FacilityCommentsController < ApplicationController
     @comment.facility_id = @facility.id
     @comment.save
     @facility_comments   = @facility.facility_comments.order(created_at: :DESC)
-    @data                = [['5', FacilityComment.rate_persent(5, @facility_comments)],
-                             ['4', FacilityComment.rate_persent(4, @facility_comments)],
-                             ['3', FacilityComment.rate_persent(3, @facility_comments)],
-                             ['2', FacilityComment.rate_persent(2, @facility_comments)],
-                             ['1', FacilityComment.rate_persent(1, @facility_comments)],
-                            ]
+
+    @data5               = FacilityComment.rate_persent(5, @facility_comments)
+    @data4               = FacilityComment.rate_persent(4, @facility_comments)
+    @data3               = FacilityComment.rate_persent(3, @facility_comments)
+    @data2               = FacilityComment.rate_persent(2, @facility_comments)
+    @data1               = FacilityComment.rate_persent(1, @facility_comments)
   end
 
   def destroy
@@ -22,14 +22,12 @@ class FacilityCommentsController < ApplicationController
     comment             = FacilityComment.find_by(id: params[:id], facility_id: params[:facility_id])
     comment.destroy
     @facility_comments  = @facility.facility_comments.order(created_at: :DESC)
-    if @facility_comments.present?
-      @data             = [['5', FacilityComment.rate_persent(5, @facility_comments)],
-                           ['4', FacilityComment.rate_persent(4, @facility_comments)],
-                           ['3', FacilityComment.rate_persent(3, @facility_comments)],
-                           ['2', FacilityComment.rate_persent(2, @facility_comments)],
-                           ['1', FacilityComment.rate_persent(1, @facility_comments)],
-                          ]
-    end
+
+    @data5               = FacilityComment.rate_persent(5, @facility_comments)
+    @data4               = FacilityComment.rate_persent(4, @facility_comments)
+    @data3               = FacilityComment.rate_persent(3, @facility_comments)
+    @data2               = FacilityComment.rate_persent(2, @facility_comments)
+    @data1               = FacilityComment.rate_persent(1, @facility_comments)
   end
 
   private
