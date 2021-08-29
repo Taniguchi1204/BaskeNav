@@ -14,68 +14,68 @@
     </script>
   </div>
   <div class="facility-show--graph"  style="width: 100%">
-      <% if facility_comments.present? %>
-        <canvas id="myChart"></canvas>
-      <% else %>
-        コメントがありません
-      <% end %>
-    </div>
+    <% if facility_comments.present? %>
+      <canvas id="myChart"></canvas>
+    <% else %>
+      コメントがありません
+    <% end %>
+  </div>
 
-    <script>
-      var ctx = document.getElementById("myChart");
-      var myChart = new Chart(ctx, {
-        type:'horizontalBar',//グラフのタイプ
-        data:{//グラフのデータ
-        	labels:["評価５","評価４","評価３","評価２","評価１"],//データの名前
-        	datasets: [
-                {
-                  label: ["評価割合"],
-                  data: [<%= data5 %>,<%= data4 %>,<%= data3 %>,<%= data2 %>,<%= data1 %>],
-                  backgroundColor: "orange"
-                }
-              ]
+  <script>
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
+      type:'horizontalBar',//グラフのタイプ
+      data:{//グラフのデータ
+      	labels:["評価５","評価４","評価３","評価２","評価１"],//データの名前
+      	datasets: [
+              {
+                label: ["評価割合"],
+                data: [<%= data5 %>,<%= data4 %>,<%= data3 %>,<%= data2 %>,<%= data1 %>],
+                backgroundColor: "orange"
+              }
+            ]
 
-        },
-        options:{//グラフのオプション
-        	legend:{
-        		display: true//グラフの説明を表示
-        	},
-        tooltips:{//グラフへカーソルを合わせた際のツールチップ詳細表示の設定
-        	callbacks:{
-                label: function(tooltipItems, data) {
-                    if(tooltipItems.xLabel == "0"){
-                        return "";
-                    }
-                    return data.datasets[tooltipItems.datasetIndex].label + "：" + tooltipItems.xLabel + "%";//パーセントを最後につける
-                }
-            }
+      },
+      options:{//グラフのオプション
+      	legend:{
+      		display: true//グラフの説明を表示
+      	},
+      tooltips:{//グラフへカーソルを合わせた際のツールチップ詳細表示の設定
+      	callbacks:{
+              label: function(tooltipItems, data) {
+                  if(tooltipItems.xLabel == "0"){
+                      return "";
+                  }
+                  return data.datasets[tooltipItems.datasetIndex].label + "：" + tooltipItems.xLabel + "%";//パーセントを最後につける
+              }
+          }
 
-        	},
-        	title:{//上部タイトル表示の設定
-        		display: true,
-        		fontSize:10,
-        		text: '単位：％'
-        	},
-        	scales:{
-        		xAxes:[//グラフ縦軸（X軸）設定
-        			{
-        				ticks:{
-        					beginAtZero:true,//0からスタート
-        					suggestedMax: 100,//最大が100
-        					suggestedMin: 0,//最小が0
-        					stepSize: 10,//10づつ数値が刻まれる
-        					callback: function(value){
-        						return  value +  '%'//数字＋%で表示
-        				}
-        			}
-        			}
-        		],
-        		yAxes:[//グラフ横（Y軸）設定
-        			{
-        				barPercentage:1,//バーの太さ
-        			}
-        		]
-        	}
-        }
-      });
-    </script>
+      	},
+      	title:{//上部タイトル表示の設定
+      		display: true,
+      		fontSize:10,
+      		text: '単位：％'
+      	},
+      	scales:{
+      		xAxes:[//グラフ縦軸（X軸）設定
+      			{
+      				ticks:{
+      					beginAtZero:true,//0からスタート
+      					suggestedMax: 100,//最大が100
+      					suggestedMin: 0,//最小が0
+      					stepSize: 10,//10づつ数値が刻まれる
+      					callback: function(value){
+      						return  value +  '%'//数字＋%で表示
+      				}
+      			}
+      			}
+      		],
+      		yAxes:[//グラフ横（Y軸）設定
+      			{
+      				barPercentage:1,//バーの太さ
+      			}
+      		]
+      	}
+      }
+    });
+  </script>
