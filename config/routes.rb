@@ -44,7 +44,7 @@ Rails.application.routes.draw do
     resource :facility_favorites, only:[:index, :create, :destroy]
     resources :facility_comments, only:[:create, :destroy]
     #　バスケ施設予約
-    resources :reserve_facilities, only:[:show, :create, :destroy]
+    resources :reserve_facilities, only:[:update, :create, :destroy]
   end
 
 end
