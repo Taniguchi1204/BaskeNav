@@ -24,11 +24,11 @@
       </div>
       <% if current_user == @user %>
         <div class="follow--current_user-following-info">
-          <%= render "relationships/follow", users: @user_followings, showpage: @user, current_users: current_user.followings %>
+          <%= render "relationships/follow", users: @user_followings, current_page_user: @user_id %>
         </div>
       <% else %>
         <div class="follow--following-info">
-          <%= render "relationships/follow", users: @user_followings, showpage: @user, current_users: current_user.followings %>
+          <%= render "relationships/follow", users: @user_followings, current_page_user: @user_id %>
         </div>
       <% end %>
     </div>
@@ -44,11 +44,11 @@
       </div>
       <% if current_user == @user %>
         <div class="follow--current_user-follower-info">
-          <%= render "relationships/follow", users: @user_followers, showpage: @user, current_users: current_user.followers %>
+          <%= render "relationships/follow", users: @user_followers, current_page_user: @user_id %>
         </div>
       <% else %>
         <div class="follow--follower-info">
-          <%= render "relationships/follow", users: @user_followers, showpage: @user, current_users: current_user.followers %>
+          <%= render "relationships/follow", users: @user_followers, current_page_user: @user_id %>
         </div>
       <% end %>
     </div>

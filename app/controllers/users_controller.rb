@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def show
-    @user            = User.find(params[:id])
+    @user_id = params[:id]
+    @user            = User.find(@user_id)
     @posts           = @user.posts.all
     @user_followers  = @user.followers
     @user_followings = @user.followings
@@ -34,7 +35,7 @@ class UsersController < ApplicationController
     sign_in user
     redirect_to user_path(current_user)
   end
-  
+
   def search_users
     if params[:keyword]
       @search_users = User.search(params[:keyword])

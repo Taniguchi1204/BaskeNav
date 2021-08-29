@@ -4,7 +4,7 @@
       <%= attachment_image_tag(user, :user_image, fallback: "no_image.jpg") %>
       <%= user.name %>
     <% end %>
-    <%= render "relationships/relationship", user: user %>
+    <%= render "relationships/relationship", user: user, current_page_user: current_page_user %>
   </div>
 <% end %>
 
