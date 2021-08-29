@@ -26,7 +26,7 @@ class FacilitiesController < ApplicationController
   end
 
   def show
-    @facility           = Facility.find_by(admin_id: params[:id])
+    @facility           = Facility.find(params[:id])
 
     # コメントに関する変数
     @comment            = FacilityComment.new
