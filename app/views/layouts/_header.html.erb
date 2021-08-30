@@ -1,11 +1,13 @@
 <header>
   <div class="header-top">
     <div class="header-top__logo">BaskeNav</div>
-    <div class="header-top__admin">
-      <%= link_to 'ゲストログイン(閲覧用)', guest_sign_in_path, class: "header-top--guest-login under_line", method: :post %>
-      <%= link_to "施設登録の方はこちら", new_admin_registration_path, class: "header-top--sign-up under_line" %>
-      <%= link_to "施設管理者用ログイン", new_admin_session_path, class: "header-top--sign-in under_line" %>
-    </div>
+    <% if current_user == nil && current_admin == nil %>
+      <div class="header-top__admin">
+        <%= link_to 'ゲストログイン(閲覧用)', guest_sign_in_path, class: "header-top--guest-login under_line", method: :post %>
+        <%= link_to "施設登録の方はこちら", new_admin_registration_path, class: "header-top--sign-up under_line" %>
+        <%= link_to "施設管理者用ログイン", new_admin_session_path, class: "header-top--sign-in under_line" %>
+      </div>
+    <% end %>
   </div>
 
   <div class="header-nav">
