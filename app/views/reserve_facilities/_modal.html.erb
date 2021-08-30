@@ -22,7 +22,7 @@
     <div id="modalFooter" class="modal-footer">
       <% if current_user %>
         <span id="modalDestroy" class="modal-destroy"></span>
-      <% elsif current_admin %>
+      <% elsif @facility.admin_id == current_admin.id %>
         <span id="modalDestroy" class="modal-destroy"></span>
         <span id="modalConfirm" class="modal-confirm"></span>
       <% end %>
