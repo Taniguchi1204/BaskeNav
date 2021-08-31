@@ -164,8 +164,8 @@ $(document).on('turbolinks:load', function () {
           var delete_url = "/posts/" + delete_ID;
           $.ajax({
             url: delete_url,
-            type: "POST",
-            data: {id: delete_ID, "_method": "DELETE"},
+            type: "DELETE",
+            data: {id: delete_ID},
             dataType: "json"
           })
           .done(function(data){
@@ -173,7 +173,7 @@ $(document).on('turbolinks:load', function () {
             location.reload();
           })
           .fail(function(){
-            alert("エラー");
+            alert("削除できませんでした");
           })
         }
       }

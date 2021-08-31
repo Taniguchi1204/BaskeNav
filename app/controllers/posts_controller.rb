@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  protect_from_forgery :except => [:destroy]
 
   def index
     user_ids = current_user.relationships.pluck(:followed_id) # フォローしているユーザーのidを取得
