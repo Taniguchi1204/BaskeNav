@@ -1,11 +1,11 @@
 class HomesController < ApplicationController
 
   def top
-    news_info
+
   end
 
   def news
-    news_info
+ 
   end
 
   def game_east
