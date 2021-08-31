@@ -1,8 +1,48 @@
 <div class="user-show">
   <div class="user-show--info">
-    <%= render "users/info", user: @user %>
+    <%= render "users/info", user: @user, messages: @messages %>
   </div>
   <div class="user-show--posts">
     <%= render "posts/posts", posts: @posts, title: "favorite_post.png" %>
+  </div>
+</div>
+
+<div class="user-show--following">
+  <div class="follow">
+    <div class="follow--background modan_close1 modan_close2"></div>
+    <div class="follow--member">
+      <div class="follow--header">
+        <h1>followings</h1>
+      </div>
+      <% if current_user == @user %>
+        <div class="follow--current_user-following-info">
+          <%= render "relationships/follow", users: @user_followings, current_page_user: @user_id %>
+        </div>
+      <% else %>
+        <div class="follow--following-info">
+          <%= render "relationships/follow", users: @user_followings, current_page_user: @user_id %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="user-show--follower">
+  <div class="follow">
+    <div class="follow--background modan_close1 modan_close2"></div>
+    <div class="follow--member">
+      <div class="follow--header">
+        <h1>followers</h1>
+      </div>
+      <% if current_user == @user %>
+        <div class="follow--current_user-follower-info">
+          <%= render "relationships/follow", users: @user_followers, current_page_user: @user_id %>
+        </div>
+      <% else %>
+        <div class="follow--follower-info">
+          <%= render "relationships/follow", users: @user_followers, current_page_user: @user_id %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
