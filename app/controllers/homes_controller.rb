@@ -1,11 +1,11 @@
 class HomesController < ApplicationController
 
   def top
-
+    news_info
   end
 
   def news
- 
+    news_info
   end
 
   def game_east
@@ -56,7 +56,7 @@ class HomesController < ApplicationController
     require 'openssl'
 
     url = URI("https://api-nba-v1.p.rapidapi.com/standings/standard/#{year}/conference/west")
- 
+
     http             = Net::HTTP.new(url.host, url.port)
     http.use_ssl     = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE

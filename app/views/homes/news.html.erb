@@ -3,15 +3,15 @@
     <h1>News</h1>
 
     <div class="news--paginate">
-
+      <%= paginate @articles %>
     </div>
 
     <div class="news--articles">
-
+      <%= render "homes/news_info", articles: @articles %>
     </div>
 
     <div class="news--paginate">
-
+      <%= paginate @articles %>
     </div>
   </div>
 </div>
