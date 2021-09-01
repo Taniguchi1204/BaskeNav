@@ -7,6 +7,7 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many   :post_comments,  dependent: :destroy
   has_many   :post_favorites, dependent: :destroy
+  has_many   :tags,           dependent: :destroy
   attachment :image
 
   has_one :post_place, dependent: :destroy

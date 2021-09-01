@@ -14,6 +14,9 @@
         </div>
         <div class="posts--contents__photo">
           <%= attachment_image_tag post, :image, fallback: "no_image.jpg" %>
+          <% post.tags.each do |tag| %>
+            <span class="label"><%= tag.name %></span>
+          <% end %>
         </div>
       </div>
     <% end %>

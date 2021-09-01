@@ -25,6 +25,12 @@
       <div class="post-show--post-image">
         <%= attachment_image_tag(@post, :image, fallback: "no_image.jpg") %>
       </div>
+
+      <div class="post-show--tag-box">
+        <% @post.tags.each do |tag| %>
+          <span class="label"><%= tag.name %></span>
+        <% end %>
+      </div>
     </div>
   </div>
 
@@ -49,6 +55,7 @@
     </div>
   </div>
 </div>
+
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_KEY'] %>&callback=initMap"></script>
 <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
