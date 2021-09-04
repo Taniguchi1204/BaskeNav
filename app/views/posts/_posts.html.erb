@@ -12,14 +12,27 @@
             <%= link_to post.content, post_path(post)  %>
           </div>
         </div>
-        <div class="posts--contents__photo">
+        <div class="posts--contents__photo" id=<%= post.id %>>
           <%= attachment_image_tag post, :image, fallback: "no_image.jpg" %>
-          <% post.tags.each do |tag| %>
-            <span class="label"><%= tag.name %></span>
-          <% end %>
         </div>
       </div>
     <% end %>
   </div>
 </div>
 
+<!--画像拡大のモーダル-->
+<div class="posts--image">
+  <% posts.each do |post| %>
+  <div class="posts--image__background" id="posts--image__background-<%= post.id %>">
+    <div class="posts--image__detail">
+      <%= attachment_image_tag post, :image, fallback: "no_image.jpg" %>
+      <div class="posts--tags">
+        <span>タグ一覧</span>
+        <% post.tags.each do |tag| %>
+          <span class="label"><%= tag.name %></span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

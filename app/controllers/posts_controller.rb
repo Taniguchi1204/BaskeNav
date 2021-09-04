@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   def show
     @post          = Post.find(params[:id])
     @comment       = PostComment.new
-    @post_comments = @post.post_comments.order(created_at: :DESC)
+    @post_comments = @post.post_comments.order(created_at: :desc)
     lat = @post.post_place.latitude
     lng = @post.post_place.longitude
 
