@@ -9,7 +9,6 @@ class PostsController < ApplicationController
 
   def show
     @post          = Post.find(params[:id])
-     @tags = Vision.get_image_data(@post.image)
     @comment       = PostComment.new
     @post_comments = @post.post_comments.order(created_at: :DESC)
     lat = @post.post_place.latitude
@@ -29,9 +28,10 @@ class PostsController < ApplicationController
     @post         = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      tags = Vision.get_image_data(@post.image)
-      tags.each do |tag|
-        @post.tags.create(name: tag)
+      tags_en = Vision.get_image_data(@post.image)
+      tags_en.each do |tag|
+        tag_ja = Vision.translate_ja(tag)
+        @post.tags.create(name: tag_ja)
       end
       redirect_to post_path(@post)
     else
