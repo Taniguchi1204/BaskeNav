@@ -281,6 +281,18 @@ $(function() {
     $('.search').fadeOut();
     return false;
   });
+
+  $(document).on('click','.posts--contents__photo', function(){
+    let id = $(this).attr("id");
+    $(`#posts--image__background-${id}`).fadeIn();
+    return false;
+  });
+
+  $(document).on('click',`.posts--image__background`, function(){
+    let id = $(this).attr("id");
+    $(`#${id}`).fadeOut();
+    return false;
+  });
 })
 
 

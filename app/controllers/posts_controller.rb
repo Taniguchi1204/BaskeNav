@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   def show
     @post          = Post.find(params[:id])
     @comment       = PostComment.new
-    @post_comments = @post.post_comments.order(created_at: :DESC)
+    @post_comments = @post.post_comments.order(created_at: :desc)
     lat = @post.post_place.latitude
     lng = @post.post_place.longitude
 
@@ -30,7 +30,6 @@ class PostsController < ApplicationController
     if @post.save
       tags_en = Vision.get_image_data(@post.image)
       tags_en.each do |tag|
-        tag_ja = Vision.translate_ja(tag)
         @post.tags.create(name: tag_ja)
       end
       redirect_to post_path(@post)
