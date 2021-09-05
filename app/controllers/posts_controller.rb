@@ -30,7 +30,7 @@ class PostsController < ApplicationController
     if @post.save
       tags_en = Vision.get_image_data(@post.image)
       tags_en.each do |tag|
-        @post.tags.create(name: tag_ja)
+        @post.tags.create(name: tag)
       end
       redirect_to post_path(@post)
     else
