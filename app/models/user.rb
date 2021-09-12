@@ -11,7 +11,9 @@ class User < ApplicationRecord
     validates :phone_number
   end
 
+  validates :name, length: {maximum: 20, minimum: 2}
   validates :phone_number, format: {with: /\A[0-9]{10,11}\z/, message: "は10桁もしくは11桁で記入してください" }
+  validates :email,        format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "は正しく入力してください" }
 
   attachment :user_image
 
