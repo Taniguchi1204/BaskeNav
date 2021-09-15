@@ -28,9 +28,11 @@ class PostsController < ApplicationController
     @post         = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      tags_en = Vision.get_image_data(@post.image)
-      tags_en.each do |tag|
-        @post.tags.create(name: tag)
+      if @post.image
+        tags_en = Vision.get_image_data(@post.image)
+        tags_en.each do |tag|
+          @post.tags.create(name: tag)
+        end
       end
       redirect_to post_path(@post)
     else
