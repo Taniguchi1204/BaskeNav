@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <scrpt src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></scrpt>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
   </head>
 
   <body data-turbolinks="false">
@@ -25,16 +25,14 @@
     <%= yield %>
 
     <div class="search">
-    <div class="search--background modan_close3"></div>
-    <div class="search--member">
-      <div class="search--header">
-        <h1>Search Users</h1>
-        <div class="search--form">
-          <%= form_with(url: search_users_path, local: true, method: :get) do |f| %>
-            <%= f.text_field :keyword, placeholder: "ユーザーを検索", class: "search-input" %>
-          <% end %>
+      <div class="search--background modan_close3"></div>
+      <div class="search--member">
+        <div class="search--header">
+          <h1>Search Users</h1>
+          <div class="search--form">
+            <input placeholder="ユーザーを検索" class="search-input">
+          </div>
         </div>
-      </div>
       <div class="search--users"></div>
     </div>
   </div>

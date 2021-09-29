@@ -10,13 +10,15 @@ ja:
   activerecord:
     attributes:
       facility:
-        name: 商品名
+        name: 施設名
         email: メールアドレス
         station: 最寄り駅
         parking: 駐車場の有無
         postcode: 郵便番号
         address: 住所
         phone_number: 電話番号
+        opening: 開館時間
+        closing: 閉館時間
       post:
         content: 内容
       user:

@@ -46,7 +46,7 @@
     }
   }
   &--info{
-    width: 30%;
+    width: 500px;
     height: 650px;
     padding: 0 30px;
     h2{
@@ -86,7 +86,7 @@
     }
   }
   &--map{
-    width: 70%;
+    width: 830px;
     min-height: 650px;
   }
   &--new-reserve{
@@ -105,14 +105,11 @@
     padding-left: 30px;
   }
   &--rate{
-    width: 40%;
+    width: 500px;
   }
   &--comments{
     width: 70%;
     padding-left: 30px;
-  }
-  &--comment-form{
-   margin-left: 250px;
   }
   &--graph{
     padding: 15px;
@@ -135,7 +132,7 @@
   flex-wrap: wrap;
   margin: 30px;
   &--form{
-    width: 30%;
+    width: 500px;
     padding: 0 50px;
     form{
       padding-left: 20px;
@@ -145,7 +142,7 @@
     margin-top: 5px;
   }
   &--map{
-    width: 70%;
+    width: 60%;
   }
 }
 

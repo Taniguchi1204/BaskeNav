@@ -316,6 +316,7 @@ input {
   position: fixed;
   top: 0;
   left: 0;
+  
   &--background{
     height: 100vh;
     width: 100%;
@@ -344,7 +345,7 @@ input {
     height: 600px;
     background-color: white;
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
