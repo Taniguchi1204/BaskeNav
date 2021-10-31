@@ -1,8 +1,11 @@
 <div class="main-contents">
+  <!--背景に動きを加える-->
   <div id="particles-js"></div>
+
+  <!--top画像を表示-->
   <div class="main-contents--main-view"></div>
 
-
+　<!--アプリイメージ画像（施設のシェア）-->
   <div class="main-contents--fixed-background main-contents--background-1">
     <div class="title">
       <h1>Sharing Facilities</h1>
@@ -10,6 +13,7 @@
     </div>
   </div>
 
+  <!--アプリ説明文（施設のシェア）-->
   <div class="main-contents--scroll-background  main-contents--background-color">
     <div class="main-contents--fadein">
     	<h1>バスケ施設</h1>
@@ -21,6 +25,7 @@
   	</div>
   </div>
 
+  <!--アプリイメージ画像（投稿のシェア）-->
   <div class="main-contents--fixed-background main-contents--background-2">
   	<div class="title">
       <h1>Post your experience</h1>
@@ -28,6 +33,7 @@
     </div>
   </div>
 
+  <!--アプリ説明文（投稿のシェア）-->
   <div class="main-contents--scroll-background main-contents--background-color">
     <div class="main-contents--fadein">
       <h1>バスケ投稿</h1>
@@ -39,12 +45,15 @@
   	</div>
   </div>
 
+  <!--ニュース一覧-->
   <div class="main-contents--news">
     <div class="main-contents--text">
       <h1>バスケ情報</h1>
       <p>
         NBA試合結果やバスケに関する情報をいち早く確認することができます!<br>
       </p>
+
+      <!--記事の表示-->
       <ul class="slider">
         <% if @articles %>
           <%= render "homes/news_info", articles: @articles %>
@@ -54,6 +63,7 @@
       </ul>
     </div>
   </div>
+
 
   <div class="main-contents--info">
     <div class="main-contents--info__text1">
@@ -66,12 +76,8 @@
   </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!--ニューススライド-->
 <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<!--背景の動きを加える-->
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-<script>
-  particlesJS.load('particles-js', 'assets/particles-121e441504cc1943ac8ccfe9c7efc01e54fa9b8e5d3f82581219c40277067c24.json', function() {
-    console.log('callback - particles.js config loaded');
-  });
-</script>
 

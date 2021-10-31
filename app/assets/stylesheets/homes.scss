@@ -7,6 +7,7 @@
   height: 900px;
   background-size: cover;
   background-image: image-url($photo);
+  background-position: center;
 }
 
 
@@ -87,7 +88,6 @@
   }
   &--scroll-background{
     padding: 20px;
-    height: 50vh;
     text-align: center;
     color: white;
     h1{
@@ -401,6 +401,35 @@
         height: 200px;
       }
     }
+  }
+}
+
+/* タブレット横置きサイズ（1024px）以下の際に適用される設定 */
+@media screen and (max-width: 1440px) {
+  .main-contents--info h1{
+    top: 550px;
+    left: 150px;
+  }
+  .news--articles__item{
+    max-height: 400px;
+  }
+}
+/* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
+@media screen and (max-width: 1024px) {
+  .main-contents--info h1{
+    top: 560px;
+    font-size: 45px;
+    transform: rotate(-11deg);
+    left: 90px;
+  }
+  .news--articles__item{
+    max-height: 400px;
+  }
+}
+/* スマートフォンサイズ（425px）以下の際に適用される設定 */
+@media screen and (max-width: 425px) {
+  .social i {
+    color: blue;
   }
 }
 

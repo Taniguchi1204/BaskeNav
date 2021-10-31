@@ -1,7 +1,9 @@
 <header>
   <div class="header-top">
     <div class="header-top__logo">BaskeNav</div>
-    <% if current_user == nil && current_admin == nil %>
+    <% if current_user || current_admin %>
+      <a id="search_modan_open"><i class="fas fa-search"></i>ユーザー検索</a>
+    <% elsif %>
       <div class="header-top__admin">
         <%= link_to 'ゲストログイン(閲覧用)', guest_sign_in_path, class: "header-top--guest-login under_line", method: :post %>
         <%= link_to "施設登録の方はこちら", new_admin_registration_path, class: "header-top--sign-up under_line" %>
@@ -25,7 +27,6 @@
           <li><%= link_to "Posts", posts_path, class: "header-nav--list-item__reverse" %></li>
           <li><%= link_to "Facility", facilities_path, class: "header-nav--list-item__reverse" %></li>
           <li><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "header-nav--list-item__reverse" %></li>
-          <a id="search_modan_open"><i class="fas fa-search"></i>ユーザー検索</a>
 
         <% elsif admin_signed_in? %>　<!--施設投稿者がログインした時のヘッダー-->
           <li><%= link_to "Game", game_west_path(year: :"2020"), class: "header-nav--list-item" %></li>
