@@ -11,6 +11,8 @@ class HomesController < ApplicationController
   def game
     year = params[:year]
     @conference = params[:conference]
+    
+    # NBAデータを取得
     nba_data(year, @conference)
   end
 
@@ -22,7 +24,7 @@ class HomesController < ApplicationController
     @articles = Kaminari.paginate_array(articles).page(params[:page]).per(10)
   end
 
-  # 取得したNBAデータを整理する
+  # NBAデータを取得し整理する
   def nba_data(year, conference)
     # API-NBAからリーグ順位情報を取得
     require 'uri'
@@ -49,11 +51,13 @@ class HomesController < ApplicationController
       a["conference"]["rank"].to_i <=> b["conference"]["rank"].to_i
     end
 
-    # チーム名をJSON配列に挿入
+    # チームIDをチーム名に変更
     team_name(array)
     @team_rank = array
   end
 
+  # NBAデータのチームIDをチーム名に変更
+  # （APIでデータ取得した際にTeamIdでしか値が受け取れないため）
   def team_name(nba_result)
     nba_result.each do |team|
       case team["teamId"]
