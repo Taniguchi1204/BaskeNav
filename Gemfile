@@ -60,40 +60,54 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+# ログイン機能を作成するGem
 gem 'devise'
 
+# 画像を表示する
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 
+# ページネーションのGem
 gem 'kaminari','~> 1.2.1'
 
+# レイアウトに関するGem
 gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.13'
 
+# カレンダーに関するGem
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 
+# GoogleMapに関するGem
 gem "gmaps4rails"
 gem "geocoder"
 gem "gon"
 
+# GoogleアカウントでログインをするGem
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"
 
+# ニュース一覧を表示させる
 gem 'news-api'
 
+# いいねのグラフを表示させるGem
 gem 'chart-js-rails', '~> 0.1.4'
+
 
 gem "jquery-ui-rails"
 
+# エラーメッセージを日本語にするGem
 gem 'rails-i18n'
 
+# 環境変数を導入するGem
 gem 'dotenv-rails'
 
+# 背景に動きを加えるGem
 gem 'particles-js-rails', '2.0.0'
 
+# 本番環境で使用されるデータベース
 group :production do
   gem 'mysql2'
 end
