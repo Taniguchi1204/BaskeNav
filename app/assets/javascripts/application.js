@@ -294,8 +294,3 @@ $(function() {
     return false;
   });
 })
-
-
-
-
-

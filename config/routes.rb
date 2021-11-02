@@ -18,8 +18,7 @@ Rails.application.routes.draw do
   post "/guest_sign_in"  => "users#new_guest"
   get  "/search_users"   => "users#search_users"
   get  "/news"           => "homes#news"
-  get  "/game_east"      => "homes#game_east"
-  get  "/game_west"      => "homes#game_west"
+  get  "/game"           => "homes#game"
 
 
   # 会員（フォロー、フォロワー）

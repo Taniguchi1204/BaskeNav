@@ -8,54 +8,28 @@ class HomesController < ApplicationController
     news_info
   end
 
-  def game_east
-
+  def game
     year = params[:year]
-
-    # API-NBAからリーグ順位情報を取得
-    require 'uri'
-    require 'net/http'
-    require 'openssl'
-
-    url  = URI("https://api-nba-v1.p.rapidapi.com/standings/standard/#{year}/conference/east")
-
-    http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl     = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-
-    request                    = Net::HTTP::Get.new(url)
-    request["x-rapidapi-key"]  = ENV['NBA_API']
-    request["x-rapidapi-host"] = 'api-nba-v1.p.rapidapi.com'
-
-    response = http.request(request)
-    result   = JSON.parse(response.read_body)
-
-    # JSONファイルを扱いやすいように配列に挿入
-    array = []
-    for i in 0..14 do
-      array << result["api"]["standings"][i]
-    end
-
-    # 順位順に並べ替え
-    array.sort! do |a, b|
-      a["conference"]["rank"].to_i <=> b["conference"]["rank"].to_i
-    end
-
-    # チーム名をJSON配列に挿入
-    team_name(array)
-
-    @team_rank = array
+    @conference = params[:conference]
+    nba_data(year, @conference)
   end
 
-  def game_west
-    year = params[:year]
+  def news_info
+    uri = "https://newsapi.org/v2/everything?q=%E3%83%90%E3%82%B9%E3%82%B1&sortBy=popularity&pageSize=100&apiKey=#{ENV['NEWS_API']}"
+    article_serialized = open(uri).read
+    data = JSON.parse(article_serialized)
+    articles = data["articles"]
+    @articles = Kaminari.paginate_array(articles).page(params[:page]).per(10)
+  end
 
+  # 取得したNBAデータを整理する
+  def nba_data(year, conference)
     # API-NBAからリーグ順位情報を取得
     require 'uri'
     require 'net/http'
     require 'openssl'
 
-    url = URI("https://api-nba-v1.p.rapidapi.com/standings/standard/#{year}/conference/west")
+    url = URI("https://api-nba-v1.p.rapidapi.com/standings/standard/#{year}/conference/#{conference}")
 
     http             = Net::HTTP.new(url.host, url.port)
     http.use_ssl     = true
@@ -67,12 +41,8 @@ class HomesController < ApplicationController
 
     response = http.request(request)
     result = JSON.parse(response.read_body)
-
     # JSONファイルを扱いやすいように配列に挿入
-    array = []
-    for i in 0..14 do
-      array << result["api"]["standings"][i]
-    end
+    array = (0..14).map{ |i| result["api"]["standings"][i] }
 
     # 順位順に並べ替え
     array.sort! do |a, b|
@@ -81,7 +51,6 @@ class HomesController < ApplicationController
 
     # チーム名をJSON配列に挿入
     team_name(array)
-
     @team_rank = array
   end
 
@@ -180,13 +149,5 @@ class HomesController < ApplicationController
                             "logo"     => "https://upload.wikimedia.org/wikipedia/fr/archive/d/d6/20161212034849%21Wizards2015.png"}
       end
     end
-  end
-
-  def news_info
-    uri = "https://newsapi.org/v2/everything?q=%E3%83%90%E3%82%B9%E3%82%B1&sortBy=popularity&pageSize=100&apiKey=#{ENV['NEWS_API']}"
-    article_serialized = open(uri).read
-    a = JSON.parse(article_serialized)
-    b = a["articles"]
-    @articles = Kaminari.paginate_array(b).page(params[:page]).per(10)
   end
 end

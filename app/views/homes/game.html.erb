@@ -1,13 +1,13 @@
 <div class="game">
-  <h1>Ranking west</h1>
+  <h1>Ranking <%= @conference %></h1>
 
-  <%= link_to game_east_path(year: :"2020") do %>
+  <%= link_to game_path(year: :"2020", conference: :"east") do %>
     <div class="game--conference__east">
       <p class="game--link__east">East</p>
     </div>
   <% end %>
 
-  <%= link_to game_west_path(year: :"2020") do %>
+  <%= link_to game_path(year: :"2020", conference: :"west") do %>
     <div class="game--conference__west">
       <p class="game--link__west">West</p>
     </div>
@@ -16,9 +16,9 @@
   <table class="game--table">
     <div class="game--years">
       <ul class="game--years__tab">
-        <li><%= link_to "2018", game_west_path(year: :"2018"), remote: true %></li>
-        <li><%= link_to "2019", game_west_path(year: :"2019"), remote: true %></li>
-        <li class="active"><%= link_to "2020", game_west_path(year: :"2020"), remote: true %></li>
+        <li><%= link_to "2018", game_path(year: :"2018", conference: :"#{@conference}"), remote: true %></li>
+        <li><%= link_to "2019", game_path(year: :"2019", conference: :"#{@conference}"), remote: true %></li>
+        <li class="active"><%= link_to "2020", game_path(year: :"2020", conference: :"#{@conference}"), remote: true %></li>
       </ul>
     </div>
     <thead>

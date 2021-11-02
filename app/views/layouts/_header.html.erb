@@ -16,7 +16,7 @@
     <nav class="header-nav--nav">
       <ul class="header-nav--list">
         <% if user_signed_in? %> <!--会員がログインした時のヘッダー-->
-          <li><%= link_to "Game", game_west_path(year: :"2020"), class: "header-nav--list-item" %></li>
+          <li><%= link_to "Game", game_path(year: :"2020", conference: :"west"), class: "header-nav--list-item" %></li>
           <li><%= link_to "News", news_path, class: "header-nav--list-item" %></li>
           <li><%= link_to "Mypage", user_path(current_user), class: "header-nav--list-item" %></li>
           <li>
@@ -29,7 +29,7 @@
           <li><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "header-nav--list-item__reverse" %></li>
 
         <% elsif admin_signed_in? %>　<!--施設投稿者がログインした時のヘッダー-->
-          <li><%= link_to "Game", game_west_path(year: :"2020"), class: "header-nav--list-item" %></li>
+          <li><%= link_to "Game", game_path(year: :"2020", conference: :"west"), class: "header-nav--list-item" %></li>
           <li><%= link_to "News", news_path, class: "header-nav--list-item" %></li>
           <li><%= link_to "NewFacility", new_facility_path, class: "header-nav--list-item" %></li>
           <li>
@@ -42,7 +42,7 @@
           <li><%= link_to "Logout", destroy_admin_session_path, method: :delete, class: "header-nav--list-item__reverse" %></li>
 
         <% else %>　<!--ログイン前のヘッダー-->
-          <li><%= link_to "Game", game_west_path(year: :"2020"), class: "header-nav--list-item" %></li>
+          <li><%= link_to "Game", game_path(year: :"2020", conference: :"west"), class: "header-nav--list-item" %></li>
           <li><%= link_to "News", news_path, class: "header-nav--list-item" %></li>
           <li>
             <%= link_to root_url, class: "header-nav--list-item__logo" do %>
