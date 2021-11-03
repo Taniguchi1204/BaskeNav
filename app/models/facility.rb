@@ -25,6 +25,7 @@ class Facility < ApplicationRecord
   has_one  :facility_place,     dependent: :destroy
   accepts_nested_attributes_for            :facility_place
 
+  # いいねをしている施設があるか
   def favorites_by?(user)
     facility_favorites.where(user_id: user.id).exists?
   end

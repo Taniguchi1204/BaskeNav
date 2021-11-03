@@ -58,6 +58,7 @@ class User < ApplicationRecord
     followings.include?(user)
   end
 
+  # Googleアカウントでログイン済みが確認し、ない場合はデータベース
   def self.from_omniauth(auth)
     user                  = User.where(email: auth.info.email).first
     sns_credential_record = SnsCredential.where(provider: auth.provider, uid: auth.uid)
@@ -73,6 +74,7 @@ class User < ApplicationRecord
     end
   end
 
+  # ユーザー検索
   def self.search(search)
     return User.where('name LIKE(?)', "#{search}%")
   end

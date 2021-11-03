@@ -9,7 +9,7 @@ class FacilityComment < ApplicationRecord
   belongs_to :user
   belongs_to :facility
 
-  # 評価グラフに反映されるデータ
+  # 評価グラフに反映されるデータを
   def self.rate_persent(comments)
     5.step(1, -1).map do |i|
       case i
