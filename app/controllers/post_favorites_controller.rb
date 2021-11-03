@@ -4,6 +4,7 @@ class PostFavoritesController < ApplicationController
     @user  = User.find(params[:user_id])
     @posts = @user.post_contents
 
+    # フォロー、フォロワーデータ
     @user_followers  = @user.followers
     @user_followings = @user.followings
   end

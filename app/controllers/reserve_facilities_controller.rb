@@ -4,17 +4,16 @@ class ReserveFacilitiesController < ApplicationController
     @facility                     = Facility.find(params[:facility_id])
     @reserve_facility             = current_user.reserve_facilities.new(reserve_facility_params)
     @reserve_facility.facility_id = @facility.id
+    
+    # 非同期通信で使用するインスタンス変数
     @comment                      = FacilityComment.new
     @facility_comments            = @facility.facility_comments
 
+    # 施設にコメンがある場合はグラフデータを取得する(非同期用)
     if @facility_comments.present?
-      @data = [['5', FacilityComment.rate_persent(5, @facility_comments)],
-               ['4', FacilityComment.rate_persent(4, @facility_comments)],
-               ['3', FacilityComment.rate_persent(3, @facility_comments)],
-               ['2', FacilityComment.rate_persent(2, @facility_comments)],
-               ['1', FacilityComment.rate_persent(1, @facility_comments)],
-              ]
+      @graph = FacilityComment.rate_persent(@facility_comments)
     end
+    
     # googelmap.jsで使用する変数
     lat     = @facility.facility_place.latitude
     lng     = @facility.facility_place.longitude
@@ -31,6 +30,8 @@ class ReserveFacilitiesController < ApplicationController
   def update
     @facility                  = Facility.find(params[:facility_id])
     @reserve_permit            = @facility.reserve_facilities.find(params[:id])
+    
+    # 予約を管理者側で承認可否を更新
     if @reserve_permit.confirm == false
      @reserve_permit.update(confirm: "true")
     else

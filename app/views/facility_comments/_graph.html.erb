@@ -1,6 +1,7 @@
 <h2 class="title_border">Facility Evaluation</h2>
   <div id="evaluate_stars_avg">
     <label>平均評価</label>
+    <!--評価スターの表示-->
     <script>
       $('#evaluate_stars_avg').raty({
         size: 36,
@@ -21,6 +22,7 @@
     <% end %>
   </div>
 
+  <!--グラフ各種設定-->
   <script>
     var ctx = document.getElementById("myChart");
     var myChart = new Chart(ctx, {

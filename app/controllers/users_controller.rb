@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @user_id = params[:id]
+    @user_id         = params[:id]
     @user            = User.find(@user_id)
     @posts           = @user.posts.all.order(created_at: :desc)
     @user_followers  = @user.followers
@@ -26,6 +26,7 @@ class UsersController < ApplicationController
     redirect_to @user
   end
 
+　#　ポートフォリオ用のゲストユーザー作成とサインイン 
   def new_guest
     user = User.find_or_create_by(email: 'guest@example.com') do |user|
       user.name         = "ゲスト"
@@ -36,6 +37,7 @@ class UsersController < ApplicationController
     redirect_to user_path(current_user)
   end
 
+  # ユーザー検索
   def search_users
     if params[:keyword]
       @search_users = User.search(params[:keyword])
@@ -48,7 +50,6 @@ class UsersController < ApplicationController
 
 
   private
-
     def user_params
       params.require(:user).permit(:name, :email, :phone_number, :user_image, :introduce)
     end

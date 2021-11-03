@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
 
   def create
     @message = current_user.messages.new(message_params)
-    @message.save!
+    @message.save
   end
 
   private
