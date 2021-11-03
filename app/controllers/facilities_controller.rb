@@ -12,11 +12,13 @@ class FacilitiesController < ApplicationController
   end
 
   def index
+    # 表示されているMapの範囲を取得する
     north = params[:north]
     south = params[:south]
     east  = params[:east]
     west  = params[:west]
 
+    # 表示されているMapの範囲にある施設を取得
     @facilities = FacilityPlace.where( latitude: south..north, longitude: west..east )
 
     respond_to do |format|
@@ -38,11 +40,7 @@ class FacilitiesController < ApplicationController
 
     # 評価グラフを表示するデータ
     if @facility_comments.present?
-      @data5 = FacilityComment.rate_persent(5, @facility_comments)
-      @data4 = FacilityComment.rate_persent(4, @facility_comments)
-      @data3 = FacilityComment.rate_persent(3, @facility_comments)
-      @data2 = FacilityComment.rate_persent(2, @facility_comments)
-      @data1 = FacilityComment.rate_persent(1, @facility_comments)
+      @graph = FacilityComment.rate_persent(@facility_comments)
     end
     # googelmap.jsで使用する変数
     lat     = @facility.facility_place.latitude

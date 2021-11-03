@@ -1,4 +1,5 @@
 <div class="facility-show">
+  <!--施設-->
   <div class="facility-show--info">
     <h2 class="title_border">施設情報</h2>
     <div class="facility-show--details">
@@ -82,10 +83,13 @@
       <%= attachment_image_tag(@facility, :facility_image, fallback: "no_image.jpg") %>
     </div>
   </div>
+  
+  <!--施設Map-->
   <div class="facility-show--map">
     <div class="show__maps" id="show_map"></div>
   </div>
 
+  <!--予約カレンダーと予約フォーム-->
   <div class="facility-show--function">
     <div class="facility-show--calendar" style="width: 45%;">
       <div id="calendar"></div>
@@ -94,11 +98,15 @@
        <%= render "facilities/reserve", facility: @facility, reserve_facility: @reserve_facility %>
     </div>
   </div>
+  
+  <!--施設コメント-->
   <div class="facility-show--rate-comment">
+    <!--施設コメント評価グラフ-->
     <div class="facility-show--rate" id="facility-show--rate">
       <%= render "facility_comments/graph", facility_comments: @facility_comments, data5: @data5, data4: @data4, data3: @data3, data2: @data2, data1: @data1 %>
   　</div>
-
+    
+    <!--施設コメントフォームとコメント一覧-->
     <div class="facility-show--comment-form">
       <div id="facility-show--form">
         <%= render "facility_comments/form", facility: @facility, comment: @comment, facility_comments: @facility_comments %>

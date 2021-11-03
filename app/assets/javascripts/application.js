@@ -28,6 +28,7 @@
 //= require underscore
 //= require gmaps/google
 
+// top画面のフェードイン、フェードアウト
 $(window).on('load scroll',function (){
 	$('.main-contents--fadein').each(function(){
 		//ターゲットの位置を取得

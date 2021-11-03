@@ -9,11 +9,7 @@ class FacilityCommentsController < ApplicationController
     @facility_comments   = @facility.facility_comments.order(created_at: :DESC)
 
     if @facility_comments.present?
-      @data5               = FacilityComment.rate_persent(5, @facility_comments)
-      @data4               = FacilityComment.rate_persent(4, @facility_comments)
-      @data3               = FacilityComment.rate_persent(3, @facility_comments)
-      @data2               = FacilityComment.rate_persent(2, @facility_comments)
-      @data1               = FacilityComment.rate_persent(1, @facility_comments)
+      @graph = FacilityComment.rate_persent(@facility_comments)
     end
   end
 
@@ -25,12 +21,9 @@ class FacilityCommentsController < ApplicationController
     comment.destroy
     @facility_comments  = @facility.facility_comments.order(created_at: :DESC)
 
+    # 施設にコメンがある場合はグラフデータを取得する
     if @facility_comments.present?
-      @data5               = FacilityComment.rate_persent(5, @facility_comments)
-      @data4               = FacilityComment.rate_persent(4, @facility_comments)
-      @data3               = FacilityComment.rate_persent(3, @facility_comments)
-      @data2               = FacilityComment.rate_persent(2, @facility_comments)
-      @data1               = FacilityComment.rate_persent(1, @facility_comments)
+      @graph = FacilityComment.rate_persent(@facility_comments)
     end
   end
 
