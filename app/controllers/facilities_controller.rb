@@ -1,6 +1,7 @@
 class FacilitiesController < ApplicationController
   before_action :move_to_newpage, only:[:show]
 
+  # 施設詳細ページで施設投稿していない場合は投稿ページに遷移
   def move_to_newpage
     if admin_signed_in?
       myfacility = Facility.find_by(admin_id: current_admin.id)
@@ -38,7 +39,7 @@ class FacilitiesController < ApplicationController
     @reserve_facility   = ReserveFacility.new
     @reserve_facilities = ReserveFacility.where(facility_id: @facility.id)
 
-    # 評価グラフを表示するデータ
+    # 施設にコメンがある場合はグラフデータを取得する
     if @facility_comments.present?
       @graph = FacilityComment.rate_persent(@facility_comments)
     end
