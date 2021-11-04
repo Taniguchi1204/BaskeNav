@@ -1,6 +1,5 @@
 class Facility < ApplicationRecord
   with_options presence: true do
-    validates :admin_id
     validates :name
     validates :opening
     validates :closing
@@ -12,8 +11,10 @@ class Facility < ApplicationRecord
     validates :email
   end
 
-  validates  :postcode, format: {with: /\A[0-9]{7}\z/, message: "は7桁で記入してください" }
+  validates  :postcode,     format: {with: /\A[0-9]{7}\z/, message: "は7桁で記入してください" }
   validates  :phone_number, format: {with: /\A[0-9]{10,11}\z/, message: "は10桁もしくは11桁で記入してください" }
+  validates :email,         format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, message: "は正しく入力してください" }
+
   attachment :facility_image
 
   belongs_to :admin

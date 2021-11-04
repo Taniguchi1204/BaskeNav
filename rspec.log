@@ -1,0 +1,77 @@
+
+Adminモデルのテスト
+  バリデーションのテスト
+    nameカラム
+[32m      空白でないこと[0m
+[32m      ２文字以上であること：１文字は不可[0m
+[32m      ２文字以上であること：１文字は可[0m
+[32m      ２０文字以下であること：２０文字は可[0m
+[32m      ２０文字以下であること：２１文字は不可[0m
+    passwordカラム
+[32m      空白でないこと[0m
+[32m      6文字より少なくないこと[0m
+[32m      6文字以上であれば保存される[0m
+    emailカラム
+[32m      空白ではないこと[0m
+[32m      有効なメールアドレスであること[0m
+[32m      無効なメールアドレスでないこと[0m
+    phone_numberカラム
+[32m      空白でないこと[0m
+[32m      10桁であること[0m
+[32m      １１桁であること[0m
+[32m      10桁または11桁以外では保存されない[0m
+  アソシエーションのテスト
+    Adminモデルとの関係
+[32m      facilitiesモデルが1:N[0m
+
+Entryモデルのテスト
+  バリデーションのテスト
+    user_idカラムのバリデーション
+[32m      空白でないこと[0m
+    room_idカラムのバリデーション
+[32m      空白でないこと[0m
+  アソシエーションのテスト
+    Entryモデルとの関係
+[32m      userモデルと1:N[0m
+[32m      roomモデルと1:N[0m
+
+Facilityモデルのテスト
+  バリデーションのテスト
+    user_idカラムのバリデーション
+[32m      空白でないこと[0m
+
+Userモデルのテスト
+  バリデーションのテスト
+    nameカラム
+[32m      空白でないこと[0m
+[32m      ２文字以上であること：１文字は不可[0m
+[32m      ２文字以上であること：１文字は可[0m
+[32m      ２０文字以下であること：２０文字は可[0m
+[32m      ２０文字以下であること：２１文字は不可[0m
+    emailカラム
+[32m      空白ではないこと[0m
+[32m      有効なメールアドレスであること[0m
+[32m      無効なメールアドレスでないこと[0m
+    phone_numberカラム
+[32m      空白でないこと[0m
+  アソシエーションのテスト
+    Userモデルとの関係
+[32m      postsモデルが1:N[0m
+[32m      reverse_of_relationshipsモデルが1:N[0m
+[32m      followersモデルが1:N[0m
+[32m      relationshipsモデルが1:N[0m
+[32m      followingsモデルが1:N[0m
+[32m      entriesモデルが1:N[0m
+[32m      messagesモデルが1:N[0m
+[32m      post_favoritesモデルが1:N[0m
+[32m      post_contentsモデルが1:N[0m
+[32m      post_commentsモデルが1:N[0m
+[32m      facility_favoritesモデルが1:N[0m
+[32m      post_facilitiesモデルが1:N[0m
+[32m      facility_commentsモデルが1:N[0m
+[32m      reserve_facilitiesモデルが1:N[0m
+[32m      sns_credentialsモデルが1:N[0m
+
+Finished in 0.76638 seconds (files took 1.28 seconds to load)
+[32m45 examples, 0 failures[0m
+

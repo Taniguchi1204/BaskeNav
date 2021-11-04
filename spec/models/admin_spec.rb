@@ -6,7 +6,8 @@ RSpec.describe 'Adminモデルのテスト', type: :model do
   describe 'バリデーションのテスト'do
     let(:admin) {FactoryBot.build(:admin)}
     let(:test_admin){ admin }
-    subject { admin.valid? }
+    subject { test_admin.valid? }
+
 
     context 'nameカラム' do
       it '空白でないこと'do
@@ -35,6 +36,25 @@ RSpec.describe 'Adminモデルのテスト', type: :model do
       end
     end
 
+    context 'passwordカラム' do
+      it '空白でないこと' do
+        admin.password = ''
+        is_expected.to eq false
+      end
+
+      it '6文字より少なくないこと' do
+        admin.password = "a"*5
+        admin.password_confirmation = "a"*5
+        is_expected.to eq false
+      end
+
+      it '6文字以上であれば保存される' do
+        admin.password = "a"*6
+        admin.password_confirmation = "a"*6
+        is_expected.to eq true
+      end
+    end
+
     context 'emailカラム' do
       it '空白ではないこと' do
         admin.email = ''
@@ -53,6 +73,21 @@ RSpec.describe 'Adminモデルのテスト', type: :model do
     context 'phone_numberカラム'do
       it '空白でないこと'do
         admin.phone_number = ''
+        is_expected.to eq false
+      end
+
+      it '10桁であること' do
+        admin.phone_number = Faker::Number.number(digits: 10)
+        is_expected.to eq true
+      end
+
+      it '11桁であること' do
+        admin.phone_number = Faker::Number.number(digits: 11)
+        is_expected.to eq true
+      end
+
+      it '10桁または11桁以外では保存されない' do
+        admin.phone_number = Faker::Number.number(digits: 9)
         is_expected.to eq false
       end
     end
