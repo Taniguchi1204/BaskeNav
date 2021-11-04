@@ -2,12 +2,11 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Userモデルのテスト', type: :model do
+RSpec.describe 'Adminモデルのテスト', type: :model do
   describe 'バリデーションのテスト'do
+    let(:admin) {FactoryBot.build(:admin)}
+    let(:test_admin){ admin }
     subject { admin.valid? }
-
-    let!(:other_admin) {create(:admin) }
-    let(:admin) { build(:admin) }
 
     context 'nameカラム' do
       it '空白でないこと'do

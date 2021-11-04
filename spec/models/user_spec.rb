@@ -4,10 +4,9 @@ require 'rails_helper'
 
 RSpec.describe 'Userモデルのテスト', type: :model do
   describe 'バリデーションのテスト'do
+    let(:user){FactoryBot.build(:user)}
+    let(:test_user){ user }
     subject { user.valid? }
-
-    let!(:other_user) {create(:user) }
-    let(:user) { build(:user) }
 
     context 'nameカラム' do
       it '空白でないこと'do
