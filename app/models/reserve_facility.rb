@@ -1,5 +1,7 @@
 # 予約時間が重複することを防ぐ
 class ReserveFacilityValidator < ActiveModel::EachValidator
+  
+  # 予約が重複していないか確認し、重複している場合はエラーメッセージを表示させる
   def validate_each(record, attribute, value)
     new_start = record.start
     new_end   = record.finish
