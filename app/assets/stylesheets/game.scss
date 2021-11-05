@@ -103,67 +103,7 @@
   }
 }
 
-// News画面のレイアウト
-.news{
-  &--main{
-    width: 100%;
-    background: image-url('11.jpeg');
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: 100px 130px;
-    padding: 50px 10px;
-    h1{
-      color: white;
-      padding: 0.25em 0.5em;
-      font-size: 50px;
-      margin-left: 20px;
-      border-left: solid 5px #7db4e6;
-    }
-  }
-  &--paginate{
-    width: 1000px;
-    .pagination {
-      justify-content: center;
-      text-align: center;
-      a{
-        display: inline-block;
-        min-width: 50px;
-        background-color: white;
-        border: 1px solid blue;
-        border-radius: 50px;
-        margin: 2px;
-        padding: 0 5px;
-        &:hover{
-          background: #00FFFF	;
-        }
-      }
-      .active a{
-        background: #00FFFF	;
-      }
-    }
-  }
-  &--articles{
-    display: flex;
-    flex-wrap: wrap;
-    width: 1000px;
-    margin-right: 100px;
-    &__item{
-      width: 400px;
-      background-color: white;
-      margin: 20px auto;
-      border: 2px solid black;
-      text-align: center;
-    }
-    &__image{
-      margin-left: 10px;
-      margin-top: 10px;
-      img{
-        width: 380px;
-        height: 200px;
-      }
-    }
-  }
-}
+
 
 
 

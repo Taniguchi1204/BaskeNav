@@ -232,24 +232,21 @@
     background: blue;/*ドットボタンの現在地表示の色*/
 }
 
- 
-/* タブレット横置きサイズ（1024px）以下の際に適用される設定 */
-@media screen and (max-width: 1440px) {
-  .main-contents--info h1{
-    top: 550px;
-    left: 150px;
-  }
-  .news--articles__item{
-    max-height: 400px;
-  }
-}
+
 /* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
 @media screen and (max-width: 1024px) {
+  .main-contents--info__text1{
+    height: 500px;
+  }
   .main-contents--info h1{
-    top: 560px;
-    font-size: 45px;
-    transform: rotate(-11deg);
+    top: 460px;
     left: 90px;
+    font-size: 45px;
+    transform: rotate(-10deg);
+  }
+
+  .main-contents--info__text2{
+    height: 500px;
   }
   .news--articles__item{
     max-height: 400px;

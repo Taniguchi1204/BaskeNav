@@ -225,26 +225,3 @@ header{
  padding-left: 10px;
  color: white;
 }
-
-/* タブレット横置きサイズ（1024px）以下の際に適用される設定 */
-@media screen and (max-width: 1440px) {
-  .main-contents--info h1{
-    top: 550px;
-    left: 150px;
-  }
-  .news--articles__item{
-    max-height: 400px;
-  }
-}
-/* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
-@media screen and (max-width: 1024px) {
-  .main-contents--info h1{
-    top: 560px;
-    font-size: 45px;
-    transform: rotate(-11deg);
-    left: 90px;
-  }
-  .news--articles__item{
-    max-height: 400px;
-  }
-}
