@@ -12,7 +12,7 @@
     right: 40px;
   }
   &--contents{
-    height: 550px;
+    height: 800px;
     border: 45px solid #000;
     border-image-slice: 43;
     border-image-source: image_url('frame.jpeg');
@@ -182,9 +182,11 @@
 
 // 投稿一覧画面
 .Myposts{
- height: 720px;
- background-image: image_url('renga.jpg');
- background-size: cover;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  background-image: image_url('renga.jpg');
+  background-repeat: repeat;
  &--posts{
    width: 1100px;
    margin: 0 auto;

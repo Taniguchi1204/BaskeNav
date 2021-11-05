@@ -1,27 +1,28 @@
-<div class="user-form">
-
-  <div class="user-form--icon">
-    <p class="user-form--login-text">
-      <span class="fa-stack fa-lg">
-        <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa fa-lock fa-stack-1x"></i>
-      </span>
-    </p>
-    <h2>Sign in</h2>
+<div class="user-form--admin-background">
+  <div class="user-form">
+  
+    <div class="user-form--icon">
+      <p class="user-form--login-text">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-lock fa-stack-1x"></i>
+        </span>
+      </p>
+      <h2>Sign in</h2>
+    </div>
+  
+    <%= form_with model: @admin, url: admin_session_path, local: true do |f| %>
+      <div class="field">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "user-form--input", placeholder: "Email" %>
+      </div>
+  
+      <div class="field">
+        <%= f.password_field :password, autocomplete: "current-password", class: "user-form--input", placeholder: "Password" %>
+      </div>
+  
+      <div class="actions">
+        <%= f.submit "Log in", class: "user-form--login-submit" %>
+      </div>
+    <% end %>
   </div>
-
-  <%= form_with model: @admin, url: admin_session_path, local: true do |f| %>
-    <div class="field">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "user-form--input", placeholder: "Email" %>
-    </div>
-
-    <div class="field">
-      <%= f.password_field :password, autocomplete: "current-password", class: "user-form--input", placeholder: "Password" %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit "Log in", class: "user-form--login-submit" %>
-    </div>
-  <% end %>
 </div>
-<div class="user-form--admin-background"></div>
