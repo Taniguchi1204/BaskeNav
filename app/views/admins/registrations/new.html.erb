@@ -1,46 +1,46 @@
 <div class="user-form">
-
-  <div class="user-form--icon">
-    <p class="user-form--login-text">
-      <span class="fa-stack fa-lg">
-        <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fas fa-user fa-stack-1x"></i>
-      </span>
-    </p>
-    <h2>Sign Up</h2>
+  <div class="user-form--admin-background">
+    <div class="user-form--icon">
+      <p class="user-form--login-text">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fas fa-user fa-stack-1x"></i>
+        </span>
+      </p>
+      <h2>Sign Up</h2>
+    </div>
+  
+    <%= form_with model: @admin, url: admin_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+  
+      <div class="user-form--field">
+        <%= render "layouts/error_messages", model: @admin, attribute: :name %>
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "user-form--input", placeholder: "name" %>
+      </div>
+  
+      <div class="user-form--field">
+        <%= render "layouts/error_messages", model: @admin, attribute: :email %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "user-form--input", placeholder: "email" %>
+      </div>
+  
+      <div class="user-form--field">
+        <%= render "layouts/error_messages", model: @admin, attribute: :phone_number %>
+        <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", class: "user-form--input", placeholder: "phone_number" %>
+      </div>
+  
+      <div class="user-form--field">
+        <%= render "layouts/error_messages", model: @admin, attribute: :password %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "user-form--input", placeholder: "password(6桁以上で入力)" %>
+      </div>
+  
+      <div class="user-form--field">
+        <%= render "layouts/error_messages", model: @admin, attribute: :password_confirmation %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "user-form--input", placeholder: "password_confirmation" %>
+      </div>
+  
+      <div class="user-form--actions">
+        <%= f.submit "Sign up", class: "user-form--login-submit" %>
+        <p style="color: white;">会員登録済みの方は<%= link_to "こちら", new_admin_session_path %></p>
+      </div>
+    <% end %>
   </div>
-
-  <%= form_with model: @admin, url: admin_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
-
-    <div class="user-form--field">
-      <%= render "layouts/error_messages", model: @admin, attribute: :name %>
-      <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "user-form--input", placeholder: "name" %>
-    </div>
-
-    <div class="user-form--field">
-      <%= render "layouts/error_messages", model: @admin, attribute: :email %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "user-form--input", placeholder: "email" %>
-    </div>
-
-    <div class="user-form--field">
-      <%= render "layouts/error_messages", model: @admin, attribute: :phone_number %>
-      <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", class: "user-form--input", placeholder: "phone_number" %>
-    </div>
-
-    <div class="user-form--field">
-      <%= render "layouts/error_messages", model: @admin, attribute: :password %>
-      <%= f.password_field :password, autocomplete: "new-password", class: "user-form--input", placeholder: "password(6桁以上で入力)" %>
-    </div>
-
-    <div class="user-form--field">
-      <%= render "layouts/error_messages", model: @admin, attribute: :password_confirmation %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "user-form--input", placeholder: "password_confirmation" %>
-    </div>
-
-    <div class="user-form--actions">
-      <%= f.submit "Sign up", class: "user-form--login-submit" %>
-      <p style="color: white;">会員登録済みの方は<%= link_to "こちら", new_admin_session_path %></p>
-    </div>
-  <% end %>
 </div>
-<div class="user-form--admin-background"></div>
