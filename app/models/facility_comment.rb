@@ -9,7 +9,7 @@ class FacilityComment < ApplicationRecord
   belongs_to :user
   belongs_to :facility
 
-  # 評価グラフに反映されるデータを
+  # 評価グラフに反映されるデータを１００％にした時の５段階評価の割合を配列で取得
   def self.rate_persent(comments)
     5.step(1, -1).map do |i|
       case i
