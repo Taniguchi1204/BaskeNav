@@ -14,7 +14,7 @@ class PostsController < ApplicationController
     @post          = Post.find(params[:id])
     @comment       = PostComment.new
     @post_comments = @post.post_comments.order(created_at: :desc)
-    lat = @post.post_place.latitude# 経度
+    lat = @post.post_place.latitude # 経度
     lng = @post.post_place.longitude # 緯度
 
     # googelmap.jsで使用する変数
@@ -54,6 +54,7 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:content,
                                    :image,
-                                   post_place_attributes: [:address])
+                                   post_place_attributes: [:address]
+                                  )
     end
 end
