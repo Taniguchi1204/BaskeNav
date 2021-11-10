@@ -174,8 +174,8 @@
       font-size: 60px;
       position: absolute;
       top: 550px;
-      left: 150px;
-      transform: rotate(-8deg);
+      left: 260px;
+      transform: rotate(-6deg);
       color: white;
     }
     h1:after {
@@ -232,6 +232,15 @@
     background: blue;/*ドットボタンの現在地表示の色*/
 }
 
+
+/* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
+@media screen and (max-width: 1440px) {
+  .main-contents--info h1{
+    top: 550px;
+    left: 150px;
+    transform: rotate(-8deg);
+  }
+}
 
 /* タブレット縦置きサイズ（768px）以下の際に適用される設定 */
 @media screen and (max-width: 1024px) {
